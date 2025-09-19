@@ -247,7 +247,30 @@ export const useCMSContent = () => {
 
           if (response.ok) {
             const data = await response.json();
-            setContent({ ...defaultContent, ...data });
+
+            // Transform flat extended bio structure to nested structure
+            const transformedData = { ...data };
+            if (data.earlyLifeTitle && data.earlyLifeText) {
+              transformedData.about = {
+                ...transformedData.about,
+                extendedBio: {
+                  earlyLife: {
+                    title: data.earlyLifeTitle,
+                    text: data.earlyLifeText
+                  },
+                  mentorship: {
+                    title: data.mentorshipTitle || "",
+                    text: data.mentorshipText || ""
+                  },
+                  professional: {
+                    title: data.professionalTitle || "",
+                    text: data.professionalText || ""
+                  }
+                }
+              };
+            }
+
+            setContent({ ...defaultContent, ...transformedData });
           }
         } catch (e) {
           // Silently fall back to default content in production
@@ -290,7 +313,30 @@ export const useCMSContent = () => {
 
         if (response && response.ok) {
           const data = await response.json();
-          setContent({ ...defaultContent, ...data });
+
+          // Transform flat extended bio structure to nested structure
+          const transformedData = { ...data };
+          if (data.earlyLifeTitle && data.earlyLifeText) {
+            transformedData.about = {
+              ...transformedData.about,
+              extendedBio: {
+                earlyLife: {
+                  title: data.earlyLifeTitle,
+                  text: data.earlyLifeText
+                },
+                mentorship: {
+                  title: data.mentorshipTitle || "",
+                  text: data.mentorshipText || ""
+                },
+                professional: {
+                  title: data.professionalTitle || "",
+                  text: data.professionalText || ""
+                }
+              }
+            };
+          }
+
+          setContent({ ...defaultContent, ...transformedData });
         }
       } catch (err) {
         // Silently use default content
