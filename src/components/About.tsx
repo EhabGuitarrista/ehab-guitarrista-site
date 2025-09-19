@@ -108,23 +108,23 @@ const About = () => {
             <CollapsibleContent className="mt-4">
               <div className="bg-card border border-border rounded-lg p-6 space-y-4">
                 <div>
-                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.earlyLife.title}</h4>
+                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio?.earlyLife?.title || "Early Life & Education"}</h4>
                   <p className="text-muted-foreground leading-relaxed">
-                    {content.about.extendedBio.earlyLife.text}
+                    {content.about.extendedBio?.earlyLife?.text || ""}
                   </p>
                 </div>
-                
+
                 <div>
-                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.mentorship.title}</h4>
+                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio?.mentorship?.title || "Mentorship & Influences"}</h4>
                   <p className="text-muted-foreground leading-relaxed">
-                    {content.about.extendedBio.mentorship.text}
+                    {content.about.extendedBio?.mentorship?.text || ""}
                   </p>
                 </div>
-                
+
                 <div>
-                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.professional.title}</h4>
+                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio?.professional?.title || "Professional Development"}</h4>
                   <p className="text-muted-foreground leading-relaxed">
-                    {content.about.extendedBio.professional.text}
+                    {content.about.extendedBio?.professional?.text || ""}
                   </p>
                 </div>
                 
