@@ -230,17 +230,27 @@ export const useCMSContent = () => {
 
           if (response.ok) {
             const data = await response.json();
+
+            // Helper function to merge only non-empty values
+            const mergeNonEmpty = (defaultObj: any, newObj: any) => {
+              if (!newObj) return defaultObj;
+              const result = { ...defaultObj };
+              for (const key in newObj) {
+                if (newObj[key] !== '' && newObj[key] !== null && newObj[key] !== undefined) {
+                  if (typeof newObj[key] === 'object' && !Array.isArray(newObj[key])) {
+                    result[key] = mergeNonEmpty(defaultObj[key] || {}, newObj[key]);
+                  } else {
+                    result[key] = newObj[key];
+                  }
+                }
+              }
+              return result;
+            };
+
             const mergedContent = {
               ...defaultContent,
               ...data,
-              about: {
-                ...defaultContent.about,
-                ...data.about,
-                extendedBio: {
-                  ...defaultContent.about.extendedBio,
-                  ...data.about?.extendedBio
-                }
-              }
+              about: mergeNonEmpty(defaultContent.about, data.about)
             };
             setContent(mergedContent);
           }
@@ -285,17 +295,27 @@ export const useCMSContent = () => {
 
         if (response && response.ok) {
           const data = await response.json();
+
+          // Helper function to merge only non-empty values
+          const mergeNonEmpty = (defaultObj: any, newObj: any) => {
+            if (!newObj) return defaultObj;
+            const result = { ...defaultObj };
+            for (const key in newObj) {
+              if (newObj[key] !== '' && newObj[key] !== null && newObj[key] !== undefined) {
+                if (typeof newObj[key] === 'object' && !Array.isArray(newObj[key])) {
+                  result[key] = mergeNonEmpty(defaultObj[key] || {}, newObj[key]);
+                } else {
+                  result[key] = newObj[key];
+                }
+              }
+            }
+            return result;
+          };
+
           const mergedContent = {
             ...defaultContent,
             ...data,
-            about: {
-              ...defaultContent.about,
-              ...data.about,
-              extendedBio: {
-                ...defaultContent.about.extendedBio,
-                ...data.about?.extendedBio
-              }
-            }
+            about: mergeNonEmpty(defaultContent.about, data.about)
           };
           setContent(mergedContent);
         }
