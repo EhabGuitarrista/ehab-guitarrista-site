@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Image Manager - Ehab Guitarrista</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 2px solid #007cba; padding-bottom: 10px; }
+        .nav-tabs { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: 2px solid #ddd; }
+        .nav-tab { padding: 12px 24px; background: #f8f9fa; border: 1px solid #ddd; border-bottom: none; border-radius: 8px 8px 0 0; text-decoration: none; color: #666; font-weight: bold; transition: all 0.3s; }
+        .nav-tab:hover { background: #e9ecef; }
+        .nav-tab.active { background: white; color: #007cba; border-color: #007cba; }
+        .section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 6px; }
+        .section h2 { margin-top: 0; color: #007cba; }
+        .subsection { margin: 15px 0; padding: 15px; border-left: 3px solid #007cba; background: #f9f9f9; }
+        .subsection h3 { margin-top: 0; color: #005a87; font-size: 18px; }
+        button { background: #007cba; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin: 10px 5px; }
+        button:hover { background: #005a87; }
+        .save-btn { background: #28a745; }
+        .save-btn:hover { background: #1e7e34; }
+        .upload-btn { background: #28a745; padding: 8px 16px; font-size: 14px; }
+        .upload-btn:hover { background: #1e7e34; }
+        .delete-btn { background: #dc3545; padding: 8px 16px; font-size: 14px; }
+        .delete-btn:hover { background: #c82333; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .image-manager { border: 1px solid #ddd; border-radius: 8px; padding: 15px; background: #f8f9fa; margin: 15px 0; }
+        .current-image { text-align: center; margin: 15px 0; }
+        .current-image img { max-width: 100%; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .image-actions { display: flex; gap: 10px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .performance-item { border: 1px solid #ddd; margin: 15px 0; padding: 15px; border-radius: 8px; background: #f9f9f9; }
+        .performance-item h4 { margin-top: 0; color: #007cba; display: flex; justify-content: space-between; align-items: center; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin: 0 0 5px 0; font-size: 14px; font-weight: bold; }
+        .form-group input, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .form-group textarea { min-height: 60px; resize: vertical; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Image Manager - Ehab Guitarrista</h1>
+        
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <a href="complete-cms.html" class="nav-tab">📝 Main Editor</a>
+            <a href="images.html" class="nav-tab active">🖼️ Images</a>
+            <a href="videos.html" class="nav-tab">🎥 Videos</a>
+        </div>
+        
+        <div id="status"></div>
+        
+        <!-- Hero Image Section -->
+        <div class="section">
+            <h2>🎭 Hero Section Background</h2>
+            
+            <div class="subsection">
+                <h3>🖼️ Hero Background Image</h3>
+                <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                    Manage the background image for the hero section on the main page.
+                </p>
+                
+                <div class="image-manager">
+                    <div class="current-image" id="heroCurrentImage">
+                        <!-- Current image will be loaded here -->
+                    </div>
+                    
+                    <div class="image-actions">
+                        <input type="file" id="heroImageUpload" accept=".jpg,.jpeg,.png,.gif,.webp" style="display: none;">
+                        <button type="button" onclick="triggerHeroImageUpload()" class="upload-btn">📁 Upload New Image</button>
+                        <button type="button" onclick="deleteHeroImage()" class="delete-btn">🗑️ Remove Current</button>
+                        <button type="button" onclick="saveHeroImage()" class="save-btn" style="padding: 8px 16px; font-size: 14px;">💾 Save</button>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 10px;">
+                        <span id="heroImageStatus" style="font-size: 12px; color: #666;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Performance Images Section -->
+        <div class="section">
+            <h2>🎭 Performance Images</h2>
+            
+            <div class="subsection">
+                <h3>📸 Live Performance Moments</h3>
+                <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                    Manage the performance images that appear in the "Live Performance Moments" section.
+                </p>
+                
+                <div id="performanceImagesContainer">
+                    <!-- Performance images will be populated by JavaScript -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="button" onclick="addPerformanceImage()" style="background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 4px; font-size: 16px; margin-right: 10px;">➕ Add Performance Image</button>
+                    <button type="button" onclick="savePerformanceImages()" class="save-btn">💾 Save All Performance Images</button>
+                    <span id="performanceImagesStatus" style="margin-left: 15px; font-size: 14px; color: #666;"></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Upcoming Events Section -->
+        <div class="section">
+            <h2>🎫 Upcoming Events</h2>
+            
+            <div class="subsection">
+                <div class="form-group">
+                    <label>Section Title:</label>
+                    <input type="text" id="upcomingEventsTitle" value="Upcoming Events" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+                </div>
+                
+                <h3>📅 Event Posters</h3>
+                <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                    Manage the event posters that appear in the "Upcoming Events" section on the performances page.
+                </p>
+                
+                <div id="upcomingEventsContainer">
+                    <!-- Event images will be populated by JavaScript -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="button" onclick="addUpcomingEvent()" style="background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 4px; font-size: 16px; margin-right: 10px;">➕ Add Event Poster</button>
+                    <button type="button" onclick="saveUpcomingEvents()" class="save-btn">💾 Save All Event Posters</button>
+                    <span id="upcomingEventsStatus" style="margin-left: 15px; font-size: 14px; color: #666;"></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Book Your Experience Section -->
+        <div class="section">
+            <h2>📋 Book Your Experience Section</h2>
+            
+            <div class="subsection">
+                <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                    Edit the "Book Your Experience" section that appears at the bottom of the performances page.
+                </p>
+                
+                <div class="form-group">
+                    <label>Title:</label>
+                    <input type="text" id="bookExperienceTitle" placeholder="Book Your Experience" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+                </div>
+                
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea id="bookExperienceDescription" placeholder="Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together." rows="3" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box; resize: vertical;"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Button Text:</label>
+                    <input type="text" id="bookExperienceButtonText" placeholder="Schedule Consultation" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="button" onclick="saveBookExperience()" class="save-btn">💾 Save Book Experience Section</button>
+                    <span id="bookExperienceStatus" style="margin-left: 15px; font-size: 14px; color: #666;"></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Save All Changes -->
+        <div class="section" style="text-align: center; background: #f8f9fa; border: 2px solid #007cba;">
+            <h2 style="color: #007cba; margin-top: 0;">💾 Save All Changes</h2>
+            <p style="color: #666; font-size: 16px; margin-bottom: 20px;">Save all image settings to apply changes to your website.</p>
+            <button type="button" onclick="saveAllImageChanges()" style="background: #28a745; color: white; padding: 15px 30px; border: none; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                💾 Save All Image Changes
+            </button>
+            <span id="saveAllStatus" style="display: block; margin-top: 15px; font-size: 16px; font-weight: bold;"></span>
+        </div>
+    </div>
+
+    <script>
+        let currentHeroImage = '';
+        let performanceImagesData = [];
+        let upcomingEventsData = [];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('heroImageUpload').addEventListener('change', handleHeroImageUpload);
+            loadCurrentImages();
+        });
+
+        async function loadCurrentImages() {
+            try {
+                const response = await fetch('/content.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Load hero image
+                    currentHeroImage = data.hero?.image || '';
+                    displayHeroImage();
+                    
+                    // Load performance images
+                    performanceImagesData = data.performanceImages || [
+                        {
+                            title: "Wedding Ensemble",
+                            description: "Elegant quartet with violin, guitars, and upright bass",
+                            image: "/images/wedding-ensemble.png",
+                            alt: "Ehab performing flamenco guitar with wedding ensemble"
+                        },
+                        {
+                            title: "Flamenco Ensemble", 
+                            description: "Dynamic performance with flamenco dancer in flowing red dress",
+                            image: "/images/flamenco-ensemble.png",
+                            alt: "Dynamic flamenco performance featuring dancer in flowing red dress"
+                        }
+                    ];
+                    renderPerformanceImages();
+                    
+                    // Load upcoming events
+                    upcomingEventsData = data.upcomingEvents || [
+                        {
+                            title: "EHAB GUITARRISTA ENSEMBLE",
+                            description: "August 8th performance - Doors open at 7pm, Music at 8pm",
+                            image: "/lovable-uploads/b385d23d-aa6f-4d0a-a0d5-b5adde069a09.png",
+                            alt: "August 8th Ehab Guitarrista Ensemble performance poster"
+                        },
+                        {
+                            title: "Lorca Night", 
+                            description: "August 24 at 7:00 PM featuring Ehab Guitarrista with flamenco dancer",
+                            image: "/lovable-uploads/84083fd4-89a9-4ca6-8197-ae74c3f952f2.png",
+                            alt: "Lorca Night performance poster"
+                        },
+                        {
+                            title: "Inspired by Spain", 
+                            description: "June 19, 2025 featuring Ehab Guitarrista and Gareth Owen",
+                            image: "/lovable-uploads/34f4cef6-dd7e-425d-9bc2-c31f848591c1.png",
+                            alt: "Inspired by Spain Guitar Night poster"
+                        },
+                        {
+                            title: "We Teach Life",
+                            description: "Educational performance showcasing flamenco techniques and cultural heritage",
+                            image: "/lovable-uploads/617f75cf-e773-4dd7-af5a-0c4565bbf44d.png",
+                            alt: "We Teach Life educational performance poster"
+                        },
+                        {
+                            title: "MOZAICO FLAMENCO",
+                            description: "Multi-cultural flamenco fusion showcasing diverse influences",
+                            image: "/lovable-uploads/671be344-9a00-42cd-bf9e-044efec21e64.png",
+                            alt: "Mozaico Flamenco fusion performance poster"
+                        },
+                        {
+                            title: "BOHEMIAN TRAVELLER",
+                            description: "Musical journey through various cultural landscapes and styles",
+                            image: "/lovable-uploads/683ccb34-9bec-4ea7-88f2-d1b0aca72524.png",
+                            alt: "Bohemian Traveller musical journey poster"
+                        }
+                    ];
+                    
+                    // Load section title
+                    document.getElementById('upcomingEventsTitle').value = data.upcomingEventsTitle || 'Upcoming Events';
+                    
+                    renderUpcomingEvents();
+                    
+                    // Load Book Your Experience data
+                    if (data.bookExperience) {
+                        document.getElementById('bookExperienceTitle').value = data.bookExperience.title || 'Book Your Experience';
+                        document.getElementById('bookExperienceDescription').value = data.bookExperience.description || 'Ready to bring the magic of flamenco guitar to your event? Let\'s create something extraordinary together.';
+                        document.getElementById('bookExperienceButtonText').value = data.bookExperience.buttonText || 'Schedule Consultation';
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading current images:', error);
+                showStatus('❌ Error loading current images', 'error');
+            }
+        }
+
+        // Hero Image Functions
+        function displayHeroImage() {
+            const container = document.getElementById('heroCurrentImage');
+            
+            if (currentHeroImage) {
+                container.innerHTML = `
+                    <div>
+                        <img src="${currentHeroImage}" alt="Current Hero Image" style="max-width: 100%; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <p style="margin: 10px 0 0 0; font-size: 14px; color: #666;">Current: ${currentHeroImage}</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '<p style="color: #999; font-style: italic; padding: 40px;">No hero image set. Upload one to get started!</p>';
+            }
+        }
+
+        function triggerHeroImageUpload() {
+            document.getElementById('heroImageUpload').click();
+        }
+
+        async function handleHeroImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const statusSpan = document.getElementById('heroImageStatus');
+            statusSpan.textContent = '⏳ Uploading hero image...';
+            statusSpan.style.color = '#007cba';
+
+            const formData = new FormData();
+            formData.append('imageFile', file);
+
+            try {
+                const response = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    currentHeroImage = result.filePath;
+                    displayHeroImage();
+                    statusSpan.textContent = '✅ Image uploaded! Click "Save Hero Image" to apply.';
+                    statusSpan.style.color = '#28a745';
+                } else {
+                    statusSpan.textContent = `❌ Upload failed: ${result.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+            } catch (error) {
+                statusSpan.textContent = `❌ Upload error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+            }
+
+            // Clear the input
+            event.target.value = '';
+        }
+
+        async function deleteHeroImage() {
+            if (!currentHeroImage) {
+                showStatus('❌ No hero image to delete', 'error');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to remove the current hero image?')) {
+                return;
+            }
+
+            currentHeroImage = '';
+            displayHeroImage();
+            
+            const statusSpan = document.getElementById('heroImageStatus');
+            statusSpan.textContent = '✅ Hero image removed! Click "Save Hero Image" to apply.';
+            statusSpan.style.color = '#28a745';
+        }
+
+        async function saveHeroImage() {
+            const statusSpan = document.getElementById('heroImageStatus');
+            
+            statusSpan.textContent = '⏳ Saving hero image...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Load current content
+                const response = await fetch('/content.json');
+                const currentData = await response.json();
+
+                // Update hero image
+                if (!currentData.hero) {
+                    currentData.hero = {};
+                }
+                currentData.hero.image = currentHeroImage;
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    statusSpan.textContent = '✅ Hero image saved successfully!';
+                    statusSpan.style.color = '#28a745';
+                    showStatus('✅ Hero image updated! Changes should appear on your main site.', 'success');
+                } else {
+                    statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                
+            } catch (error) {
+                statusSpan.textContent = `❌ Error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+                showStatus('❌ Failed to save hero image', 'error');
+            }
+        }
+
+        // Performance Images Functions
+        function renderPerformanceImages() {
+            const container = document.getElementById('performanceImagesContainer');
+            
+            if (performanceImagesData.length === 0) {
+                container.innerHTML = '<p style="color: #666; font-style: italic; text-align: center; padding: 20px;">No performance images added yet. Click "Add Performance Image" to get started.</p>';
+                return;
+            }
+
+            container.innerHTML = performanceImagesData.map((item, index) => `
+                <div class="performance-item">
+                    <h4>
+                        Performance Image ${index + 1}
+                        <button type="button" onclick="removePerformanceImage(${index})" style="background: #dc3545; color: white; padding: 4px 8px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer;">🗑️ Remove</button>
+                    </h4>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Title:</label>
+                            <input type="text" value="${item.title}" onchange="updatePerformanceImage(${index}, 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Description:</label>
+                            <input type="text" value="${item.description}" onchange="updatePerformanceImage(${index}, 'description', this.value)">
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="image-manager">
+                        <div class="current-image">
+                            ${item.image ? `<img src="${item.image}" alt="${item.alt}" style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">` : '<p style="color: #999; font-style: italic; padding: 20px;">No image uploaded yet</p>'}
+                            ${item.image ? `<p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">Current: ${item.image}</p>` : ''}
+                        </div>
+                        
+                        <div class="image-actions">
+                            <input type="file" id="performanceImageUpload-${index}" accept=".jpg,.jpeg,.png,.gif,.webp" style="display: none;">
+                            <button type="button" onclick="triggerPerformanceImageUpload(${index})" class="upload-btn">📁 Upload Image</button>
+                            ${item.image ? `<button type="button" onclick="deletePerformanceImage(${index})" class="delete-btn">🗑️ Remove Image</button>` : ''}
+                            <button type="button" onclick="saveIndividualPerformanceImage(${index})" class="save-btn" style="padding: 8px 16px; font-size: 14px;">💾 Save</button>
+                        </div>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="performanceStatus-${index}" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add event listeners for file uploads
+            performanceImagesData.forEach((item, index) => {
+                const fileInput = document.getElementById(`performanceImageUpload-${index}`);
+                if (fileInput) {
+                    fileInput.addEventListener('change', (event) => handlePerformanceImageUpload(event, index));
+                }
+            });
+        }
+
+        function addPerformanceImage() {
+            const newIndex = performanceImagesData.length + 1;
+            performanceImagesData.push({
+                title: `Performance ${newIndex}`,
+                description: "Enter description for this performance",
+                image: "",
+                alt: "Performance image alt text for accessibility"
+            });
+            
+            renderPerformanceImages();
+            showStatus(`✅ New performance section added! Don't forget to save when you're done editing.`, 'success');
+        }
+
+        function removePerformanceImage(index) {
+            if (confirm('Are you sure you want to remove this performance image?')) {
+                performanceImagesData.splice(index, 1);
+                renderPerformanceImages();
+            }
+        }
+
+        function updatePerformanceImage(index, field, value) {
+            if (performanceImagesData[index]) {
+                performanceImagesData[index][field] = value;
+            }
+        }
+
+        function triggerPerformanceImageUpload(index) {
+            document.getElementById(`performanceImageUpload-${index}`).click();
+        }
+
+        async function handlePerformanceImageUpload(event, index) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('imageFile', file);
+
+            try {
+                const response = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    performanceImagesData[index].image = result.filePath;
+                    renderPerformanceImages();
+                    showStatus(`✅ Image uploaded for performance ${index + 1}! Click "Save All Performance Images" to apply.`, 'success');
+                } else {
+                    showStatus(`❌ Upload failed: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Upload error: ${error.message}`, 'error');
+            }
+
+            // Clear the input
+            event.target.value = '';
+        }
+
+        function deletePerformanceImage(index) {
+            if (confirm('Are you sure you want to remove this image?')) {
+                performanceImagesData[index].image = '';
+                renderPerformanceImages();
+            }
+        }
+
+        async function saveIndividualPerformanceImage(index) {
+            const statusSpan = document.getElementById(`performanceStatus-${index}`);
+            
+            statusSpan.textContent = '⏳ Saving...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Load current content
+                const response = await fetch('/content.json');
+                const currentData = await response.json();
+
+                // Update performance images
+                currentData.performanceImages = performanceImagesData;
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    statusSpan.textContent = '✅ Saved!';
+                    statusSpan.style.color = '#28a745';
+                    setTimeout(() => {
+                        statusSpan.textContent = '';
+                    }, 3000);
+                } else {
+                    statusSpan.textContent = `❌ Error: ${saveResult.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                
+            } catch (error) {
+                statusSpan.textContent = `❌ Error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+            }
+        }
+
+        async function savePerformanceImages() {
+            const statusSpan = document.getElementById('performanceImagesStatus');
+            
+            statusSpan.textContent = '⏳ Saving performance images...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Load current content
+                const response = await fetch('/content.json');
+                const currentData = await response.json();
+
+                // Update performance images
+                currentData.performanceImages = performanceImagesData;
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    statusSpan.textContent = '✅ Performance images saved successfully!';
+                    statusSpan.style.color = '#28a745';
+                    showStatus('✅ Performance images updated! Changes should appear on your main site.', 'success');
+                } else {
+                    statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                
+            } catch (error) {
+                statusSpan.textContent = `❌ Error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+                showStatus('❌ Failed to save performance images', 'error');
+            }
+        }
+
+        // Save All Changes Function
+        async function saveAllImageChanges() {
+            const statusSpan = document.getElementById('saveAllStatus');
+            
+            statusSpan.textContent = '⏳ Saving all image changes...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Save hero image first
+                await saveHeroImage();
+                
+                // Then save performance images
+                await savePerformanceImages();
+                
+                statusSpan.textContent = '✅ All image changes saved successfully!';
+                statusSpan.style.color = '#28a745';
+                showStatus('✅ All image changes saved! Changes should appear on your main site.', 'success');
+            } catch (error) {
+                statusSpan.textContent = `❌ Error saving changes: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+                showStatus('❌ Error saving some changes. Please try again.', 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.innerHTML = `<div class="${type}">${message}</div>`;
+            setTimeout(() => status.innerHTML = '', 8000);
+        }
+        
+        // Upcoming Events Functions
+        function renderUpcomingEvents() {
+            const container = document.getElementById('upcomingEventsContainer');
+            
+            if (upcomingEventsData.length === 0) {
+                container.innerHTML = '<p style="color: #666; font-style: italic; text-align: center; padding: 20px;">No upcoming events added yet. Click "Add Event Poster" to get started.</p>';
+                return;
+            }
+
+            container.innerHTML = upcomingEventsData.map((item, index) => `
+                <div class="performance-item">
+                    <h4>
+                        Event Poster ${index + 1}
+                        <button type="button" onclick="removeUpcomingEvent(${index})" style="background: #dc3545; color: white; padding: 4px 8px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer;">🗑️ Remove</button>
+                    </h4>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Event Title:</label>
+                            <input type="text" value="${item.title}" onchange="updateUpcomingEvent(${index}, 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Event Description:</label>
+                            <input type="text" value="${item.description}" onchange="updateUpcomingEvent(${index}, 'description', this.value)">
+                        </div>
+                    </div>
+                    
+                    <div class="image-manager">
+                        <div class="current-image">
+                            ${item.image ? `<img src="${item.image}" alt="${item.alt || item.title}" style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">` : '<p style="color: #999; font-style: italic; padding: 20px;">No poster uploaded yet</p>'}
+                            ${item.image ? `<p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">Current: ${item.image}</p>` : ''}
+                        </div>
+                        
+                        <div class="image-actions">
+                            <input type="file" id="upcomingEventUpload-${index}" accept=".jpg,.jpeg,.png,.gif,.webp" style="display: none;">
+                            <button type="button" onclick="triggerUpcomingEventUpload(${index})" class="upload-btn">📁 Upload Poster</button>
+                            ${item.image ? `<button type="button" onclick="deleteUpcomingEventImage(${index})" class="delete-btn">🗑️ Remove Poster</button>` : ''}
+                            <button type="button" onclick="saveIndividualUpcomingEvent(${index})" class="save-btn" style="padding: 8px 16px; font-size: 14px;">💾 Save</button>
+                        </div>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="upcomingEventStatus-${index}" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add event listeners for file uploads
+            upcomingEventsData.forEach((item, index) => {
+                const fileInput = document.getElementById(`upcomingEventUpload-${index}`);
+                if (fileInput) {
+                    fileInput.addEventListener('change', (event) => handleUpcomingEventUpload(event, index));
+                }
+            });
+        }
+
+        function addUpcomingEvent() {
+            const newIndex = upcomingEventsData.length + 1;
+            upcomingEventsData.push({
+                title: `Event ${newIndex}`,
+                description: "Enter event description and date",
+                image: "",
+                alt: ""
+            });
+            
+            renderUpcomingEvents();
+            showStatus(`✅ New event poster section added! Don't forget to save when you're done editing.`, 'success');
+        }
+
+        function removeUpcomingEvent(index) {
+            if (confirm('Are you sure you want to remove this event poster?')) {
+                upcomingEventsData.splice(index, 1);
+                renderUpcomingEvents();
+            }
+        }
+
+        function updateUpcomingEvent(index, field, value) {
+            if (upcomingEventsData[index]) {
+                upcomingEventsData[index][field] = value;
+                if (field === 'title') {
+                    upcomingEventsData[index].alt = value + ' event poster';
+                }
+            }
+        }
+
+        function triggerUpcomingEventUpload(index) {
+            document.getElementById(`upcomingEventUpload-${index}`).click();
+        }
+
+        async function handleUpcomingEventUpload(event, index) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('imageFile', file);
+
+            try {
+                const response = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    upcomingEventsData[index].image = result.filePath;
+                    renderUpcomingEvents();
+                    showStatus(`✅ Poster uploaded for event ${index + 1}! Click "Save" to apply.`, 'success');
+                } else {
+                    showStatus(`❌ Upload failed: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Upload error: ${error.message}`, 'error');
+            }
+
+            // Clear the input
+            event.target.value = '';
+        }
+
+        function deleteUpcomingEventImage(index) {
+            if (confirm('Are you sure you want to remove this poster?')) {
+                upcomingEventsData[index].image = '';
+                renderUpcomingEvents();
+            }
+        }
+
+        async function saveIndividualUpcomingEvent(index) {
+            const statusSpan = document.getElementById(`upcomingEventStatus-${index}`);
+            
+            statusSpan.textContent = '⏳ Saving...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Load current content
+                const response = await fetch('/content.json');
+                const currentData = await response.json();
+
+                // Update upcoming events and title
+                currentData.upcomingEvents = upcomingEventsData;
+                currentData.upcomingEventsTitle = document.getElementById('upcomingEventsTitle').value;
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    statusSpan.textContent = '✅ Saved!';
+                    statusSpan.style.color = '#28a745';
+                    setTimeout(() => {
+                        statusSpan.textContent = '';
+                    }, 3000);
+                } else {
+                    statusSpan.textContent = `❌ Error: ${saveResult.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                
+            } catch (error) {
+                statusSpan.textContent = `❌ Error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+            }
+        }
+
+        async function saveUpcomingEvents() {
+            const statusSpan = document.getElementById('upcomingEventsStatus');
+            
+            statusSpan.textContent = '⏳ Saving upcoming events...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Load current content
+                const response = await fetch('/content.json');
+                const currentData = await response.json();
+
+                // Update upcoming events and title
+                currentData.upcomingEvents = upcomingEventsData;
+                currentData.upcomingEventsTitle = document.getElementById('upcomingEventsTitle').value;
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    statusSpan.textContent = '✅ Upcoming events saved successfully!';
+                    statusSpan.style.color = '#28a745';
+                    showStatus('✅ Upcoming events updated! Changes should appear on your main site.', 'success');
+                } else {
+                    statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                
+            } catch (error) {
+                statusSpan.textContent = `❌ Error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+                showStatus('❌ Failed to save upcoming events', 'error');
+            }
+        }
+        
+        // Book Your Experience Functions
+        async function saveBookExperience() {
+            const statusSpan = document.getElementById('bookExperienceStatus');
+            
+            statusSpan.textContent = '⏳ Saving Book Experience section...';
+            statusSpan.style.color = '#007cba';
+            
+            try {
+                // Load current content
+                const response = await fetch('/content.json');
+                const currentData = await response.json();
+                
+                // Update Book Your Experience data
+                currentData.bookExperience = {
+                    title: document.getElementById('bookExperienceTitle').value,
+                    description: document.getElementById('bookExperienceDescription').value,
+                    buttonText: document.getElementById('bookExperienceButtonText').value
+                };
+                
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+                
+                if (saveResponse.ok) {
+                    statusSpan.textContent = '✅ Book Experience section saved!';
+                    statusSpan.style.color = '#28a745';
+                    setTimeout(() => statusSpan.textContent = '', 8000);
+                    showStatus('✅ Book Experience section saved successfully!', 'success');
+                } else {
+                    throw new Error('Failed to save');
+                }
+            } catch (error) {
+                console.error('Error saving Book Experience section:', error);
+                statusSpan.textContent = '❌ Save failed';
+                statusSpan.style.color = '#dc3545';
+                showStatus('❌ Failed to save Book Experience section', 'error');
+            }
+        }
+    </script>
+</body>
+</html>

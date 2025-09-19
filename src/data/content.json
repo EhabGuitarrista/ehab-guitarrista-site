@@ -1,0 +1,20 @@
+{
+  "hero": {
+    "title": "Ehab Guitarrista",
+    "subtitle": "Bringing Music to Life Across Canada",
+    "image": "/lovable-uploads/9c285a1d-9ff7-4834-a42f-2b0115d824b9.png",
+    "bookButtonText": "Book Performance",
+    "listenButtonText": "Listen Now"
+  },
+  "about": {
+    "title": "About Ehab",
+    "description": "Ehab Guitarrista is a versatile musician and performer based in Canada, bringing authentic musical experiences to audiences across the country. With years of experience in various musical styles, Ehab creates unforgettable performances that connect with people of all backgrounds.",
+    "image": "/lovable-uploads/profile-image.jpg"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Ready to bring exceptional music to your event? Let's discuss how we can make your occasion unforgettable.",
+    "email": "contact@ehabguitarrista.com",
+    "phone": "+1 (555) 123-4567"
+  }
+}
