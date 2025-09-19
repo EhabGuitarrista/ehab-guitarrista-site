@@ -186,12 +186,42 @@ const defaultContent: CMSContent = {
     influencedByText: ""
   },
   performanceImages: [],
-  upcomingEventsTitle: "Upcoming Events",
+  upcomingEventsTitle: "",
   upcomingEvents: [],
   bookExperience: {
-    title: "Book Your Experience",
-    description: "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together.",
-    buttonText: "Schedule Consultation"
+    title: "",
+    description: "",
+    buttonText: ""
+  },
+  videos: {
+    aboutSection: {
+      title: "",
+      file: ""
+    },
+    billBourneMainPage: {
+      title: "",
+      file: ""
+    },
+    billBournePerformances: {
+      title: "",
+      file: ""
+    },
+    notreDame: {
+      title: "",
+      file: ""
+    },
+    piano: {
+      title: "",
+      file: ""
+    },
+    ensemble: {
+      title: "",
+      file: ""
+    },
+    oud: {
+      title: "",
+      file: ""
+    }
   }
 };
 
