@@ -12,7 +12,7 @@ import AdminRedirect from "./components/AdminRedirect";
 const queryClient = new QueryClient();
 
 // Use base path for GitHub Pages in production, empty for development
-const basename = import.meta.env.MODE === 'production' ? '/Ehab_Guitarrista_Site' : '';
+const basename = import.meta.env.MODE === 'production' ? '/ehab-guitarrista-site' : '';
 
 const App = () => (
   <QueryClientProvider client={queryClient}>

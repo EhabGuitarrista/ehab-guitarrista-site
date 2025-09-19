@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/Ehab_Guitarrista_Site/' : '/',
+  base: mode === 'production' ? '/ehab-guitarrista-site/' : '/',
   plugins: [
     react(),
     {
