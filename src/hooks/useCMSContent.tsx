@@ -230,7 +230,19 @@ export const useCMSContent = () => {
 
           if (response.ok) {
             const data = await response.json();
-            setContent({ ...defaultContent, ...data });
+            const mergedContent = {
+              ...defaultContent,
+              ...data,
+              about: {
+                ...defaultContent.about,
+                ...data.about,
+                extendedBio: {
+                  ...defaultContent.about.extendedBio,
+                  ...data.about?.extendedBio
+                }
+              }
+            };
+            setContent(mergedContent);
           }
         } catch (e) {
           // Silently fall back to default content in production
@@ -273,7 +285,19 @@ export const useCMSContent = () => {
 
         if (response && response.ok) {
           const data = await response.json();
-          setContent({ ...defaultContent, ...data });
+          const mergedContent = {
+            ...defaultContent,
+            ...data,
+            about: {
+              ...defaultContent.about,
+              ...data.about,
+              extendedBio: {
+                ...defaultContent.about.extendedBio,
+                ...data.about?.extendedBio
+              }
+            }
+          };
+          setContent(mergedContent);
         }
       } catch (err) {
         // Silently use default content
