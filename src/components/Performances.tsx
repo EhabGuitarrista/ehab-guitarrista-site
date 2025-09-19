@@ -5,21 +5,8 @@ import YouTubeEmbed from "./YouTubeEmbed";
 const Performances = () => {
   const { content } = useCMSContent();
 
-  // Use videos from CMS, with fallback to default
-  const videos = content.videos?.performances && content.videos.performances.length > 0
-    ? content.videos.performances
-    : [
-        {
-          title: "Live Performance",
-          description: "Add performance videos through the CMS",
-          file: ""
-        },
-        {
-          title: "Acoustic Sessions",
-          description: "Intimate acoustic performances and behind-the-scenes",
-          file: ""
-        }
-      ];
+  // Use videos from CMS
+  const videos = content.videos.performances;
 
   return (
     <section id="performances" className="section-padding bg-background">
@@ -105,7 +92,7 @@ const Performances = () => {
         {/* Event Posters */}
         <div className="mb-20">
           <h3 className="text-2xl font-playfair font-bold text-center text-foreground mb-8">
-            {content.upcomingEventsTitle || 'Upcoming Events'}
+            {content.upcomingEventsTitle}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {content.upcomingEvents && content.upcomingEvents.length > 0 ? (

@@ -11,7 +11,7 @@ const Music = () => {
   const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const tracks = content.music?.tracks || [];
+  const tracks = content.music.tracks;
 
   // Ensure currentTrack is valid
   const validCurrentTrack = Math.max(0, Math.min(currentTrack, tracks.length - 1));

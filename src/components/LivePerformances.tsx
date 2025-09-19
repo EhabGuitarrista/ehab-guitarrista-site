@@ -37,7 +37,7 @@ const LivePerformances = () => {
   }, []);
 
   // Use CMS data for performance photos
-  const performancePhotos = content.performanceImages?.map(item => ({
+  const performancePhotos = content.performanceImages.map(item => ({
     url: item.image,
     title: item.title,
     description: item.description
@@ -53,7 +53,7 @@ const LivePerformances = () => {
         </h2>
 
         {/* Featured Collaboration Video */}
-        {content.videos?.billBourneMainPage?.file ? (
+        {content.videos.billBourneMainPage.file ? (
           <div className="mb-10" ref={videoRef}>
             <h3 className="text-lg font-playfair font-medium text-center text-foreground mb-6">
               {content.videos.billBourneMainPage.title}
