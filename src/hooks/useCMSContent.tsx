@@ -210,36 +210,56 @@ const defaultContent: CMSContent = {
 
 export const useCMSContent = () => {
   const [content, setContent] = useState<CMSContent>(defaultContent);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(import.meta.env.MODE !== 'production');
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadContent = async () => {
-      try {
-        const isProduction = import.meta.env.MODE === 'production';
-        const basePath = isProduction ? '/ehab-guitarrista-site' : '';
+      const isProduction = import.meta.env.MODE === 'production';
 
+      // In production, just use the generated content.json with reduced error attempts
+      if (isProduction) {
+        try {
+          const response = await fetch('/ehab-guitarrista-site/content.json?t=' + Date.now(), {
+            headers: {
+              'Cache-Control': 'no-cache, no-store, must-revalidate',
+              'Pragma': 'no-cache',
+              'Expires': '0'
+            }
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            setContent({ ...defaultContent, ...data });
+          }
+        } catch (e) {
+          // Silently fall back to default content in production
+        }
+        setLoading(false);
+        return;
+      }
+
+      // Development mode - try API first, then fallback
+      try {
         let response: Response | null = null;
 
         // Try API endpoint first (dev mode)
-        if (!isProduction) {
-          try {
-            response = await fetch('/api/load-content?t=' + Date.now(), {
-              headers: {
-                'Cache-Control': 'no-cache, no-store, must-revalidate',
-                'Pragma': 'no-cache',
-                'Expires': '0'
-              }
-            });
-          } catch (e) {
-            // API not available, continue to static file
-          }
+        try {
+          response = await fetch('/api/load-content?t=' + Date.now(), {
+            headers: {
+              'Cache-Control': 'no-cache, no-store, must-revalidate',
+              'Pragma': 'no-cache',
+              'Expires': '0'
+            }
+          });
+        } catch (e) {
+          // API not available, continue to static file
         }
 
-        // Try static content.json (production or fallback)
+        // Try static content.json (fallback)
         if (!response || !response.ok) {
           try {
-            response = await fetch(`${basePath}/content.json?t=` + Date.now(), {
+            response = await fetch('/content.json?t=' + Date.now(), {
               headers: {
                 'Cache-Control': 'no-cache, no-store, must-revalidate',
                 'Pragma': 'no-cache',
@@ -254,11 +274,9 @@ export const useCMSContent = () => {
         if (response && response.ok) {
           const data = await response.json();
           setContent({ ...defaultContent, ...data });
-        } else {
-          setContent(defaultContent);
         }
       } catch (err) {
-        setContent(defaultContent);
+        // Silently use default content
       } finally {
         setLoading(false);
       }
