@@ -117,86 +117,73 @@ interface CMSContent {
 
 const defaultContent: CMSContent = {
   navigation: {
-    logoText: "Ehab Guitarrista",
+    logoText: "",
     menuItems: {
-      home: "Home",
-      music: "Music",
-      performances: "Performances",
-      contact: "Contact"
+      home: "",
+      music: "",
+      performances: "",
+      contact: ""
     },
-    ctaButton: "Book Now"
+    ctaButton: ""
   },
   hero: {
-    title: "Ehab Guitarrista",
-    subtitle: "Bringing Music to Life Across Canada",
-    image: "/lovable-uploads/9c285a1d-9ff7-4834-a42f-2b0115d824b9.png",
-    bookButtonText: "Book Performance",
-    listenButtonText: "Listen Now"
+    title: "",
+    subtitle: "",
+    image: "",
+    bookButtonText: "",
+    listenButtonText: ""
   },
   about: {
-    title: "Meet Ehab",
-    mainDescription: "As a composer of original music, music director, and multi-instrumentalist skilled across 3 different instruments, Ehab Guitarrista has become one of Canada's most sought-after flamenco musicians. From intimate acoustic sets in cozy venues to electrifying performances at major festivals, Ehab brings an authentic and passionate approach to every show.",
-    secondParagraph: "Born with music in his soul, Ehab's musical journey began at age 5 with classical foundations. The transition to guitar and flamenco composition came naturally, influenced by legendary masters like Paco De Lucia, Vicente Amigo, Al di Meola, and Antonio Rey.",
-    thirdParagraph: "Ehab's sound blends traditional flamenco with modern elements from jazz, blues, Roma jazz, oriental, and classical music, creating compositions that resonate deeply with audiences across all demographics. Every performance is crafted to create genuine connection and memorable experiences.",
-    fourthParagraph: "Ehab performs across Canada as a soloist and with curated ensembles, bringing a soulful, technically precise flamenco-inspired sound to stages, festivals, and private events.",
-    image: "/lovable-uploads/profile-image.jpg",
+    title: "",
+    mainDescription: "",
+    secondParagraph: "",
+    thirdParagraph: "",
+    fourthParagraph: "",
+    image: "",
     extendedBio: {
       earlyLife: {
-        title: "Early Life & Education",
-        text: "Ehab's musical journey began at the tender age of 5, rooted in classical foundations that would later evolve into his distinctive flamenco style. His early education provided the technical precision and musical theory that underpins his contemporary approach to traditional Spanish guitar."
+        title: "",
+        text: ""
       },
       mentorship: {
-        title: "Mentorship & Influences", 
-        text: "Deeply influenced by legendary masters like Paco De Lucia, Vicente Amigo, Al di Meola, and Antonio Rey, Ehab has developed a unique voice that honors tradition while embracing innovation. His studies with renowned instructors have shaped his understanding of both technical mastery and emotional expression."
+        title: "",
+        text: ""
       },
       professional: {
-        title: "Professional Development",
-        text: "Throughout his career, Ehab has continuously refined his craft through performance, composition, and collaboration with other musicians across diverse genres. His commitment to artistic growth has established him as a versatile and dynamic performer in the Canadian music scene."
+        title: "",
+        text: ""
       }
     }
   },
   stats: {
-    yearsPerforming: { number: "15+", label: "Years Performing" },
-    citiesToured: { number: "50+", label: "Cities Toured" },
-    showsPlayed: { number: "200+", label: "Shows Played" },
-    awardsWon: { number: "15+", label: "Awards Won" }
+    yearsPerforming: { number: "", label: "" },
+    citiesToured: { number: "", label: "" },
+    showsPlayed: { number: "", label: "" },
+    awardsWon: { number: "", label: "" }
   },
   music: {
-    title: "Listen to My Music",
-    subtitle: "Flamenco compositions that blend traditional Spanish forms with jazz, blues, oriental, and classical music. Each piece tells a story of passion and artistry.",
-    featuredTracksTitle: "Featured Tracks",
-    tracks: [
-      {
-        title: "Sample Track",
-        description: "Add your music tracks through the CMS",
-        file: ""
-      }
-    ]
+    title: "",
+    subtitle: "",
+    featuredTracksTitle: "",
+    tracks: []
   },
   contact: {
-    title: "Get in Touch",
-    email: "contact@ehabguitarrista.com",
-    phone: "+1 (555) 123-4567",
-    location: "Available across Canada",
-    responseTimeTitle: "Response Time",
-    responseTime: "All inquiries receive a personal response within 24 hours. For urgent requests, please call directly.",
-    bookButtonText: "Book Ehab"
+    title: "",
+    email: "",
+    phone: "",
+    location: "",
+    responseTimeTitle: "",
+    responseTime: "",
+    bookButtonText: ""
   },
   footer: {
-    brandTitle: "Ehab Guitarrista",
-    description: "Professional flamenco guitarist bringing passion and artistry to life through masterful performances across Canada.",
-    email: "ehab.guitarist@email.com",
-    phone: "+1 (555) 123-4567",
-    services: [
-      "Concert Performances",
-      "Wedding Ceremonies", 
-      "Corporate Events",
-      "Private Parties",
-      "Studio Recording",
-      "Music Composition"
-    ],
-    copyrightText: "© 2025 Ehab Guitarrista. All rights reserved.",
-    influencedByText: "Influenced by: Paco De Lucia • Vicente Amigo • Al di Meola • Antonio Rey"
+    brandTitle: "",
+    description: "",
+    email: "",
+    phone: "",
+    services: [],
+    copyrightText: "",
+    influencedByText: ""
   },
   performanceImages: [],
   upcomingEventsTitle: "Upcoming Events",
@@ -230,29 +217,7 @@ export const useCMSContent = () => {
 
           if (response.ok) {
             const data = await response.json();
-
-            // Helper function to merge only non-empty values
-            const mergeNonEmpty = (defaultObj: any, newObj: any) => {
-              if (!newObj) return defaultObj;
-              const result = { ...defaultObj };
-              for (const key in newObj) {
-                if (newObj[key] !== '' && newObj[key] !== null && newObj[key] !== undefined) {
-                  if (typeof newObj[key] === 'object' && !Array.isArray(newObj[key])) {
-                    result[key] = mergeNonEmpty(defaultObj[key] || {}, newObj[key]);
-                  } else {
-                    result[key] = newObj[key];
-                  }
-                }
-              }
-              return result;
-            };
-
-            const mergedContent = {
-              ...defaultContent,
-              ...data,
-              about: mergeNonEmpty(defaultContent.about, data.about)
-            };
-            setContent(mergedContent);
+            setContent({ ...defaultContent, ...data });
           }
         } catch (e) {
           // Silently fall back to default content in production
@@ -295,29 +260,7 @@ export const useCMSContent = () => {
 
         if (response && response.ok) {
           const data = await response.json();
-
-          // Helper function to merge only non-empty values
-          const mergeNonEmpty = (defaultObj: any, newObj: any) => {
-            if (!newObj) return defaultObj;
-            const result = { ...defaultObj };
-            for (const key in newObj) {
-              if (newObj[key] !== '' && newObj[key] !== null && newObj[key] !== undefined) {
-                if (typeof newObj[key] === 'object' && !Array.isArray(newObj[key])) {
-                  result[key] = mergeNonEmpty(defaultObj[key] || {}, newObj[key]);
-                } else {
-                  result[key] = newObj[key];
-                }
-              }
-            }
-            return result;
-          };
-
-          const mergedContent = {
-            ...defaultContent,
-            ...data,
-            about: mergeNonEmpty(defaultContent.about, data.about)
-          };
-          setContent(mergedContent);
+          setContent({ ...defaultContent, ...data });
         }
       } catch (err) {
         // Silently use default content
