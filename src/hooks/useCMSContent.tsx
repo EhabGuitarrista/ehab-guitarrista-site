@@ -216,27 +216,42 @@ export const useCMSContent = () => {
   useEffect(() => {
     const loadContent = async () => {
       try {
-        // Try API endpoint first (dev mode)
-        let response = await fetch('/api/load-content?t=' + Date.now(), {
-          headers: {
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache',
-            'Expires': '0'
-          }
-        });
+        const isProduction = import.meta.env.MODE === 'production';
+        const basePath = isProduction ? '/ehab-guitarrista-site' : '';
 
-        // If API fails, try static content.json (production)
-        if (!response.ok) {
-          response = await fetch('/content.json?t=' + Date.now(), {
-            headers: {
-              'Cache-Control': 'no-cache, no-store, must-revalidate',
-              'Pragma': 'no-cache',
-              'Expires': '0'
-            }
-          });
+        let response: Response | null = null;
+
+        // Try API endpoint first (dev mode)
+        if (!isProduction) {
+          try {
+            response = await fetch('/api/load-content?t=' + Date.now(), {
+              headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+              }
+            });
+          } catch (e) {
+            // API not available, continue to static file
+          }
         }
 
-        if (response.ok) {
+        // Try static content.json (production or fallback)
+        if (!response || !response.ok) {
+          try {
+            response = await fetch(`${basePath}/content.json?t=` + Date.now(), {
+              headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+              }
+            });
+          } catch (e) {
+            // Static file not available, use default content
+          }
+        }
+
+        if (response && response.ok) {
           const data = await response.json();
           setContent({ ...defaultContent, ...data });
         } else {

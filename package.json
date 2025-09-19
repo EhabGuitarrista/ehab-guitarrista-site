@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "node generate-content-json.js && cp dist/content.json public/content.json 2>/dev/null || true && vite --port 8081",
-    "prebuild": "node generate-content-json.js",
+    "prebuild": "node generate-content-json.js && cp dist/content.json content.json.tmp 2>/dev/null || true",
     "build": "npx vite build",
-    "postbuild": "cp dist/content.json public/content.json 2>/dev/null || true",
+    "postbuild": "cp content.json.tmp dist/content.json 2>/dev/null && rm content.json.tmp 2>/dev/null || true",
     "preview": "vite preview --port 8081"
   },
   "dependencies": {
