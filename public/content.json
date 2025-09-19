@@ -1,13 +1,13 @@
 {
   "navigation": {
-    "logoText": "Ehab",
+    "logoText": "Ehab Guitarrista",
     "menuItems": {
       "home": "Home",
       "music": "Music",
       "performances": "Performances",
       "contact": "Contact"
     },
-    "ctaButton": "Book Now"
+    "ctaButton": "Book Now!"
   },
   "hero": {
     "title": "Ehab Guitarrista",
@@ -18,25 +18,18 @@
   },
   "about": {
     "title": "Meet Ehab",
-    "mainDescription": "As a composer of original music...",
-    "secondParagraph": "",
-    "thirdParagraph": "",
-    "fourthParagraph": "",
-    "image": "/lovable-uploads/profile-image.jpg",
-    "extendedBio": {
-      "earlyLife": {
-        "title": "Early Life & Education",
-        "text": ""
-      },
-      "mentorship": {
-        "title": "Mentorship & Influences",
-        "text": ""
-      },
-      "professional": {
-        "title": "Professional Development",
-        "text": ""
-      }
-    }
+    "videoUrl": "",
+    "videoTitle": "",
+    "earlyLifeText": "tlnknkkn",
+    "earlyLifeTitle": "Early Life & Education",
+    "mentorshipText": "sjkbbjkkbj",
+    "thirdParagraph": "edcaadsc",
+    "fourthParagraph": "dcddcascadsc",
+    "mainDescription": "1dcacc",
+    "mentorshipTitle": "Mentorship & Influences",
+    "secondParagraph": "dscdcasdcsww",
+    "professionalText": "d,.  .. ,.",
+    "professionalTitle": "Professional Development"
   },
   "stats": {
     "yearsPerforming": {
