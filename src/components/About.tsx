@@ -16,9 +16,9 @@ const About = () => {
   }
 
   // Debug video source
-  const videoSrc = content.videos.aboutSection.file;
+  const videoSrc = content.videos?.aboutSection?.file;
   console.log('About video source:', videoSrc);
-  console.log('Full video data:', content.videos.aboutSection);
+  console.log('Full video data:', content.videos?.aboutSection);
   console.log('Content loading state:', loading);
 
   return (
@@ -33,7 +33,7 @@ const About = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-12">
           {/* Professional Video */}
-          {content.videos.aboutSection.file ? (
+          {content.videos?.aboutSection?.file ? (
             <div className="w-full">
               <div className="bg-card border border-border rounded-lg overflow-hidden w-full">
                 {/* Check if it's a YouTube URL or regular video file */}
@@ -107,26 +107,30 @@ const About = () => {
             </CollapsibleTrigger>
             <CollapsibleContent className="mt-4">
               <div className="bg-card border border-border rounded-lg p-6 space-y-4">
-                <div>
-                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.earlyLife.title}</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {content.about.extendedBio.earlyLife.text}
-                  </p>
-                </div>
+                {content.about.extendedBio && (
+                  <>
+                    <div>
+                      <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.earlyLife.title}</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {content.about.extendedBio.earlyLife.text}
+                      </p>
+                    </div>
 
-                <div>
-                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.mentorship.title}</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {content.about.extendedBio.mentorship.text}
-                  </p>
-                </div>
+                    <div>
+                      <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.mentorship.title}</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {content.about.extendedBio.mentorship.text}
+                      </p>
+                    </div>
 
-                <div>
-                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.professional.title}</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {content.about.extendedBio.professional.text}
-                  </p>
-                </div>
+                    <div>
+                      <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.professional.title}</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {content.about.extendedBio.professional.text}
+                      </p>
+                    </div>
+                  </>
+                )}
                 
                 <div>
                   <h4 className="text-xl font-playfair font-bold text-foreground mb-3">Musical Philosophy</h4>
