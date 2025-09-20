@@ -71,7 +71,7 @@
     }
   },
   "music": {
-    "title": "My Music",
+    "title": "My Music+",
     "tracks": [
       {
         "url": "",
@@ -79,8 +79,8 @@
         "description": ""
       }
     ],
-    "subtitle": "Original Compositions & Performances",
-    "featuredTitle": "Featured Tracks"
+    "subtitle": "Original Compositions & Performances+",
+    "featuredTitle": "Featured Tracks+"
   },
   "contact": {
     "title": "Get in Touch+-----",
