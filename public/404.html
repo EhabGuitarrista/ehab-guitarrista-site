@@ -5,17 +5,16 @@
     <title>Ehab Guitarrista</title>
     <script>
         // Single Page Apps for GitHub Pages
-        // Redirect /ehab-guitarrista-site/performances to /ehab-guitarrista-site/#/performances
+        // Redirect /performances to /#/performances
 
         var l = window.location;
         var baseUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '');
-        var basePath = '/ehab-guitarrista-site';
 
-        // Extract the route path after the base path
-        var routePath = l.pathname.replace(basePath, '');
+        // Use the current path as the route path
+        var routePath = l.pathname;
 
         // Redirect to the base URL with hash routing
-        l.replace(baseUrl + basePath + '/#' + routePath + l.search + l.hash);
+        l.replace(baseUrl + '/#' + routePath + l.search + l.hash);
     </script>
 </head>
 <body>

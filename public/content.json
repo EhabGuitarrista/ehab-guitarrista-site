@@ -1,4 +1,15 @@
 {
+  "videos": {
+    "aboutSection": {
+      "title": "",
+      "file": ""
+    },
+    "billBourneMainPage": {
+      "title": "",
+      "file": ""
+    },
+    "performances": []
+  },
   "navigation": {
     "logoText": "Ehab Guitarrista+",
     "menuItems": {
@@ -104,16 +115,5 @@
     ],
     "copyrightText": "© 2024 Ehab Guitarrista. All rights reserved.++",
     "influencedByText": "Influenced by the masters of flamenco and world music+"
-  },
-  "videos": {
-    "aboutSection": {
-      "title": "",
-      "file": ""
-    },
-    "billBourneMainPage": {
-      "title": "",
-      "file": ""
-    },
-    "performances": []
   }
 }

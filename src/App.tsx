@@ -11,8 +11,8 @@ import AdminRedirect from "./components/AdminRedirect";
 
 const queryClient = new QueryClient();
 
-// Use base path for GitHub Pages in production, empty for development
-const basename = import.meta.env.MODE === 'production' ? '/ehab-guitarrista-site' : '';
+// No base path needed since site is deployed at root domain
+const basename = '';
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
