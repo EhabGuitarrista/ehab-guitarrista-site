@@ -76,7 +76,7 @@ async function generateContentJson() {
                                 text: section.professionalText || ""
                             },
                             musicalPhilosophy: {
-                                title: section.musicalPhilosophyTitle || "Musical Philosophy",
+                                title: section.musicalPhilosophyTitle || "",
                                 text: section.musicalPhilosophyText || ""
                             }
                         }
@@ -216,7 +216,7 @@ function createDefaultContent() {
                 earlyLife: { title: "Early Life & Education", text: "" },
                 mentorship: { title: "Mentorship & Influences", text: "" },
                 professional: { title: "Professional Development", text: "" },
-                musicalPhilosophy: { title: "Musical Philosophy", text: "" }
+                musicalPhilosophy: { title: "", text: "" }
             }
         },
         stats: {
