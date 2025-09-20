@@ -37,7 +37,7 @@ const LivePerformances = () => {
   }, []);
 
   // Use CMS data for performance photos
-  const performancePhotos = content.performanceImages.map(item => ({
+  const performancePhotos = content.performanceImages?.map(item => ({
     url: item.image,
     title: item.title,
     description: item.description
@@ -55,10 +55,10 @@ const LivePerformances = () => {
         )}
 
         {/* Featured Collaboration Video */}
-        {content.videos.billBourneMainPage.file ? (
+        {content.videos?.billBourneMainPage?.file ? (
           <div className="mb-10" ref={videoRef}>
             <h3 className="text-lg font-playfair font-medium text-center text-foreground mb-6">
-              {content.videos.billBourneMainPage.title}
+              {content.videos?.billBourneMainPage?.title}
             </h3>
             <div className="flex justify-center">
               <div className="w-full px-0 md:px-4">
@@ -71,8 +71,8 @@ const LivePerformances = () => {
                     preload="metadata"
                     style={{ aspectRatio: '16/9', minHeight: '300px' }}
                   >
-                    <source src={content.videos.billBourneMainPage.file} type="video/quicktime" />
-                    <source src={content.videos.billBourneMainPage.file} type="video/mp4" />
+                    <source src={content.videos?.billBourneMainPage?.file} type="video/quicktime" />
+                    <source src={content.videos?.billBourneMainPage?.file} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
