@@ -163,6 +163,10 @@ async function generateContentJson() {
                         description: "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together.",
                         buttonText: "Schedule Consultation"
                     };
+                    // Extract live performance moments title from images section
+                    content.livePerformanceMoments = {
+                        title: section.livePerformanceMomentsTitle || ""
+                    };
                     break;
 
                 case 'videos':
@@ -171,22 +175,15 @@ async function generateContentJson() {
                         billBourneMainPage: { title: '', file: '' },
                         performances: []
                     };
-                    break;
-
-                case 'livePerformanceMoments':
-                    content.livePerformanceMoments = {
-                        title: section.title || ""
-                    };
-                    break;
-
-                case 'performancePage':
+                    // Extract performance page content from videos section
                     content.performancePage = {
-                        mainTitle: section.mainTitle || "",
-                        mainSubtitle: section.mainSubtitle || "",
-                        eventsTitle: section.eventsTitle || "",
-                        eventsDescription: section.eventsDescription || ""
+                        mainTitle: section.performancePageMainTitle || "",
+                        mainSubtitle: section.performancePageMainSubtitle || "",
+                        eventsTitle: section.performancePageEventsTitle || "",
+                        eventsDescription: section.performancePageEventsDescription || ""
                     };
                     break;
+
             }
         });
     } else {

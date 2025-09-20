@@ -13,6 +13,9 @@
     "buttonText": "Contact Now!",
     "description": "Schedule a Consultation with Ehab"
   },
+  "livePerformanceMoments": {
+    "title": ""
+  },
   "about": {
     "title": "Meet Ehab!",
     "videoUrl": "",
@@ -58,6 +61,12 @@
       "file": ""
     },
     "performances": []
+  },
+  "performancePage": {
+    "mainTitle": "",
+    "mainSubtitle": "",
+    "eventsTitle": "",
+    "eventsDescription": ""
   },
   "music": {
     "title": "My Music+",
