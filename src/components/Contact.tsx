@@ -48,8 +48,8 @@ const Contact = () => {
     }
 
     try {
-      // Send using simple Formspree endpoint (zero setup required)
-      const response = await fetch(`https://formspree.io/${recipientEmail}`, {
+      // Send using FormSubmit.co (zero setup required, just needs email)
+      const response = await fetch(`https://formsubmit.co/${recipientEmail}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,14 +62,15 @@ const Contact = () => {
           eventType: formData.eventType,
           venue: formData.venue,
           message: formData.message,
-          _subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`
+          _subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`,
+          _template: 'table'
         })
       });
 
       if (response.ok) {
         toast({
           title: "Message Sent!",
-          description: `Your booking inquiry has been sent to ${recipientEmail}. You will receive a confirmation shortly.`,
+          description: `Your booking inquiry has been sent successfully. You will receive a confirmation email shortly.`,
         });
 
         // Clear form on success
