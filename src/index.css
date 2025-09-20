@@ -115,4 +115,36 @@
   .container-max {
     @apply max-w-none px-8 mx-auto;
   }
+
+  /* Date Input Styling for better visibility */
+  input[type="date"] {
+    color-scheme: dark;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: white;
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type="date"]::-webkit-datetime-edit {
+    color: hsl(var(--foreground));
+  }
+
+  input[type="date"]::-webkit-datetime-edit-text {
+    color: hsl(var(--foreground));
+  }
+
+  input[type="date"]::-webkit-datetime-edit-month-field {
+    color: hsl(var(--foreground));
+  }
+
+  input[type="date"]::-webkit-datetime-edit-day-field {
+    color: hsl(var(--foreground));
+  }
+
+  input[type="date"]::-webkit-datetime-edit-year-field {
+    color: hsl(var(--foreground));
+  }
 }

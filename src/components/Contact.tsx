@@ -20,11 +20,11 @@ const Contact = () => {
     message: ""
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate all required fields
-    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || 
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() ||
         !formData.eventDate.trim() || !formData.eventType.trim() || !formData.venue.trim()) {
       toast({
         title: "Missing Information",
@@ -33,47 +33,41 @@ const Contact = () => {
       });
       return;
     }
-    
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      
-      const result = await response.json();
-      
-      if (result.success) {
-        toast({
-          title: "Message Sent!",
-          description: "Thank you for your inquiry.",
-        });
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          eventDate: "",
-          eventType: "",
-          venue: "",
-          message: ""
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: result.error || "Failed to send message. Please try again or contact directly.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error('Error sending email:', error);
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again or contact directly.",
-        variant: "destructive",
-      });
-    }
+
+    // Create email content for mailto link
+    const subject = `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`;
+    const body = `
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Event Date: ${formData.eventDate}
+Event Type: ${formData.eventType}
+Venue: ${formData.venue}
+${formData.message ? `Message: ${formData.message}` : ''}
+    `.trim();
+
+    // Create mailto link
+    const mailtoLink = `mailto:${content.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Open email client
+    window.location.href = mailtoLink;
+
+    // Show success message
+    toast({
+      title: "Email Client Opened",
+      description: "Your email client should open with the booking details filled in.",
+    });
+
+    // Clear form
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      eventDate: "",
+      eventType: "",
+      venue: "",
+      message: ""
+    });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

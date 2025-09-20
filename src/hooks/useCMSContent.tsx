@@ -25,7 +25,6 @@ interface CMSContent {
     thirdParagraph: string;
     fourthParagraph: string;
     image: string;
-    extendedBioTitle: string;
     extendedBio: {
       earlyLife: { title: string; text: string };
       mentorship: { title: string; text: string };

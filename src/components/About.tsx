@@ -129,15 +129,15 @@ const About = () => {
                         {content.about.extendedBio.professional.text}
                       </p>
                     </div>
-                  </>
-                )}
-                
+
                     <div>
                       <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.musicalPhilosophy.title}</h4>
                       <p className="text-muted-foreground leading-relaxed">
                         {content.about.extendedBio.musicalPhilosophy.text}
                       </p>
                     </div>
+                  </>
+                )}
               </div>
             </CollapsibleContent>
           </Collapsible>
