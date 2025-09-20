@@ -23,13 +23,15 @@ const App = () => (
         basename={basename}
         future={{
           v7_startTransition: true,
-          v7_relativeSplatPath: true
+          v7_relativeSplatPath: true,
+          v7_normalizeFormMethod: true
         }}
       >
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/performances" element={<Performances />} />
+          <Route path="/performances/" element={<Performances />} />
           <Route path="/admin" element={<AdminRedirect />} />
           <Route path="/admin/*" element={<AdminRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
