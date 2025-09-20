@@ -118,9 +118,11 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="card-professional">
-            <h3 className="text-2xl font-playfair font-bold mb-6 text-foreground">
-              {content.contact.formTitle}
-            </h3>
+            {content.contact.formTitle && (
+              <h3 className="text-2xl font-playfair font-bold mb-6 text-foreground">
+                {content.contact.formTitle}
+              </h3>
+            )}
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -230,9 +232,11 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="card-professional">
-              <h3 className="text-2xl font-playfair font-bold mb-6 text-foreground">
-                {content.contact.infoTitle}
-              </h3>
+              {content.contact.infoTitle && (
+                <h3 className="text-2xl font-playfair font-bold mb-6 text-foreground">
+                  {content.contact.infoTitle}
+                </h3>
+              )}
               
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">

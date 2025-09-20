@@ -111,8 +111,8 @@ async function generateContentJson() {
                 case 'contact':
                     content.contact = {
                         title: section.title || "Get in Touch",
-                        formTitle: section.formTitle || "Get in Touch",
-                        infoTitle: section.infoTitle || "Contact Information",
+                        formTitle: section.formTitle || "",
+                        infoTitle: section.infoTitle || "",
                         email: section.email || "contact@ehabguitarrista.com",
                         phone: section.phone || "+1 (555) 123-4567",
                         location: section.location || "Available across Canada",
