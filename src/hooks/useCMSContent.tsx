@@ -25,6 +25,7 @@ interface CMSContent {
     thirdParagraph: string;
     fourthParagraph: string;
     image: string;
+    extendedBioTitle: string;
     extendedBio: {
       earlyLife: { title: string; text: string };
       mentorship: { title: string; text: string };
@@ -141,6 +142,7 @@ const defaultContent: CMSContent = {
     thirdParagraph: "",
     fourthParagraph: "",
     image: "",
+    extendedBioTitle: "",
     extendedBio: {
       earlyLife: {
         title: "",

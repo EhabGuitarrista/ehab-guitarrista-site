@@ -98,7 +98,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="card-professional">
             <h3 className="text-2xl font-playfair font-bold mb-6 text-foreground">
-              Get In Touch
+              {content.contact.title}
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -201,7 +201,7 @@ const Contact = () => {
               </div>
               
               <Button type="submit" className="btn-primary w-full transform hover:scale-105 transition-all duration-300 shadow-lg">
-                {content.contact.bookButtonText}
+                {content.contact.bookButton}
               </Button>
             </form>
           </div>

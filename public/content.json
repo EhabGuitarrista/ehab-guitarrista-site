@@ -1,20 +1,73 @@
 {
+  "navigation": {
+    "logoText": "Ehab Guitarrista+",
+    "menuItems": {
+      "home": "Home+",
+      "music": "Music+",
+      "performances": "Performances+",
+      "contact": "Contact+"
+    },
+    "ctaButton": "Book Now!"
+  },
+  "hero": {
+    "title": "Ehab Guitarrista+",
+    "subtitle": "Bringing Music to Life Across Canada+",
+    "image": "",
+    "bookButtonText": "Book Performance+",
+    "listenButtonText": "Check Out My Music Below+"
+  },
+  "about": {
+    "title": "Meet Ehab+",
+    "videoUrl": "",
+    "videoTitle": "",
+    "earlyLifeText": "eeeee",
+    "earlyLifeTitle": "Early Lifeeeee",
+    "mentorshipText": "ee",
+    "thirdParagraph": "edcaadsc",
+    "fourthParagraph": "dcddcascadsc",
+    "mainDescription": "1dcacc",
+    "mentorshipTitle": "eeee",
+    "secondParagraph": "dscdcasdcsww",
+    "professionalText": "eeee",
+    "professionalTitle": "ee",
+    "musicalPhilosophyText": "eeeee",
+    "musicalPhilosophyTitle": "eeee",
+    "extendedBioTitle": "",
+    "extendedBio": {
+      "earlyLife": {
+        "title": "Early Lifeeeee",
+        "text": "eeeee"
+      },
+      "mentorship": {
+        "title": "eeee",
+        "text": "ee"
+      },
+      "professional": {
+        "title": "ee",
+        "text": "eeee"
+      },
+      "musicalPhilosophy": {
+        "title": "eeee",
+        "text": "eeeee"
+      }
+    }
+  },
   "stats": {
     "yearsPerforming": {
-      "number": "15+",
-      "label": "Years Performing"
+      "number": "15++",
+      "label": "Years Performing+"
     },
     "citiesToured": {
-      "number": "50+",
-      "label": "Cities Toured"
+      "number": "50++",
+      "label": "Cities Toured+"
     },
     "showsPlayed": {
-      "number": "200+",
-      "label": "Shows Played"
+      "number": "200++",
+      "label": "Shows Played+"
     },
     "awardsWon": {
-      "number": "15+",
-      "label": "Awards Won"
+      "number": "15++",
+      "label": "Awards Won+"
     }
   },
   "music": {
@@ -30,27 +83,27 @@
     "featuredTitle": "Featured Tracks"
   },
   "contact": {
-    "title": "Get in Touch",
-    "email": "contact@ehabguitarrista.com",
-    "phone": "+1 (555) 123-4567",
-    "location": "Available across Canada",
-    "responseTimeTitle": "Response Time",
-    "responseTime": "All inquiries receive a personal response from Ehab to Schedule an Appointment",
-    "bookButton": "Book Now"
+    "title": "Get in Touch+",
+    "email": "contact@ehabguitarrista.com+",
+    "phone": "+1 (555) 123-++++",
+    "location": "Available across Canada++",
+    "responseTimeTitle": "Response Time++",
+    "responseTime": "All inquiries receive a personal response from Ehab to Schedule an Appointment+++",
+    "bookButton": "Book Now+"
   },
   "footer": {
-    "brandTitle": "Ehab Guitarrista",
-    "description": "Professional Flamenco Guitarist & Composer",
-    "email": "contact@ehabguitarrista.com",
-    "phone": "+1 (555) 123-4567",
+    "brandTitle": "Ehab Guitarrista+",
+    "description": "Professional Flamenco Guitarist & Composer+",
+    "email": "contact@ehabguitarrista.com++",
+    "phone": "+1 (555) 123-++++",
     "services": [
       "Performances",
       "Private Events",
       "Studio Sessions",
-      "Collaborations"
+      "Collaborations+"
     ],
-    "copyrightText": "© 2024 Ehab Guitarrista. All rights reserved.",
-    "influencedByText": "Influenced by the masters of flamenco and world music"
+    "copyrightText": "© 2024 Ehab Guitarrista. All rights reserved.++",
+    "influencedByText": "Influenced by the masters of flamenco and world music+"
   },
   "videos": {
     "aboutSection": {
@@ -62,57 +115,5 @@
       "file": ""
     },
     "performances": []
-  },
-  "navigation": {
-    "logoText": "Ehab Guitarrista",
-    "menuItems": {
-      "home": "Home",
-      "music": "Music",
-      "performances": "Performances",
-      "contact": "Contact"
-    },
-    "ctaButton": "Book Now!"
-  },
-  "hero": {
-    "title": "Ehab Guitarrista",
-    "subtitle": "Bringing Music to Life Across Canada",
-    "image": "",
-    "bookButtonText": "Book Performance",
-    "listenButtonText": "Check Out My Music Below"
-  },
-  "about": {
-    "title": "Meet Ehab",
-    "videoUrl": "",
-    "videoTitle": "",
-    "earlyLifeText": "sdcsdcsdcsdtest",
-    "earlyLifeTitle": "Early Life & Education",
-    "mentorshipText": "ffffffffffff",
-    "thirdParagraph": "edcaadsc",
-    "fourthParagraph": "dcddcascadsc",
-    "mainDescription": "1dcacc",
-    "mentorshipTitle": "Mentorship & Influences",
-    "secondParagraph": "dscdcasdcsww",
-    "professionalText": "eeefefefeffefehh",
-    "professionalTitle": "Professional Development",
-    "musicalPhilosophyText": "jjjj",
-    "musicalPhilosophyTitle": "jjjjj",
-    "extendedBio": {
-      "earlyLife": {
-        "title": "Early Life & Education",
-        "text": "sdcsdcsdcsdtest"
-      },
-      "mentorship": {
-        "title": "Mentorship & Influences",
-        "text": "ffffffffffff"
-      },
-      "professional": {
-        "title": "Professional Development",
-        "text": "eeefefefeffefehh"
-      },
-      "musicalPhilosophy": {
-        "title": "jjjjj",
-        "text": "jjjj"
-      }
-    }
   }
 }

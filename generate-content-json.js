@@ -61,6 +61,7 @@ async function generateContentJson() {
                 case 'about':
                     content.about = section.mainDescription ? {
                         ...section,
+                        extendedBioTitle: section.extendedBioTitle || "",
                         // Transform flat extended bio structure to nested structure
                         extendedBio: {
                             earlyLife: {
@@ -212,6 +213,7 @@ function createDefaultContent() {
             thirdParagraph: "",
             fourthParagraph: "",
             image: "",
+            extendedBioTitle: "",
             extendedBio: {
                 earlyLife: { title: "Early Life & Education", text: "" },
                 mentorship: { title: "Mentorship & Influences", text: "" },
