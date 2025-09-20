@@ -15,28 +15,30 @@ const BannerVideo = () => {
     return null;
   }
 
+  const bannerVideo = content.videos.bannerVideo;
+
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container-max">
-        {content.videos.bannerVideo.title && (
+        {bannerVideo.title && (
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-12">
-            {content.videos.bannerVideo.title}
+            {bannerVideo.title}
           </h2>
         )}
 
         <div className="max-w-4xl mx-auto">
           <div className="bg-card border border-border rounded-lg overflow-hidden">
             {/* Check if it's a YouTube URL or regular video file */}
-            {content.videos.bannerVideo.url.includes('youtube.com') ||
-             content.videos.bannerVideo.url.includes('youtu.be') ? (
+            {bannerVideo.url.includes('youtube.com') ||
+             bannerVideo.url.includes('youtu.be') ? (
               <YouTubeEmbed
-                url={content.videos.bannerVideo.url}
-                title={content.videos.bannerVideo.title || "Featured Performance"}
+                url={bannerVideo.url}
+                title={bannerVideo.title || "Featured Performance"}
                 className="w-full"
               />
             ) : (
               <video
-                key={content.videos.bannerVideo.url}
+                key={bannerVideo.url}
                 ref={videoRef}
                 width="100%"
                 height="400"
@@ -48,8 +50,8 @@ const BannerVideo = () => {
                 onError={(e) => console.error('Banner video error:', e)}
                 onLoadedData={() => console.log('Banner video loaded successfully')}
               >
-                <source src={content.videos.bannerVideo.url} type="video/quicktime" />
-                <source src={content.videos.bannerVideo.url} type="video/mp4" />
+                <source src={bannerVideo.url} type="video/quicktime" />
+                <source src={bannerVideo.url} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             )}

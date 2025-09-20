@@ -94,6 +94,10 @@ interface CMSContent {
       title: string;
       file: string;
     };
+    bannerVideo?: {
+      title: string;
+      url: string;
+    };
     billBourneMainPage?: {
       title: string;
       file: string;
@@ -213,6 +217,10 @@ const defaultContent: CMSContent = {
     aboutSection: {
       title: "",
       file: ""
+    },
+    bannerVideo: {
+      title: "",
+      url: ""
     },
     billBourneMainPage: {
       title: "",
