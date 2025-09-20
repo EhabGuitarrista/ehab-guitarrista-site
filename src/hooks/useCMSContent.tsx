@@ -52,6 +52,9 @@ interface CMSContent {
     title: string;
     formTitle: string;
     infoTitle: string;
+    emailLabel: string;
+    phoneLabel: string;
+    locationLabel: string;
     email: string;
     phone: string;
     location: string;
@@ -179,6 +182,9 @@ const defaultContent: CMSContent = {
     title: "",
     formTitle: "",
     infoTitle: "",
+    emailLabel: "",
+    phoneLabel: "",
+    locationLabel: "",
     email: "",
     phone: "",
     location: "",

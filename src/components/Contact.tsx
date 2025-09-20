@@ -239,29 +239,35 @@ const Contact = () => {
               )}
               
               <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-primary" />
-                  <div>
-                    <p className="font-semibold text-foreground">Email</p>
-                    <p className="text-muted-foreground">{content.contact.email}</p>
+                {content.contact.emailLabel && (
+                  <div className="flex items-center space-x-3">
+                    <Mail className="w-5 h-5 text-primary" />
+                    <div>
+                      <p className="font-semibold text-foreground">{content.contact.emailLabel}</p>
+                      <p className="text-muted-foreground">{content.contact.email}</p>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-primary" />
-                  <div>
-                    <p className="font-semibold text-foreground">Phone</p>
-                    <p className="text-muted-foreground">{content.contact.phone}</p>
+                )}
+
+                {content.contact.phoneLabel && (
+                  <div className="flex items-center space-x-3">
+                    <Phone className="w-5 h-5 text-primary" />
+                    <div>
+                      <p className="font-semibold text-foreground">{content.contact.phoneLabel}</p>
+                      <p className="text-muted-foreground">{content.contact.phone}</p>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <div>
-                    <p className="font-semibold text-foreground">Location</p>
-                    <p className="text-muted-foreground">{content.contact.location}</p>
+                )}
+
+                {content.contact.locationLabel && (
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="w-5 h-5 text-primary" />
+                    <div>
+                      <p className="font-semibold text-foreground">{content.contact.locationLabel}</p>
+                      <p className="text-muted-foreground">{content.contact.location}</p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
 
