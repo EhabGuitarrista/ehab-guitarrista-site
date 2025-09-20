@@ -1,4 +1,18 @@
 {
+  "hero": {
+    "title": "Ehab Guitarrista+",
+    "subtitle": "Bringing Music to Life Across Canada+",
+    "image": "",
+    "bookButtonText": "Book Performance!",
+    "listenButtonText": "Check Out My Music Below!"
+  },
+  "performanceImages": [],
+  "upcomingEvents": [],
+  "bookExperience": {
+    "title": "Book Your Experience",
+    "buttonText": "Contact Now!",
+    "description": "Schedule a Consultation with Ehab"
+  },
   "about": {
     "title": "Meet Ehab!",
     "videoUrl": "",
@@ -33,6 +47,17 @@
       "number": "15+",
       "label": "Awards Won"
     }
+  },
+  "videos": {
+    "aboutSection": {
+      "title": "",
+      "file": ""
+    },
+    "billBourneMainPage": {
+      "title": "",
+      "file": ""
+    },
+    "performances": []
   },
   "music": {
     "title": "My Music+",
@@ -72,15 +97,8 @@
       "Collaborations",
       "SERVICE"
     ],
-    "copyrightText": "© 2024 Ehab Guitarrista. All rights reserved.",
+    "copyrightText": "",
     "influencedByText": "Influenced by the masters of flamenco and world music"
-  },
-  "performanceImages": [],
-  "upcomingEvents": [],
-  "bookExperience": {
-    "title": "Book Your Experience",
-    "buttonText": "Contact Now!",
-    "description": "Schedule a Consultation with Ehab"
   },
   "navigation": {
     "logoText": "Ehab Guitarrista",
@@ -91,23 +109,5 @@
       "contact": "Contact+"
     },
     "ctaButton": "Book Now!"
-  },
-  "videos": {
-    "aboutSection": {
-      "title": "",
-      "file": ""
-    },
-    "billBourneMainPage": {
-      "title": "",
-      "file": ""
-    },
-    "performances": []
-  },
-  "hero": {
-    "title": "Ehab Guitarrista+",
-    "subtitle": "Bringing Music to Life Across Canada+",
-    "image": "",
-    "bookButtonText": "Book Performance!",
-    "listenButtonText": "Check Out My Music Below!"
   }
 }
