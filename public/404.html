@@ -14,8 +14,13 @@
         // Extract the route path after the base path
         var routePath = l.pathname.replace(basePath, '');
 
+        // If there's no route path or it's just '/', default to empty
+        if (!routePath || routePath === '/') {
+            routePath = '';
+        }
+
         // Redirect to the base URL with hash routing
-        l.replace(baseUrl + basePath + '/#' + routePath + l.search + l.hash);
+        window.location.replace(baseUrl + basePath + '/#' + routePath + l.search + l.hash);
     </script>
 </head>
 <body>
