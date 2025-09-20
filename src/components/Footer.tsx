@@ -17,53 +17,67 @@ const Footer = () => {
           
           {/* Brand Section */}
           <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <Music className="w-8 h-8 text-primary" />
-              <h3 className="text-2xl font-playfair font-bold text-primary text-glow-subtle">
-                {content.footer.brandTitle}
-              </h3>
-            </div>
-            <p className="text-muted-foreground mb-4">
-              {content.footer.description}
-            </p>
+            {content.footer.brandTitle && (
+              <div className="flex items-center space-x-3 mb-4">
+                <Music className="w-8 h-8 text-primary" />
+                <h3 className="text-2xl font-playfair font-bold text-primary text-glow-subtle">
+                  {content.footer.brandTitle}
+                </h3>
+              </div>
+            )}
+            {content.footer.description && (
+              <p className="text-muted-foreground mb-4">
+                {content.footer.description}
+              </p>
+            )}
             <div className="space-y-2">
-              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <Mail className="w-4 h-4" />
-                <span>{content.footer.email}</span>
-              </div>
-              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <Phone className="w-4 h-4" />
-                <span>{content.footer.phone}</span>
-              </div>
+              {content.footer.email && (
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <Mail className="w-4 h-4" />
+                  <span>{content.footer.email}</span>
+                </div>
+              )}
+              {content.footer.phone && (
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <Phone className="w-4 h-4" />
+                  <span>{content.footer.phone}</span>
+                </div>
+              )}
             </div>
           </div>
 
 
           {/* Services */}
-          <div>
-            <h4 className="text-lg font-playfair font-semibold mb-4 text-foreground">
-              Services
-            </h4>
-            {/* Desktop list */}
-            <ul className="space-y-2 text-muted-foreground hidden md:block">
-              {content.footer.services.map((service, index) => (
-                <li key={index}>{service}</li>
-              ))}
-            </ul>
-            {/* Mobile comma-separated */}
-            <p className="text-muted-foreground md:hidden">
-              {content.footer.services.join(', ')}
-            </p>
-          </div>
+          {content.footer.services && content.footer.services.length > 0 && (
+            <div>
+              <h4 className="text-lg font-playfair font-semibold mb-4 text-foreground">
+                Services
+              </h4>
+              {/* Desktop list */}
+              <ul className="space-y-2 text-muted-foreground hidden md:block">
+                {content.footer.services.map((service, index) => (
+                  <li key={index}>{service}</li>
+                ))}
+              </ul>
+              {/* Mobile comma-separated */}
+              <p className="text-muted-foreground md:hidden">
+                {content.footer.services.join(', ')}
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="border-t border-border pt-8 text-center">
-          <p className="text-muted-foreground">
-            {content.footer.copyrightText}
-          </p>
-          <p className="text-xs text-muted-foreground mt-2">
-            {content.footer.influencedByText}
-          </p>
+          {content.footer.copyrightText && (
+            <p className="text-muted-foreground">
+              {content.footer.copyrightText}
+            </p>
+          )}
+          {content.footer.influencedByText && (
+            <p className="text-xs text-muted-foreground mt-2">
+              {content.footer.influencedByText}
+            </p>
+          )}
           
           {/* Developer Credit */}
           <div className="mt-6 pt-4 border-t border-border/50">
