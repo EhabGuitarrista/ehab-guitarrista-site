@@ -48,48 +48,58 @@ const Contact = () => {
     }
 
     try {
-      // Send using FormSubmit.co (requires form-encoded data)
-      const formBody = new FormData();
-      formBody.append('name', formData.name);
-      formBody.append('email', formData.email);
-      formBody.append('phone', formData.phone);
-      formBody.append('eventDate', formData.eventDate);
-      formBody.append('eventType', formData.eventType);
-      formBody.append('venue', formData.venue);
-      formBody.append('message', formData.message);
-      formBody.append('_subject', `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`);
-      formBody.append('_template', 'table');
+      // Create hidden form and submit it (GitHub Pages compatible)
+      const form = document.createElement('form');
+      form.action = `mailto:${recipientEmail}`;
+      form.method = 'POST';
+      form.enctype = 'text/plain';
+      form.style.display = 'none';
 
-      const response = await fetch(`https://formsubmit.co/${recipientEmail}`, {
-        method: 'POST',
-        body: formBody
+      const emailBody = `
+Booking Inquiry - ${formData.eventType} on ${formData.eventDate}
+
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Event Date: ${formData.eventDate}
+Event Type: ${formData.eventType}
+Venue: ${formData.venue}
+
+Message:
+${formData.message}
+      `.trim();
+
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'body';
+      input.value = emailBody;
+      form.appendChild(input);
+
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+
+      toast({
+        title: "Email Client Opened!",
+        description: "Your email client should open with the booking inquiry. Please send the email to complete your booking request.",
       });
 
-      if (response.ok) {
-        toast({
-          title: "Message Sent!",
-          description: `Your booking inquiry has been sent successfully. You will receive a confirmation email shortly.`,
-        });
-
-        // Clear form on success
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          eventDate: "",
-          eventType: "",
-          venue: "",
-          message: ""
-        });
-      } else {
-        throw new Error('Failed to send email');
-      }
+      // Clear form on success
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        eventDate: "",
+        eventType: "",
+        venue: "",
+        message: ""
+      });
 
     } catch (error) {
-      console.error('Email sending error:', error);
+      console.error('Email opening error:', error);
       toast({
-        title: "Email Error",
-        description: "Failed to send message. Please try again or contact directly.",
+        title: "Please contact directly",
+        description: `Please email ${recipientEmail} directly with your booking inquiry.`,
         variant: "destructive",
       });
     }
