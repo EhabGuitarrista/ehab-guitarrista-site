@@ -20,7 +20,7 @@ const Contact = () => {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate all required fields
@@ -48,46 +48,50 @@ const Contact = () => {
     }
 
     try {
-      // Create email content for mailto link
-      const subject = `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`;
-      const body = `
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Event Date: ${formData.eventDate}
-Event Type: ${formData.eventType}
-Venue: ${formData.venue}
-${formData.message ? `Message: ${formData.message}` : ''}
-      `.trim();
-
-      // Create mailto link using exact email from CMS
-      const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      // Try to open email client
-      window.location.href = mailtoLink;
-
-      // Show success message
-      toast({
-        title: "Email Client Opened",
-        description: `Opening email to ${recipientEmail}. Please send the email from your email client.`,
+      // Send email using Formspree
+      const response = await fetch(`https://formspree.io/${recipientEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          eventDate: formData.eventDate,
+          eventType: formData.eventType,
+          venue: formData.venue,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`
+        }),
       });
 
-      // Clear form only after successful mailto attempt
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        eventDate: "",
-        eventType: "",
-        venue: "",
-        message: ""
-      });
+      if (response.ok) {
+        toast({
+          title: "Message Sent!",
+          description: `Your booking inquiry has been sent to ${recipientEmail}. You will receive a confirmation shortly.`,
+        });
+
+        // Clear form on success
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          eventDate: "",
+          eventType: "",
+          venue: "",
+          message: ""
+        });
+      } else {
+        throw new Error('Failed to send email');
+      }
 
     } catch (error) {
-      console.error('Mailto error:', error);
+      console.error('Email sending error:', error);
       toast({
         title: "Email Error",
-        description: "Failed to open email client. Please try again or contact directly.",
+        description: "Failed to send message. Please try again or contact directly.",
         variant: "destructive",
       });
     }
