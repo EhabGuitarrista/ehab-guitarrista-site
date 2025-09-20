@@ -25,17 +25,11 @@ const BannerVideo = () => {
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container-max">
-        {bannerVideo.title && (
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-12">
-            {bannerVideo.title}
-          </h2>
-        )}
-
         <div className="max-w-4xl mx-auto">
           <div className="bg-card border border-border rounded-lg overflow-hidden">
             <YouTubeEmbed
               url={bannerVideo.url}
-              title={bannerVideo.title || "Featured Performance"}
+              title="Featured Performance"
               className="w-full"
             />
           </div>
