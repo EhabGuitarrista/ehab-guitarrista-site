@@ -93,6 +93,10 @@ async function generateContentJson() {
                             label: section.awardsLabel || ""
                         }
                     };
+                    // Extract live performance moments title from stats section
+                    content.livePerformanceMoments = {
+                        title: section.livePerformanceMomentsTitle || ""
+                    };
                     break;
 
                 case 'music':
@@ -163,9 +167,12 @@ async function generateContentJson() {
                         description: "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together.",
                         buttonText: "Schedule Consultation"
                     };
-                    // Extract live performance moments title from images section
-                    content.livePerformanceMoments = {
-                        title: section.livePerformanceMomentsTitle || ""
+                    // Extract performance page content from images section
+                    content.performancePage = {
+                        mainTitle: section.performancePageMainTitle || "",
+                        mainSubtitle: section.performancePageMainSubtitle || "",
+                        eventsTitle: section.performancePageEventsTitle || "",
+                        eventsDescription: section.performancePageEventsDescription || ""
                     };
                     break;
 
@@ -174,13 +181,6 @@ async function generateContentJson() {
                         aboutSection: { title: '', file: '' },
                         billBourneMainPage: { title: '', file: '' },
                         performances: []
-                    };
-                    // Extract performance page content from videos section
-                    content.performancePage = {
-                        mainTitle: section.performancePageMainTitle || "",
-                        mainSubtitle: section.performancePageMainSubtitle || "",
-                        eventsTitle: section.performancePageEventsTitle || "",
-                        eventsDescription: section.performancePageEventsDescription || ""
                     };
                     break;
 
