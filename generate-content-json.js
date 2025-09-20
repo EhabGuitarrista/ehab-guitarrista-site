@@ -203,7 +203,9 @@ async function generateContentJson() {
                     break;
 
                 case 'videos':
+                    // Merge with existing videos structure
                     content.videos = {
+                        ...content.videos,
                         bannerVideo: section.bannerVideo || {
                             title: '',
                             url: ''
