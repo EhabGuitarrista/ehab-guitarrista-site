@@ -10,6 +10,9 @@ const BannerVideo = () => {
     return null;
   }
 
+  // Debug banner video data
+  console.log('Banner video data:', content.videos?.bannerVideo);
+
   // Only render if banner video exists and is a YouTube URL
   if (!content.videos?.bannerVideo?.url ||
       !(content.videos.bannerVideo.url.includes('youtube.com') ||
