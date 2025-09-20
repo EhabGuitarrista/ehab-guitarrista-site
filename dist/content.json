@@ -18,7 +18,7 @@
     }
   },
   "livePerformanceMoments": {
-    "title": "lllllllllll"
+    "title": "hhhuuuuuuuuuu"
   },
   "music": {
     "title": "My Music+",
@@ -76,20 +76,34 @@
   },
   "videos": {
     "bannerVideo": {
-      "url": "",
-      "title": ""
+      "url": "https://youtu.be/yX7lZSmxysk"
     },
     "performanceVideos": [
       {
-        "url": "",
-        "title": "p1",
-        "description": ""
+        "url": "https://youtu.be/yX7lZSmxysk",
+        "title": "PPPP",
+        "description": "PPPP"
+      },
+      {
+        "url": "https://youtu.be/sGyMGzWHh5w",
+        "title": "tt",
+        "description": "ttttt"
       }
     ],
     "performances": [],
+    "performanceVideo1": {
+      "title": "PPPP",
+      "description": "PPPP",
+      "file": "https://youtu.be/yX7lZSmxysk"
+    },
+    "performanceVideo2": {
+      "title": "tt",
+      "description": "ttttt",
+      "file": "https://youtu.be/sGyMGzWHh5w"
+    },
     "aboutSection": {
       "title": "",
-      "file": ""
+      "file": "https://youtu.be/sGyMGzWHh5w"
     }
   },
   "navigation": {
@@ -115,9 +129,9 @@
     "secondParagraph": "",
     "thirdParagraph": "",
     "fourthParagraph": "+",
-    "videoUrl": "",
+    "videoUrl": "https://youtu.be/sGyMGzWHh5w",
     "videoTitle": "",
-    "image": "/lovable-uploads/profile-image.jpg",
+    "image": "",
     "extendedBio": {
       "earlyLife": {
         "title": "a",
