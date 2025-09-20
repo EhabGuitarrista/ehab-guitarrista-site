@@ -1,4 +1,36 @@
 {
+  "footer": {
+    "brandTitle": "Ehab Guitarrista+",
+    "description": "Professional Flamenco Guitarist & Composer+",
+    "email": "contact@ehabguitarrista.com++",
+    "phone": "+1 (555) 123-++++",
+    "services": [
+      "Performances",
+      "Private Events",
+      "Studio Sessions",
+      "Collaborations+"
+    ],
+    "copyrightText": "© 2024 Ehab Guitarrista. All rights reserved.++",
+    "influencedByText": "Influenced by the masters of flamenco and world music+"
+  },
+  "performanceImages": [],
+  "upcomingEvents": [],
+  "bookExperience": {
+    "title": "kkkkkkkkkkk",
+    "buttonText": "Boojkkkkkkkkkk",
+    "description": ""
+  },
+  "videos": {
+    "aboutSection": {
+      "title": "",
+      "file": ""
+    },
+    "billBourneMainPage": {
+      "title": "",
+      "file": ""
+    },
+    "performances": []
+  },
   "navigation": {
     "logoText": "Ehab Guitarrista+",
     "menuItems": {
@@ -31,26 +63,7 @@
     "professionalText": "eeee",
     "professionalTitle": "ee",
     "musicalPhilosophyText": "eeeee",
-    "musicalPhilosophyTitle": "eeee",
-    "extendedBioTitle": "",
-    "extendedBio": {
-      "earlyLife": {
-        "title": "Early Lifeeeee",
-        "text": "eeeee"
-      },
-      "mentorship": {
-        "title": "eeee",
-        "text": "ee"
-      },
-      "professional": {
-        "title": "ee",
-        "text": "eeee"
-      },
-      "musicalPhilosophy": {
-        "title": "eeee",
-        "text": "eeeee"
-      }
-    }
+    "musicalPhilosophyTitle": "eeee"
   },
   "stats": {
     "yearsPerforming": {
@@ -90,37 +103,5 @@
     "responseTimeTitle": "Response Time++",
     "responseTime": "All inquiries receive a personal response from Ehab to Schedule an Appointment+++",
     "bookButton": "Book Now+"
-  },
-  "footer": {
-    "brandTitle": "Ehab Guitarrista+",
-    "description": "Professional Flamenco Guitarist & Composer+",
-    "email": "contact@ehabguitarrista.com++",
-    "phone": "+1 (555) 123-++++",
-    "services": [
-      "Performances",
-      "Private Events",
-      "Studio Sessions",
-      "Collaborations+"
-    ],
-    "copyrightText": "© 2024 Ehab Guitarrista. All rights reserved.++",
-    "influencedByText": "Influenced by the masters of flamenco and world music+"
-  },
-  "performanceImages": [],
-  "upcomingEvents": [],
-  "bookExperience": {
-    "title": "Book Your Experience",
-    "description": "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together.",
-    "buttonText": "Schedule Consultation"
-  },
-  "videos": {
-    "aboutSection": {
-      "title": "",
-      "file": ""
-    },
-    "billBourneMainPage": {
-      "title": "",
-      "file": ""
-    },
-    "performances": []
   }
 }
