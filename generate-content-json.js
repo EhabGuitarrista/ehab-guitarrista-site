@@ -59,7 +59,24 @@ async function generateContentJson() {
                     break;
 
                 case 'about':
-                    content.about = section.mainDescription ? section : {
+                    content.about = section.mainDescription ? {
+                        ...section,
+                        // Transform flat extended bio structure to nested structure
+                        extendedBio: {
+                            earlyLife: {
+                                title: section.earlyLifeTitle || "Early Life & Education",
+                                text: section.earlyLifeText || ""
+                            },
+                            mentorship: {
+                                title: section.mentorshipTitle || "Mentorship & Influences",
+                                text: section.mentorshipText || ""
+                            },
+                            professional: {
+                                title: section.professionalTitle || "Professional Development",
+                                text: section.professionalText || ""
+                            }
+                        }
+                    } : {
                         title: "Meet Ehab",
                         mainDescription: "As a composer of original music...",
                         secondParagraph: "",
