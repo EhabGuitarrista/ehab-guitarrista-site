@@ -29,6 +29,7 @@ interface CMSContent {
       earlyLife: { title: string; text: string };
       mentorship: { title: string; text: string };
       professional: { title: string; text: string };
+      musicalPhilosophy: { title: string; text: string };
     };
   };
   stats: {
@@ -152,6 +153,10 @@ const defaultContent: CMSContent = {
       professional: {
         title: "",
         text: ""
+      },
+      musicalPhilosophy: {
+        title: "",
+        text: ""
       }
     }
   },
@@ -265,6 +270,10 @@ export const useCMSContent = () => {
                   professional: {
                     title: data.professionalTitle || "",
                     text: data.professionalText || ""
+                  },
+                  musicalPhilosophy: {
+                    title: data.musicalPhilosophyTitle || "",
+                    text: data.musicalPhilosophyText || ""
                   }
                 }
               };
@@ -331,6 +340,10 @@ export const useCMSContent = () => {
                 professional: {
                   title: data.professionalTitle || "",
                   text: data.professionalText || ""
+                },
+                musicalPhilosophy: {
+                  title: data.musicalPhilosophyTitle || "",
+                  text: data.musicalPhilosophyText || ""
                 }
               }
             };

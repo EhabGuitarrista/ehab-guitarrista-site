@@ -132,14 +132,12 @@ const About = () => {
                   </>
                 )}
                 
-                <div>
-                  <h4 className="text-xl font-playfair font-bold text-foreground mb-3">Musical Philosophy</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Ehab's approach to music transcends genre boundaries, seamlessly blending flamenco with elements 
-                    of jazz, blues, Roma jazz, oriental, and classical music. This fusion creates compositions that 
-                    speak to diverse audiences while maintaining the passionate authenticity that defines his artistry.
-                  </p>
-                </div>
+                    <div>
+                      <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.musicalPhilosophy.title}</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {content.about.extendedBio.musicalPhilosophy.text}
+                      </p>
+                    </div>
               </div>
             </CollapsibleContent>
           </Collapsible>

@@ -1,29 +1,4 @@
 {
-  "footer": {
-    "brandTitle": "Ehab Guitarrista",
-    "description": "Professional Flamenco Guitarist & Composer",
-    "email": "contact@ehabguitarrista.com",
-    "phone": "+1 (555) 123-4567",
-    "services": [
-      "Performances",
-      "Private Events",
-      "Studio Sessions",
-      "Collaborations"
-    ],
-    "copyrightText": "© 2024 Ehab Guitarrista. All rights reserved.",
-    "influencedByText": "Influenced by the masters of flamenco and world music"
-  },
-  "videos": {
-    "aboutSection": {
-      "title": "",
-      "file": ""
-    },
-    "billBourneMainPage": {
-      "title": "",
-      "file": ""
-    },
-    "performances": []
-  },
   "navigation": {
     "logoText": "Ehab Guitarrista",
     "menuItems": {
@@ -45,28 +20,32 @@
     "title": "Meet Ehab",
     "videoUrl": "",
     "videoTitle": "",
-    "earlyLifeText": "tlnknkkn",
+    "earlyLifeText": "sdcsdcsdcsdtest",
     "earlyLifeTitle": "Early Life & Education",
-    "mentorshipText": "sjkbbj",
+    "mentorshipText": "ffffffffffff",
     "thirdParagraph": "edcaadsc",
     "fourthParagraph": "dcddcascadsc",
     "mainDescription": "1dcacc",
     "mentorshipTitle": "Mentorship & Influences",
     "secondParagraph": "dscdcasdcsww",
-    "professionalText": "d,.  .. ,.",
+    "professionalText": "eeefefefeffefe",
     "professionalTitle": "Professional Development",
     "extendedBio": {
       "earlyLife": {
         "title": "Early Life & Education",
-        "text": "tlnknkkn"
+        "text": "sdcsdcsdcsdtest"
       },
       "mentorship": {
         "title": "Mentorship & Influences",
-        "text": "sjkbbj"
+        "text": "ffffffffffff"
       },
       "professional": {
         "title": "Professional Development",
-        "text": "d,.  .. ,."
+        "text": "eeefefefeffefe"
+      },
+      "musicalPhilosophy": {
+        "title": "Musical Philosophy",
+        "text": ""
       }
     }
   },
@@ -108,5 +87,30 @@
     "responseTimeTitle": "Response Time",
     "responseTime": "All inquiries receive a personal response from Ehab to Schedule an Appointment",
     "bookButton": "Book Now"
+  },
+  "footer": {
+    "brandTitle": "Ehab Guitarrista",
+    "description": "Professional Flamenco Guitarist & Composer",
+    "email": "contact@ehabguitarrista.com",
+    "phone": "+1 (555) 123-4567",
+    "services": [
+      "Performances",
+      "Private Events",
+      "Studio Sessions",
+      "Collaborations"
+    ],
+    "copyrightText": "© 2024 Ehab Guitarrista. All rights reserved.",
+    "influencedByText": "Influenced by the masters of flamenco and world music"
+  },
+  "videos": {
+    "aboutSection": {
+      "title": "",
+      "file": ""
+    },
+    "billBourneMainPage": {
+      "title": "",
+      "file": ""
+    },
+    "performances": []
   }
 }

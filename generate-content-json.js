@@ -74,6 +74,10 @@ async function generateContentJson() {
                             professional: {
                                 title: section.professionalTitle || "Professional Development",
                                 text: section.professionalText || ""
+                            },
+                            musicalPhilosophy: {
+                                title: section.musicalPhilosophyTitle || "Musical Philosophy",
+                                text: section.musicalPhilosophyText || ""
                             }
                         }
                     } : {
@@ -211,7 +215,8 @@ function createDefaultContent() {
             extendedBio: {
                 earlyLife: { title: "Early Life & Education", text: "" },
                 mentorship: { title: "Mentorship & Influences", text: "" },
-                professional: { title: "Professional Development", text: "" }
+                professional: { title: "Professional Development", text: "" },
+                musicalPhilosophy: { title: "Musical Philosophy", text: "" }
             }
         },
         stats: {
