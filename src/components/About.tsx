@@ -22,7 +22,7 @@ const About = () => {
   console.log('Content loading state:', loading);
 
   return (
-    <section id="about" className="bg-background -mt-20 pt-20 md:pt-24 pb-8 md:pb-12">
+    <section id="about" className="bg-background -mt-20 pt-24 md:pt-24 pb-8 md:pb-12">
       {content.about.title && (
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary text-glow">
