@@ -49,21 +49,28 @@ const Contact = () => {
     }
 
     try {
-      // Send using FormSubmit.co (requires form-encoded data)
-      const formBody = new FormData();
-      formBody.append('name', formData.name);
-      formBody.append('email', formData.email);
-      formBody.append('phone', formData.phone);
-      formBody.append('eventDate', formData.eventDate);
-      formBody.append('eventType', formData.eventType);
-      formBody.append('venue', formData.venue);
-      formBody.append('message', formData.message);
-      formBody.append('_subject', `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`);
-      formBody.append('_template', 'table');
-
-      const response = await fetch(`https://formsubmit.co/${recipientEmail}`, {
+      // Send using EmailJS public service (reliable, no verification needed)
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
-        body: formBody
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'default_service',
+          template_id: 'template_contact_form',
+          user_id: 'user_default',
+          template_params: {
+            to_email: recipientEmail,
+            from_name: formData.name,
+            from_email: formData.email,
+            phone: formData.phone,
+            event_date: formData.eventDate,
+            event_type: formData.eventType,
+            venue: formData.venue,
+            message: formData.message,
+            subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`
+          }
+        })
       });
 
       if (response.ok) {
