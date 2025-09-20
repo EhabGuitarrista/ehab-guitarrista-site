@@ -50,6 +50,8 @@ interface CMSContent {
   };
   contact: {
     title: string;
+    formTitle: string;
+    infoTitle: string;
     email: string;
     phone: string;
     location: string;
@@ -175,6 +177,8 @@ const defaultContent: CMSContent = {
   },
   contact: {
     title: "",
+    formTitle: "",
+    infoTitle: "",
     email: "",
     phone: "",
     location: "",

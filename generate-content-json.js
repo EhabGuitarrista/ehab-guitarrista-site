@@ -111,12 +111,14 @@ async function generateContentJson() {
                 case 'contact':
                     content.contact = {
                         title: section.title || "Get in Touch",
+                        formTitle: section.formTitle || "Get in Touch",
+                        infoTitle: section.infoTitle || "Contact Information",
                         email: section.email || "contact@ehabguitarrista.com",
                         phone: section.phone || "+1 (555) 123-4567",
                         location: section.location || "Available across Canada",
                         responseTimeTitle: section.responseTimeTitle || "Response Time",
                         responseTime: section.responseTime || "All inquiries receive a response within 24 hours",
-                        bookButton: section.bookButton || "Book Ehab"
+                        bookButtonText: section.bookButton || "Book Ehab"
                     };
                     break;
 
