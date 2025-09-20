@@ -131,7 +131,7 @@ async function generateContentJson() {
                         description: section.description || "Professional Flamenco Guitarist & Composer",
                         email: section.email || "contact@ehabguitarrista.com",
                         phone: section.phone || "+1 (555) 123-4567",
-                        services: section.services ? section.services.split('•').map(s => s.trim()).filter(s => s) : [],
+                        services: section.services ? (typeof section.services === 'string' ? section.services.split(',').map(s => s.trim()).filter(s => s) : section.services) : [],
                         copyrightText: section.copyrightText || "© 2024 Ehab Guitarrista. All rights reserved.",
                         influencedByText: section.influencedByText || ""
                     };
