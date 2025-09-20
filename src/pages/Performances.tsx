@@ -270,13 +270,13 @@ const Performances = () => {
                 <p className="text-muted-foreground mb-6">
                   {content.bookExperience?.description || "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together."}
                 </p>
-                <button 
+                <button
                   className="btn-primary"
                   onClick={() => {
-                    window.location.href = '/';
+                    window.location.href = '#/';
                     setTimeout(() => {
                       document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
+                    }, 500);
                   }}
                 >
                   {content.bookExperience?.buttonText || "Schedule Consultation"}
