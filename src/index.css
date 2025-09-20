@@ -122,10 +122,9 @@
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator {
-    background-color: white;
-    padding: 4px;
-    border-radius: 4px;
+    filter: invert(1);
     cursor: pointer;
+    opacity: 1;
   }
 
   input[type="date"]::-webkit-datetime-edit {
