@@ -112,36 +112,9 @@ const Performances = () => {
                 </div>
               ))
             ) : (
-              // Fallback to default events if CMS data is not available
-              <>
-                <div className="bg-card border border-border rounded-lg overflow-hidden">
-                  <div className="aspect-[3/4] bg-muted overflow-hidden">
-                    <img 
-                      src="/lovable-uploads/b385d23d-aa6f-4d0a-a0d5-b5adde069a09.png"
-                      alt="August 8th Ehab Guitarrista Ensemble performance poster"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div className="bg-card border border-border rounded-lg overflow-hidden">
-                  <div className="aspect-[3/4] bg-muted overflow-hidden">
-                    <img 
-                      src="/lovable-uploads/84083fd4-89a9-4ca6-8197-ae74c3f952f2.png"
-                      alt="Lorca Night event poster"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div className="bg-card border border-border rounded-lg overflow-hidden">
-                  <div className="aspect-[3/4] bg-muted overflow-hidden">
-                    <img 
-                      src="/lovable-uploads/34f4cef6-dd7e-425d-9bc2-c31f848591c1.png"
-                      alt="Inspired by Spain event poster"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              </>
+              <div className="col-span-full text-center text-muted-foreground">
+                No upcoming events available.
+              </div>
             )}
           </div>
         </div>

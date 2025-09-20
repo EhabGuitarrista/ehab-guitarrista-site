@@ -67,7 +67,7 @@ async function generateContentJson() {
                         fourthParagraph: section.fourthParagraph || "",
                         videoUrl: section.videoUrl || "",
                         videoTitle: section.videoTitle || "",
-                        image: section.image || "/lovable-uploads/profile-image.jpg",
+                        image: section.image || "",
                         extendedBio: {
                             earlyLife: {
                                 title: section.earlyLifeTitle || "",
