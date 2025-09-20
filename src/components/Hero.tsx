@@ -52,41 +52,49 @@ const Hero = () => {
       
       {/* Content */}
       <div className="relative z-20 text-center px-6 container-max pt-20">
-        <h1 className="text-5xl md:text-7xl font-playfair font-bold text-primary text-glow mb-6 animate-fade-in opacity-70 md:opacity-100">
-          {content.hero.title}
-        </h1>
-        <h2 className="text-xl md:text-2xl text-foreground md:text-muted-foreground mb-8 font-inter animate-fade-in opacity-90 md:opacity-100">
-          {content.hero.subtitle}
-        </h2>
+        {content.hero.title && (
+          <h1 className="text-5xl md:text-7xl font-playfair font-bold text-primary text-glow mb-6 animate-fade-in opacity-70 md:opacity-100">
+            {content.hero.title}
+          </h1>
+        )}
+        {content.hero.subtitle && (
+          <h2 className="text-xl md:text-2xl text-foreground md:text-muted-foreground mb-8 font-inter animate-fade-in opacity-90 md:opacity-100">
+            {content.hero.subtitle}
+          </h2>
+        )}
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            className="btn-primary transform hover:scale-105 transition-all duration-300 animate-fade-in"
-            onClick={() => {
-              document.getElementById('contact')?.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-              });
-            }}
-          >
-            <Calendar className="mr-2 h-5 w-5" />
-            {content.hero.bookButtonText}
-          </Button>
-          <Button 
-            className="btn-outline transform hover:scale-105 transition-all duration-300 animate-fade-in"
-            onClick={() => {
-              document.getElementById('music')?.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-              });
-              // Trigger auto-play after scroll
-              setTimeout(() => {
-                window.dispatchEvent(new CustomEvent('autoPlayMusic'));
-              }, 800);
-            }}
-          >
-            {content.hero.listenButtonText}
-          </Button>
+          {content.hero.bookButtonText && (
+            <Button
+              className="btn-primary transform hover:scale-105 transition-all duration-300 animate-fade-in"
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }}
+            >
+              <Calendar className="mr-2 h-5 w-5" />
+              {content.hero.bookButtonText}
+            </Button>
+          )}
+          {content.hero.listenButtonText && (
+            <Button
+              className="btn-outline transform hover:scale-105 transition-all duration-300 animate-fade-in"
+              onClick={() => {
+                document.getElementById('music')?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+                // Trigger auto-play after scroll
+                setTimeout(() => {
+                  window.dispatchEvent(new CustomEvent('autoPlayMusic'));
+                }, 800);
+              }}
+            >
+              {content.hero.listenButtonText}
+            </Button>
+          )}
         </div>
       </div>
     </section>

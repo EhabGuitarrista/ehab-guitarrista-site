@@ -7,13 +7,13 @@
         function testRedirectLogic() {
             // Simulate the 404 redirect logic
             var testUrls = [
-                'https://ehabguitarrista.github.io/ehab-guitarrista-site/performances',
-                'https://ehabguitarrista.github.io/ehab-guitarrista-site/performances/',
-                'https://ehabguitarrista.github.io/ehab-guitarrista-site/',
-                'https://ehabguitarrista.github.io/ehab-guitarrista-site'
+                'https://ehabguitarrista.github.io/performances',
+                'https://ehabguitarrista.github.io/performances/',
+                'https://ehabguitarrista.github.io/',
+                'https://ehabguitarrista.github.io'
             ];
 
-            var basePath = '/ehab-guitarrista-site';
+            var basePath = '';
 
             testUrls.forEach(function(url) {
                 var mockLocation = new URL(url);
@@ -41,7 +41,7 @@
             console.log('Current location test:');
             var l = window.location;
             var baseUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '');
-            var basePath = '/ehab-guitarrista-site';
+            var basePath = '';
             var routePath = l.pathname.replace(basePath, '');
 
             if (!routePath || routePath === '/') {

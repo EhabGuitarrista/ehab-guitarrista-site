@@ -194,12 +194,16 @@ const Music = () => {
     return (
       <section id="music" className="section-padding bg-background py-24 md:py-32">
         <div className="container-max text-center">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow mb-6">
-            {content.music.title}
-          </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto font-inter">
-            {content.music.subtitle}
-          </p>
+          {content.music.title && (
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow mb-6">
+              {content.music.title}
+            </h2>
+          )}
+          {content.music.subtitle && (
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto font-inter">
+              {content.music.subtitle}
+            </p>
+          )}
           <div className="bg-muted/20 rounded-lg p-8 max-w-2xl mx-auto">
             <p className="text-lg text-muted-foreground mb-4">
               Music tracks will appear here once uploaded through the CMS.
@@ -216,12 +220,16 @@ const Music = () => {
   return (
     <section id="music" className="section-padding bg-background py-24 md:py-32">
       <div className="container-max">
-        <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-6">
-          {content.music.title}
-        </h2>
-        <p className="text-xl md:text-2xl text-muted-foreground text-center mb-16 max-w-4xl mx-auto font-inter">
-          {content.music.subtitle}
-        </p>
+        {content.music.title && (
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-6">
+            {content.music.title}
+          </h2>
+        )}
+        {content.music.subtitle && (
+          <p className="text-xl md:text-2xl text-muted-foreground text-center mb-16 max-w-4xl mx-auto font-inter">
+            {content.music.subtitle}
+          </p>
+        )}
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Audio Player */}
@@ -240,12 +248,16 @@ const Music = () => {
               </div>
             </div>
             
-            <h3 className="text-xl font-semibold text-center mb-2 text-foreground">
-              {tracks[validCurrentTrack]?.title}
-            </h3>
-            <p className="text-muted-foreground text-center mb-6">
-              {tracks[validCurrentTrack]?.description}
-            </p>
+            {tracks[validCurrentTrack]?.title && (
+              <h3 className="text-xl font-semibold text-center mb-2 text-foreground">
+                {tracks[validCurrentTrack]?.title}
+              </h3>
+            )}
+            {tracks[validCurrentTrack]?.description && (
+              <p className="text-muted-foreground text-center mb-6">
+                {tracks[validCurrentTrack]?.description}
+              </p>
+            )}
             
             {/* Progress Bar */}
             <div className="mb-6">
@@ -295,9 +307,11 @@ const Music = () => {
           
           {/* Featured Tracks */}
           <div>
-            <h3 className="text-2xl font-playfair font-bold mb-6 text-foreground">
-              {content.music.featuredTracksTitle}
-            </h3>
+            {content.music.featuredTracksTitle && (
+              <h3 className="text-2xl font-playfair font-bold mb-6 text-foreground">
+                {content.music.featuredTracksTitle}
+              </h3>
+            )}
             
             <div className="space-y-3">
               {tracks.map((track, index) => (
@@ -324,8 +338,12 @@ const Music = () => {
                     </Button>
                     
                     <div className="flex-1">
-                      <h4 className="font-semibold text-foreground">{track.title}</h4>
-                      <p className="text-sm text-muted-foreground">{track.description}</p>
+                      {track.title && (
+                        <h4 className="font-semibold text-foreground">{track.title}</h4>
+                      )}
+                      {track.description && (
+                        <p className="text-sm text-muted-foreground">{track.description}</p>
+                      )}
                     </div>
                     
                     <span className="text-sm text-muted-foreground">

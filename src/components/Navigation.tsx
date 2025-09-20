@@ -23,7 +23,7 @@ const Navigation = () => {
     { name: content.navigation.menuItems.home, href: '#home' },
     { name: content.navigation.menuItems.music, href: '#music' },
     { name: content.navigation.menuItems.performances, href: '/performances' },
-  ];
+  ].filter(item => item.name && item.name.trim());
 
   const scrollToSection = (href: string) => {
     if (href.startsWith('/') && !href.includes('#')) {
@@ -77,11 +77,13 @@ const Navigation = () => {
       <div className="container-max">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <h2 className="text-3xl font-playfair font-bold text-white text-glow tracking-wide">
-              {content.navigation.logoText}
-            </h2>
-          </div>
+          {content.navigation.logoText && (
+            <div className="flex-shrink-0">
+              <h2 className="text-3xl font-playfair font-bold text-white text-glow tracking-wide">
+                {content.navigation.logoText}
+              </h2>
+            </div>
+          )}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-10">
@@ -94,12 +96,14 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            <Button 
-              className="btn-primary transform hover:scale-105 transition-all duration-300"
-              onClick={() => scrollToSection('#contact')}
-            >
-              {content.navigation.ctaButton}
-            </Button>
+            {content.navigation.ctaButton && (
+              <Button
+                className="btn-primary transform hover:scale-105 transition-all duration-300"
+                onClick={() => scrollToSection('#contact')}
+              >
+                {content.navigation.ctaButton}
+              </Button>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -128,12 +132,14 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            <Button 
-              className="btn-primary w-full transform hover:scale-105 transition-all duration-300"
-              onClick={() => scrollToSection('#contact')}
-            >
-              {content.navigation.ctaButton}
-            </Button>
+            {content.navigation.ctaButton && (
+              <Button
+                className="btn-primary w-full transform hover:scale-105 transition-all duration-300"
+                onClick={() => scrollToSection('#contact')}
+              >
+                {content.navigation.ctaButton}
+              </Button>
+            )}
           </div>
         </div>
       )}

@@ -23,11 +23,13 @@ const About = () => {
 
   return (
     <section id="about" className="bg-background -mt-20 pt-32 pb-16 md:pb-20">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary text-glow">
-          {content.about.title}
-        </h2>
-      </div>
+      {content.about.title && (
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary text-glow">
+            {content.about.title}
+          </h2>
+        </div>
+      )}
       
       <div className="container-max px-6 pb-12">
         
@@ -80,21 +82,29 @@ const About = () => {
           
           {/* About Content */}
           <div className="space-y-4">
-            <p className="text-lg leading-relaxed text-foreground font-medium">
-              {content.about.mainDescription}
-            </p>
-            
-            <p className="text-lg leading-relaxed text-foreground font-medium hidden md:block">
-              {content.about.secondParagraph}
-            </p>
-            
-            <p className="text-lg leading-relaxed text-foreground font-medium hidden md:block">
-              {content.about.thirdParagraph}
-            </p>
-            
-            <p className="text-lg leading-relaxed text-foreground font-medium hidden md:block">
-              {content.about.fourthParagraph}
-            </p>
+            {content.about.mainDescription && (
+              <p className="text-lg leading-relaxed text-foreground font-medium">
+                {content.about.mainDescription}
+              </p>
+            )}
+
+            {content.about.secondParagraph && (
+              <p className="text-lg leading-relaxed text-foreground font-medium hidden md:block">
+                {content.about.secondParagraph}
+              </p>
+            )}
+
+            {content.about.thirdParagraph && (
+              <p className="text-lg leading-relaxed text-foreground font-medium hidden md:block">
+                {content.about.thirdParagraph}
+              </p>
+            )}
+
+            {content.about.fourthParagraph && (
+              <p className="text-lg leading-relaxed text-foreground font-medium hidden md:block">
+                {content.about.fourthParagraph}
+              </p>
+            )}
           </div>
         </div>
         
@@ -109,33 +119,57 @@ const About = () => {
               <div className="bg-card border border-border rounded-lg p-6 space-y-4">
                 {content.about.extendedBio && (
                   <>
-                    <div>
-                      <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.earlyLife.title}</h4>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {content.about.extendedBio.earlyLife.text}
-                      </p>
-                    </div>
+                    {(content.about.extendedBio.earlyLife.title || content.about.extendedBio.earlyLife.text) && (
+                      <div>
+                        {content.about.extendedBio.earlyLife.title && (
+                          <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.earlyLife.title}</h4>
+                        )}
+                        {content.about.extendedBio.earlyLife.text && (
+                          <p className="text-muted-foreground leading-relaxed">
+                            {content.about.extendedBio.earlyLife.text}
+                          </p>
+                        )}
+                      </div>
+                    )}
 
-                    <div>
-                      <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.mentorship.title}</h4>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {content.about.extendedBio.mentorship.text}
-                      </p>
-                    </div>
+                    {(content.about.extendedBio.mentorship.title || content.about.extendedBio.mentorship.text) && (
+                      <div>
+                        {content.about.extendedBio.mentorship.title && (
+                          <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.mentorship.title}</h4>
+                        )}
+                        {content.about.extendedBio.mentorship.text && (
+                          <p className="text-muted-foreground leading-relaxed">
+                            {content.about.extendedBio.mentorship.text}
+                          </p>
+                        )}
+                      </div>
+                    )}
 
-                    <div>
-                      <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.professional.title}</h4>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {content.about.extendedBio.professional.text}
-                      </p>
-                    </div>
+                    {(content.about.extendedBio.professional.title || content.about.extendedBio.professional.text) && (
+                      <div>
+                        {content.about.extendedBio.professional.title && (
+                          <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.professional.title}</h4>
+                        )}
+                        {content.about.extendedBio.professional.text && (
+                          <p className="text-muted-foreground leading-relaxed">
+                            {content.about.extendedBio.professional.text}
+                          </p>
+                        )}
+                      </div>
+                    )}
 
-                    <div>
-                      <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.musicalPhilosophy.title}</h4>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {content.about.extendedBio.musicalPhilosophy.text}
-                      </p>
-                    </div>
+                    {content.about.extendedBio.musicalPhilosophy && (content.about.extendedBio.musicalPhilosophy.title || content.about.extendedBio.musicalPhilosophy.text) && (
+                      <div>
+                        {content.about.extendedBio.musicalPhilosophy.title && (
+                          <h4 className="text-xl font-playfair font-bold text-foreground mb-3">{content.about.extendedBio.musicalPhilosophy.title}</h4>
+                        )}
+                        {content.about.extendedBio.musicalPhilosophy.text && (
+                          <p className="text-muted-foreground leading-relaxed">
+                            {content.about.extendedBio.musicalPhilosophy.text}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </>
                 )}
               </div>
@@ -145,29 +179,53 @@ const About = () => {
         
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="stats-card">
-            <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
-            <h3 className="text-3xl font-bold text-primary mb-1">{content.stats.yearsPerforming.number}</h3>
-            <p className="text-muted-foreground">{content.stats.yearsPerforming.label}</p>
-          </div>
-          
-          <div className="stats-card">
-            <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
-            <h3 className="text-3xl font-bold text-primary mb-1">{content.stats.citiesToured.number}</h3>
-            <p className="text-muted-foreground">{content.stats.citiesToured.label}</p>
-          </div>
-          
-          <div className="stats-card">
-            <Users className="w-8 h-8 text-primary mx-auto mb-3" />
-            <h3 className="text-3xl font-bold text-primary mb-1">{content.stats.showsPlayed.number}</h3>
-            <p className="text-muted-foreground">{content.stats.showsPlayed.label}</p>
-          </div>
-          
-          <div className="stats-card">
-            <Award className="w-8 h-8 text-primary mx-auto mb-3" />
-            <h3 className="text-3xl font-bold text-primary mb-1">{content.stats.awardsWon.number}</h3>
-            <p className="text-muted-foreground">{content.stats.awardsWon.label}</p>
-          </div>
+          {(content.stats.yearsPerforming.number || content.stats.yearsPerforming.label) && (
+            <div className="stats-card">
+              <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
+              {content.stats.yearsPerforming.number && (
+                <h3 className="text-3xl font-bold text-primary mb-1">{content.stats.yearsPerforming.number}</h3>
+              )}
+              {content.stats.yearsPerforming.label && (
+                <p className="text-muted-foreground">{content.stats.yearsPerforming.label}</p>
+              )}
+            </div>
+          )}
+
+          {(content.stats.citiesToured.number || content.stats.citiesToured.label) && (
+            <div className="stats-card">
+              <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
+              {content.stats.citiesToured.number && (
+                <h3 className="text-3xl font-bold text-primary mb-1">{content.stats.citiesToured.number}</h3>
+              )}
+              {content.stats.citiesToured.label && (
+                <p className="text-muted-foreground">{content.stats.citiesToured.label}</p>
+              )}
+            </div>
+          )}
+
+          {(content.stats.showsPlayed.number || content.stats.showsPlayed.label) && (
+            <div className="stats-card">
+              <Users className="w-8 h-8 text-primary mx-auto mb-3" />
+              {content.stats.showsPlayed.number && (
+                <h3 className="text-3xl font-bold text-primary mb-1">{content.stats.showsPlayed.number}</h3>
+              )}
+              {content.stats.showsPlayed.label && (
+                <p className="text-muted-foreground">{content.stats.showsPlayed.label}</p>
+              )}
+            </div>
+          )}
+
+          {(content.stats.awardsWon.number || content.stats.awardsWon.label) && (
+            <div className="stats-card">
+              <Award className="w-8 h-8 text-primary mx-auto mb-3" />
+              {content.stats.awardsWon.number && (
+                <h3 className="text-3xl font-bold text-primary mb-1">{content.stats.awardsWon.number}</h3>
+              )}
+              {content.stats.awardsWon.label && (
+                <p className="text-muted-foreground">{content.stats.awardsWon.label}</p>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

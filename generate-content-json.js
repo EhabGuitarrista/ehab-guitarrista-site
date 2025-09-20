@@ -50,11 +50,11 @@ async function generateContentJson() {
 
                 case 'hero':
                     content.hero = {
-                        title: section.title || "Ehab Guitarrista",
-                        subtitle: section.subtitle || "Professional Flamenco Guitarist & Composer",
+                        title: section.title || "",
+                        subtitle: section.subtitle || "",
                         image: section.backgroundImage || section.image || "",
-                        bookButtonText: section.bookButton || "Book Performance",
-                        listenButtonText: section.listenButton || "Listen Now"
+                        bookButtonText: section.bookButton || "",
+                        listenButtonText: section.listenButton || ""
                     };
                     break;
 
@@ -77,20 +77,20 @@ async function generateContentJson() {
                 case 'stats':
                     content.stats = {
                         yearsPerforming: {
-                            number: section.yearsNumber || "15+",
-                            label: section.yearsLabel || "Years Performing"
+                            number: section.yearsNumber || "",
+                            label: section.yearsLabel || ""
                         },
                         citiesToured: {
-                            number: section.citiesNumber || "50+",
-                            label: section.citiesLabel || "Cities Toured"
+                            number: section.citiesNumber || "",
+                            label: section.citiesLabel || ""
                         },
                         showsPlayed: {
-                            number: section.showsNumber || "200+",
-                            label: section.showsLabel || "Shows Played"
+                            number: section.showsNumber || "",
+                            label: section.showsLabel || ""
                         },
                         awardsWon: {
-                            number: section.awardsNumber || "10+",
-                            label: section.awardsLabel || "Awards Won"
+                            number: section.awardsNumber || "",
+                            label: section.awardsLabel || ""
                         }
                     };
                     break;
@@ -110,27 +110,27 @@ async function generateContentJson() {
 
                 case 'contact':
                     content.contact = {
-                        title: section.title || "Get in Touch",
+                        title: section.title || "",
                         formTitle: section.formTitle || "",
                         infoTitle: section.infoTitle || "",
                         emailLabel: section.emailLabel || "",
                         phoneLabel: section.phoneLabel || "",
                         locationLabel: section.locationLabel || "",
-                        email: section.email || "contact@ehabguitarrista.com",
-                        phone: section.phone || "+1 (555) 123-4567",
-                        location: section.location || "Available across Canada",
-                        responseTimeTitle: section.responseTimeTitle || "Response Time",
-                        responseTime: section.responseTime || "All inquiries receive a response within 24 hours",
-                        bookButtonText: section.bookButton || "Book Ehab"
+                        email: section.email || "",
+                        phone: section.phone || "",
+                        location: section.location || "",
+                        responseTimeTitle: section.responseTimeTitle || "",
+                        responseTime: section.responseTime || "",
+                        bookButtonText: section.bookButton || ""
                     };
                     break;
 
                 case 'footer':
                     content.footer = {
-                        brandTitle: section.brandTitle || "Ehab Guitarrista",
-                        description: section.description || "Professional Flamenco Guitarist & Composer",
-                        email: section.email || "contact@ehabguitarrista.com",
-                        phone: section.phone || "+1 (555) 123-4567",
+                        brandTitle: section.brandTitle || "",
+                        description: section.description || "",
+                        email: section.email || "",
+                        phone: section.phone || "",
                         services: section.services ? (typeof section.services === 'string' ? section.services.split(',').map(s => s.trim()).filter(s => s) : section.services) : [],
                         copyrightText: section.copyrightText || "",
                         influencedByText: section.influencedByText || ""
