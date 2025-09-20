@@ -260,6 +260,19 @@
                         document.getElementById('bookExperienceDescription').value = data.bookExperience.description || 'Ready to bring the magic of flamenco guitar to your event? Let\'s create something extraordinary together.';
                         document.getElementById('bookExperienceButtonText').value = data.bookExperience.buttonText || 'Schedule Consultation';
                     }
+
+                    // Load any locally saved Book Your Experience data (takes precedence)
+                    try {
+                        const localBookData = localStorage.getItem('bookExperienceData');
+                        if (localBookData) {
+                            const bookData = JSON.parse(localBookData);
+                            if (bookData.title) document.getElementById('bookExperienceTitle').value = bookData.title;
+                            if (bookData.description) document.getElementById('bookExperienceDescription').value = bookData.description;
+                            if (bookData.buttonText) document.getElementById('bookExperienceButtonText').value = bookData.buttonText;
+                        }
+                    } catch (error) {
+                        console.log('No local book experience data found');
+                    }
                 }
             } catch (error) {
                 console.error('Error loading current images:', error);
@@ -825,37 +838,27 @@
         // Book Your Experience Functions
         async function saveBookExperience() {
             const statusSpan = document.getElementById('bookExperienceStatus');
-            
+
             statusSpan.textContent = '⏳ Saving Book Experience section...';
             statusSpan.style.color = '#007cba';
-            
+
             try {
-                // Load current content
-                const response = await fetch('/content.json');
-                const currentData = await response.json();
-                
-                // Update Book Your Experience data
-                currentData.bookExperience = {
+                // Collect Book Your Experience data
+                const bookExperienceData = {
                     title: document.getElementById('bookExperienceTitle').value,
                     description: document.getElementById('bookExperienceDescription').value,
                     buttonText: document.getElementById('bookExperienceButtonText').value
                 };
-                
-                // Save content to both files
-                const saveResponse = await fetch('/api/save-content', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(currentData)
-                });
-                
-                if (saveResponse.ok) {
-                    statusSpan.textContent = '✅ Book Experience section saved!';
-                    statusSpan.style.color = '#28a745';
-                    setTimeout(() => statusSpan.textContent = '', 8000);
-                    showStatus('✅ Book Experience section saved successfully!', 'success');
-                } else {
-                    throw new Error('Failed to save');
-                }
+
+                // Save to localStorage for persistence
+                localStorage.setItem('bookExperienceData', JSON.stringify(bookExperienceData));
+
+                // Show success message
+                statusSpan.textContent = '✅ Book Experience section saved!';
+                statusSpan.style.color = '#28a745';
+                setTimeout(() => statusSpan.textContent = '', 8000);
+                showStatus('✅ Book Experience section saved successfully! Use "Save All Changes" to apply to website.', 'success');
+
             } catch (error) {
                 console.error('Error saving Book Experience section:', error);
                 statusSpan.textContent = '❌ Save failed';
