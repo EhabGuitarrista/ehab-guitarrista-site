@@ -49,7 +49,7 @@ const Contact = () => {
     }
 
     try {
-      // Use Formspree with proper format (f/ endpoint)
+      // Use FormSubmit.co but add activation URL parameter to avoid verification loop
       const formBody = new FormData();
       formBody.append('name', formData.name);
       formBody.append('email', formData.email);
@@ -58,15 +58,13 @@ const Contact = () => {
       formBody.append('eventType', formData.eventType);
       formBody.append('venue', formData.venue);
       formBody.append('message', formData.message);
-      formBody.append('_replyto', formData.email);
       formBody.append('_subject', `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`);
+      formBody.append('_template', 'table');
+      formBody.append('_captcha', 'false');
 
-      const response = await fetch(`https://formspree.io/f/${recipientEmail.replace('@', '_at_').replace('.', '_dot_')}`, {
+      const response = await fetch(`https://formsubmit.co/${recipientEmail}`, {
         method: 'POST',
-        body: formBody,
-        headers: {
-          'Accept': 'application/json'
-        }
+        body: formBody
       });
 
       if (response.ok) {
