@@ -33,40 +33,18 @@ const About = () => {
       
       <div className="container-max px-6 pb-12">
         
-        <div className={`grid grid-cols-1 ${content.videos?.aboutSection?.file ? 'lg:grid-cols-2' : ''} gap-8 items-start mb-12`}>
+        <div className={`grid grid-cols-1 ${content.videos?.aboutSection?.file && (content.videos.aboutSection.file.includes('youtube.com') || content.videos.aboutSection.file.includes('youtu.be')) ? 'lg:grid-cols-2' : ''} gap-8 items-start mb-12`}>
           {/* Professional Video */}
-          {content.videos?.aboutSection?.file && (
+          {content.videos?.aboutSection?.file &&
+           (content.videos.aboutSection.file.includes('youtube.com') ||
+            content.videos.aboutSection.file.includes('youtu.be')) && (
             <div className="w-full">
               <div className="bg-card border border-border rounded-lg overflow-hidden w-full">
-                {/* Check if it's a YouTube URL or regular video file */}
-                {content.videos.aboutSection.file.includes('youtube.com') ||
-                 content.videos.aboutSection.file.includes('youtu.be') ? (
-                  <YouTubeEmbed
-                    url={content.videos.aboutSection.file}
-                    title="About Ehab Guitarrista"
-                    className="w-full"
-                  />
-                ) : (
-                  <video
-                    key={content.videos.aboutSection.file}
-                    ref={videoRef}
-                    width="100%"
-                    height="400"
-                    controls
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    className="w-full aspect-video"
-                    style={{ minHeight: '400px' }}
-                    onError={(e) => console.error('About video error:', e)}
-                  onLoadedData={() => console.log('About video loaded successfully')}
-                  >
-                    <source src={content.videos.aboutSection.file} type="video/quicktime" />
-                    <source src={content.videos.aboutSection.file} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                )}
+                <YouTubeEmbed
+                  url={content.videos.aboutSection.file}
+                  title="About Ehab Guitarrista"
+                  className="w-full"
+                />
               </div>
             </div>
           )}

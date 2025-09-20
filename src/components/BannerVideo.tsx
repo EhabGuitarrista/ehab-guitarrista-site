@@ -10,8 +10,10 @@ const BannerVideo = () => {
     return null;
   }
 
-  // Only render if banner video exists
-  if (!content.videos?.bannerVideo?.url) {
+  // Only render if banner video exists and is a YouTube URL
+  if (!content.videos?.bannerVideo?.url ||
+      !(content.videos.bannerVideo.url.includes('youtube.com') ||
+        content.videos.bannerVideo.url.includes('youtu.be'))) {
     return null;
   }
 
@@ -28,33 +30,11 @@ const BannerVideo = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="bg-card border border-border rounded-lg overflow-hidden">
-            {/* Check if it's a YouTube URL or regular video file */}
-            {bannerVideo.url.includes('youtube.com') ||
-             bannerVideo.url.includes('youtu.be') ? (
-              <YouTubeEmbed
-                url={bannerVideo.url}
-                title={bannerVideo.title || "Featured Performance"}
-                className="w-full"
-              />
-            ) : (
-              <video
-                key={bannerVideo.url}
-                ref={videoRef}
-                width="100%"
-                height="400"
-                controls
-                playsInline
-                preload="metadata"
-                className="w-full aspect-video"
-                style={{ minHeight: '400px' }}
-                onError={(e) => console.error('Banner video error:', e)}
-                onLoadedData={() => console.log('Banner video loaded successfully')}
-              >
-                <source src={bannerVideo.url} type="video/quicktime" />
-                <source src={bannerVideo.url} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            )}
+            <YouTubeEmbed
+              url={bannerVideo.url}
+              title={bannerVideo.title || "Featured Performance"}
+              className="w-full"
+            />
           </div>
         </div>
       </div>
