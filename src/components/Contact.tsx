@@ -48,22 +48,28 @@ const Contact = () => {
     }
 
     try {
-      // Create form data for submission
-      const formBody = new FormData();
-      formBody.append('name', formData.name);
-      formBody.append('email', formData.email);
-      formBody.append('phone', formData.phone);
-      formBody.append('eventDate', formData.eventDate);
-      formBody.append('eventType', formData.eventType);
-      formBody.append('venue', formData.venue);
-      formBody.append('message', formData.message);
-      formBody.append('subject', `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`);
-      formBody.append('recipientEmail', recipientEmail);
-
-      // Send using Formsubmit.co (no signup required, reliable)
-      const response = await fetch('https://formsubmit.co/ajax/ehab.guitarrista@gmail.com', {
+      // Send using EmailJS (200 free emails/month, perfect for static sites)
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
-        body: formBody
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_guitarist',
+          template_id: 'template_booking',
+          user_id: 'jHfqN8GRV9_Qz6kST',
+          template_params: {
+            to_email: recipientEmail,
+            from_name: formData.name,
+            from_email: formData.email,
+            phone: formData.phone,
+            event_date: formData.eventDate,
+            event_type: formData.eventType,
+            venue: formData.venue,
+            message: formData.message || 'No additional message',
+            subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`
+          }
+        })
       });
 
       if (response.ok) {
