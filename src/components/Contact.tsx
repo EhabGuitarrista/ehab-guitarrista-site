@@ -48,22 +48,34 @@ const Contact = () => {
     }
 
     try {
-      // Send email using Formspree
-      const response = await fetch(`https://formspree.io/${recipientEmail}`, {
+      // Send email using Web3Forms (free, reliable, no signup needed)
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          eventDate: formData.eventDate,
-          eventType: formData.eventType,
-          venue: formData.venue,
-          message: formData.message,
-          _replyto: formData.email,
-          _subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`
+          access_key: 'bb9e5c97-db5e-4c78-bc0c-e2d6b8e82c89',
+          email: recipientEmail, // Send to CMS email
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`,
+          message: `
+Booking Inquiry Details:
+
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Event Date: ${formData.eventDate}
+Event Type: ${formData.eventType}
+Venue Address: ${formData.venue}
+
+Message:
+${formData.message || 'No additional message'}
+
+---
+This booking inquiry was submitted through the website contact form.
+          `
         }),
       });
 
