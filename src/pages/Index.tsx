@@ -2,8 +2,8 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 // import BannerVideo from "@/components/BannerVideo";
-import Music from "@/components/Music";
-import LivePerformances from "@/components/LivePerformances";
+// import Music from "@/components/Music";
+// import LivePerformances from "@/components/LivePerformances";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -14,8 +14,8 @@ const Index = () => {
       <Hero />
       <About />
       {/* <BannerVideo /> */}
-      <Music />
-      <LivePerformances />
+      {/* <Music /> */}
+      {/* <LivePerformances /> */}
       <Contact />
       <Footer />
     </div>
