@@ -180,31 +180,7 @@ const Performances = () => {
         });
       }
       
-      // 3. Load from additional videos JSON (CMS managed) - keeping for backward compatibility, YouTube only
-      try {
-        const response = await fetch('/data/additional-videos.json');
-        if (response.ok) {
-          const additionalVideosData = await response.json();
-          if (additionalVideosData.videos && Array.isArray(additionalVideosData.videos)) {
-            for (const videoData of additionalVideosData.videos) {
-              if (videoData.title && videoData.video &&
-                  (videoData.video.includes('youtube.com') ||
-                   videoData.video.includes('youtu.be'))) {
-                videos.push({
-                  title: videoData.title,
-                  description: videoData.description || '',
-                  video: videoData.video,
-                  thumbnail: videoData.thumbnail,
-                  order: videoData.order || orderCounter++,
-                  featured: videoData.featured || false
-                });
-              }
-            }
-          }
-        }
-      } catch (error) {
-        console.log('No additional videos found');
-      }
+      // 3. Legacy JSON loading removed - now using CMS exclusively
       
       // Sort by order
       videos.sort((a, b) => a.order - b.order);
