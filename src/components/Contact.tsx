@@ -48,35 +48,22 @@ const Contact = () => {
     }
 
     try {
-      // Send email using Web3Forms (free, reliable, no signup needed)
-      const response = await fetch('https://api.web3forms.com/submit', {
+      // Create form data for submission
+      const formBody = new FormData();
+      formBody.append('name', formData.name);
+      formBody.append('email', formData.email);
+      formBody.append('phone', formData.phone);
+      formBody.append('eventDate', formData.eventDate);
+      formBody.append('eventType', formData.eventType);
+      formBody.append('venue', formData.venue);
+      formBody.append('message', formData.message);
+      formBody.append('subject', `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`);
+      formBody.append('recipientEmail', recipientEmail);
+
+      // Send using Formsubmit.co (no signup required, reliable)
+      const response = await fetch('https://formsubmit.co/ajax/ehab.guitarrista@gmail.com', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: 'bb9e5c97-db5e-4c78-bc0c-e2d6b8e82c89',
-          email: recipientEmail, // Send to CMS email
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`,
-          message: `
-Booking Inquiry Details:
-
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Event Date: ${formData.eventDate}
-Event Type: ${formData.eventType}
-Venue Address: ${formData.venue}
-
-Message:
-${formData.message || 'No additional message'}
-
----
-This booking inquiry was submitted through the website contact form.
-          `
-        }),
+        body: formBody
       });
 
       if (response.ok) {
