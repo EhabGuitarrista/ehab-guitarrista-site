@@ -270,27 +270,33 @@ const Performances = () => {
               )}
             </div>
             
-            <div className="text-center mt-10">
-              <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
-                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-                  {content.bookExperience?.title || "Book Your Experience"}
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  {content.bookExperience?.description || "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together."}
-                </p>
-                <button
-                  className="btn-primary"
-                  onClick={() => {
-                    window.location.href = '#/';
-                    setTimeout(() => {
-                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 500);
-                  }}
-                >
-                  {content.bookExperience?.buttonText || "Schedule Consultation"}
-                </button>
+            {content.bookExperience?.title && (
+              <div className="text-center mt-10">
+                <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
+                  <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
+                    {content.bookExperience.title}
+                  </h3>
+                  {content.bookExperience.description && (
+                    <p className="text-muted-foreground mb-6">
+                      {content.bookExperience.description}
+                    </p>
+                  )}
+                  {content.bookExperience.buttonText && (
+                    <button
+                      className="btn-primary"
+                      onClick={() => {
+                        window.location.href = '#/';
+                        setTimeout(() => {
+                          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                        }, 500);
+                      }}
+                    >
+                      {content.bookExperience.buttonText}
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
       </main>

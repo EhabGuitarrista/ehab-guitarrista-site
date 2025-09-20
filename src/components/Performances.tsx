@@ -147,22 +147,28 @@ const Performances = () => {
         </div>
 
         {/* This section can be expanded with upcoming shows, past performances, etc. */}
-        <div className="text-center">
-          <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-              {content.bookExperience?.title}
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              {content.bookExperience?.description}
-            </p>
-            <button
-              className="btn-primary"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              {content.bookExperience?.buttonText}
-            </button>
+        {content.bookExperience?.title && (
+          <div className="text-center">
+            <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
+              <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
+                {content.bookExperience.title}
+              </h3>
+              {content.bookExperience.description && (
+                <p className="text-muted-foreground mb-6">
+                  {content.bookExperience.description}
+                </p>
+              )}
+              {content.bookExperience.buttonText && (
+                <button
+                  className="btn-primary"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  {content.bookExperience.buttonText}
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        )}
         </div>
       </div>
     </section>
