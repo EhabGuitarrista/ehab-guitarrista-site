@@ -1,4 +1,14 @@
 {
+  "navigation": {
+    "logoText": "Ehab Guitarristaaaaaa",
+    "menuItems": {
+      "home": "Home+",
+      "music": "Music+",
+      "performances": "Performances+",
+      "contact": "Contact+"
+    },
+    "ctaButton": "Book Now!"
+  },
   "hero": {
     "title": "Ehab Guitarrista+",
     "subtitle": "Bringing Music to Life Across Canada+",
@@ -6,32 +16,33 @@
     "bookButtonText": "Book Performance!",
     "listenButtonText": "Check Out My Music Below!"
   },
-  "performanceImages": [],
-  "upcomingEvents": [],
-  "bookExperience": {
-    "title": "Book Your Experience",
-    "buttonText": "Contact Now!",
-    "description": "Schedule a Consultation with Ehab"
-  },
-  "livePerformanceMoments": {
-    "title": ""
-  },
   "about": {
     "title": "Meet Ehab!",
-    "videoUrl": "",
-    "videoTitle": "",
-    "earlyLifeText": "eeeee",
-    "earlyLifeTitle": "+Early Lifeeeee",
-    "mentorshipText": "ee",
+    "mainDescription": "1dcacc",
+    "secondParagraph": "dscdcasdcsww",
     "thirdParagraph": "edcaadsc",
     "fourthParagraph": "dcddcascadsc+",
-    "mainDescription": "1dcacc",
-    "mentorshipTitle": "eeee",
-    "secondParagraph": "dscdcasdcsww",
-    "professionalText": "eeee",
-    "professionalTitle": "ee",
-    "musicalPhilosophyText": "eeeee+",
-    "musicalPhilosophyTitle": "eeee"
+    "videoUrl": "",
+    "videoTitle": "",
+    "image": "/lovable-uploads/profile-image.jpg",
+    "extendedBio": {
+      "earlyLife": {
+        "title": "QQQQ",
+        "text": "QQQQ"
+      },
+      "mentorship": {
+        "title": "QQQ",
+        "text": "QQQQQ"
+      },
+      "professional": {
+        "title": "",
+        "text": ""
+      },
+      "musicalPhilosophy": {
+        "title": "",
+        "text": ""
+      }
+    }
   },
   "stats": {
     "yearsPerforming": {
@@ -51,22 +62,8 @@
       "label": "Awards Won"
     }
   },
-  "videos": {
-    "aboutSection": {
-      "title": "",
-      "file": ""
-    },
-    "billBourneMainPage": {
-      "title": "",
-      "file": ""
-    },
-    "performances": []
-  },
-  "performancePage": {
-    "mainTitle": "",
-    "mainSubtitle": "",
-    "eventsTitle": "",
-    "eventsDescription": ""
+  "livePerformanceMoments": {
+    "title": "lllllllllll"
   },
   "music": {
     "title": "My Music+",
@@ -109,14 +106,28 @@
     "copyrightText": "",
     "influencedByText": "Influenced by the masters of flamenco and world music"
   },
-  "navigation": {
-    "logoText": "Ehab Guitarrista",
-    "menuItems": {
-      "home": "Home+",
-      "music": "Music+",
-      "performances": "Performances+",
-      "contact": "Contact+"
+  "performanceImages": [],
+  "upcomingEvents": [],
+  "bookExperience": {
+    "title": "YEAH",
+    "buttonText": "YEAH",
+    "description": "YEAH"
+  },
+  "performancePage": {
+    "mainTitle": "bbbbbbb",
+    "mainSubtitle": "bbbbb",
+    "eventsTitle": "bbbbb",
+    "eventsDescription": "bbbb"
+  },
+  "videos": {
+    "aboutSection": {
+      "title": "",
+      "file": ""
     },
-    "ctaButton": "Book Now!"
+    "billBourneMainPage": {
+      "title": "",
+      "file": ""
+    },
+    "performances": []
   }
 }

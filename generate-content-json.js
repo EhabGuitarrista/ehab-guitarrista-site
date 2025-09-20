@@ -59,17 +59,32 @@ async function generateContentJson() {
                     break;
 
                 case 'about':
-                    content.about = section.mainDescription ? section : {
-                        title: "Meet Ehab",
-                        mainDescription: "As a composer of original music...",
-                        secondParagraph: "",
-                        thirdParagraph: "",
-                        fourthParagraph: "",
-                        image: "/lovable-uploads/profile-image.jpg",
+                    content.about = {
+                        title: section.title || "Meet Ehab",
+                        mainDescription: section.mainDescription || "",
+                        secondParagraph: section.secondParagraph || "",
+                        thirdParagraph: section.thirdParagraph || "",
+                        fourthParagraph: section.fourthParagraph || "",
+                        videoUrl: section.videoUrl || "",
+                        videoTitle: section.videoTitle || "",
+                        image: section.image || "/lovable-uploads/profile-image.jpg",
                         extendedBio: {
-                            earlyLife: { title: "Early Life & Education", text: "" },
-                            mentorship: { title: "Mentorship & Influences", text: "" },
-                            professional: { title: "Professional Development", text: "" }
+                            earlyLife: {
+                                title: section.earlyLifeTitle || "",
+                                text: section.earlyLifeText || ""
+                            },
+                            mentorship: {
+                                title: section.mentorshipTitle || "",
+                                text: section.mentorshipText || ""
+                            },
+                            professional: {
+                                title: section.professionalTitle || "",
+                                text: section.professionalText || ""
+                            },
+                            musicalPhilosophy: {
+                                title: section.musicalPhilosophyTitle || "",
+                                text: section.musicalPhilosophyText || ""
+                            }
                         }
                     };
                     break;
