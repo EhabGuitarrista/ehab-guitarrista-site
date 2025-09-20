@@ -48,23 +48,21 @@ const Contact = () => {
     }
 
     try {
-      // Send using FormSubmit.co (zero setup required, just needs email)
+      // Send using FormSubmit.co (requires form-encoded data)
+      const formBody = new FormData();
+      formBody.append('name', formData.name);
+      formBody.append('email', formData.email);
+      formBody.append('phone', formData.phone);
+      formBody.append('eventDate', formData.eventDate);
+      formBody.append('eventType', formData.eventType);
+      formBody.append('venue', formData.venue);
+      formBody.append('message', formData.message);
+      formBody.append('_subject', `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`);
+      formBody.append('_template', 'table');
+
       const response = await fetch(`https://formsubmit.co/${recipientEmail}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          eventDate: formData.eventDate,
-          eventType: formData.eventType,
-          venue: formData.venue,
-          message: formData.message,
-          _subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`,
-          _template: 'table'
-        })
+        body: formBody
       });
 
       if (response.ok) {
