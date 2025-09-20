@@ -11,7 +11,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="min-h-screen md:min-h-[100vh] flex items-center justify-center relative overflow-hidden pt-20 md:pt-16 pb-16 md:pb-24">
+    <section id="home" className="min-h-screen md:min-h-[100vh] flex items-center justify-center relative overflow-hidden pt-20 md:pt-16 pb-8 md:pb-12">
       {/* Mobile background - positioned lower */}
       <div className="absolute top-16 left-0 right-0 bottom-0 bg-background md:hidden">
         {content.hero.image ? (

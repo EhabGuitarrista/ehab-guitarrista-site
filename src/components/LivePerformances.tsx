@@ -46,10 +46,10 @@ const LivePerformances = () => {
   const allPhotos = [...performancePhotos];
 
   return (
-    <section id="gallery" className="py-12 bg-background">
+    <section id="gallery" className="py-6 md:py-8 bg-background">
       <div className="container-max">
         {content.livePerformanceMoments?.title && (
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center text-foreground mb-6">
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center text-foreground mb-4 md:mb-6">
             {content.livePerformanceMoments.title}
           </h2>
         )}
@@ -58,7 +58,7 @@ const LivePerformances = () => {
         {content.videos?.bannerVideo?.url &&
          (content.videos.bannerVideo.url.includes('youtube.com') ||
           content.videos.bannerVideo.url.includes('youtu.be')) ? (
-          <div className="mb-10" ref={videoRef}>
+          <div className="mb-6 md:mb-8" ref={videoRef}>
             <div className="flex justify-center">
               <div className="w-full px-0 md:px-4">
                 <div className="w-full max-w-none md:max-w-5xl mx-auto">
@@ -84,7 +84,7 @@ const LivePerformances = () => {
           </div>
         ) : null}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 px-3 md:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 px-3 md:px-0">
           {allPhotos.map((photo, index) => (
             <div
               key={index}

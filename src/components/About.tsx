@@ -22,18 +22,18 @@ const About = () => {
   console.log('Content loading state:', loading);
 
   return (
-    <section id="about" className="bg-background -mt-20 pt-32 pb-16 md:pb-20">
+    <section id="about" className="bg-background -mt-20 pt-16 md:pt-24 pb-8 md:pb-12">
       {content.about.title && (
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary text-glow">
             {content.about.title}
           </h2>
         </div>
       )}
       
-      <div className="container-max px-6 pb-12">
+      <div className="container-max px-6 pb-6 md:pb-8">
         
-        <div className={`grid grid-cols-1 ${content.videos?.aboutSection?.file && (content.videos.aboutSection.file.includes('youtube.com') || content.videos.aboutSection.file.includes('youtu.be')) ? 'lg:grid-cols-2' : ''} gap-8 items-start mb-12`}>
+        <div className={`grid grid-cols-1 ${content.videos?.aboutSection?.file && (content.videos.aboutSection.file.includes('youtube.com') || content.videos.aboutSection.file.includes('youtu.be')) ? 'lg:grid-cols-2' : ''} gap-6 md:gap-8 items-start mb-6 md:mb-8`}>
           {/* Professional Video */}
           {content.videos?.aboutSection?.file &&
            (content.videos.aboutSection.file.includes('youtube.com') ||
@@ -78,7 +78,7 @@ const About = () => {
         </div>
         
         {/* Extended Bio */}
-        <div className="mb-12">
+        <div className="mb-6 md:mb-8">
           <Collapsible open={isExtendedBioOpen} onOpenChange={setIsExtendedBioOpen}>
             <CollapsibleTrigger className="flex items-center justify-center w-full bg-card border border-border rounded-lg p-4 text-foreground hover:bg-card/80 transition-colors">
               <span className="text-xl font-playfair font-semibold">Extended Biography</span>

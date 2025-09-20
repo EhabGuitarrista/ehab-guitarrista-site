@@ -109,13 +109,13 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="section-padding bg-background">
+    <section id="contact" className="py-6 md:py-8 bg-background">
       <div className="container-max">
-        <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-6 md:mb-8">
           {content.contact.title}
         </h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {/* Contact Form */}
           <div className="card-professional">
             {content.contact.formTitle && (

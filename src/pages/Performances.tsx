@@ -34,11 +34,11 @@ const DynamicVideoSection = ({ video, index }: { video: PerformanceVideo; index:
 
   return (
     <div className="w-full">
-      <h3 className="text-xl font-playfair font-semibold text-center text-foreground mb-8">
+      <h3 className="text-xl font-playfair font-semibold text-center text-foreground mb-4 md:mb-6">
         {video.title}
       </h3>
       {video.description && (
-        <p className="text-center text-muted-foreground mb-6 max-w-2xl mx-auto">
+        <p className="text-center text-muted-foreground mb-4 md:mb-6 max-w-2xl mx-auto">
           {video.description}
         </p>
       )}
@@ -197,15 +197,15 @@ const Performances = () => {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="pt-6 pb-8 bg-background">
+        <section className="pt-4 pb-4 md:pt-6 md:pb-6 bg-background">
           <div className="container-max text-center">
             {content.performancePage?.mainTitle && (
-              <h1 className="text-4xl md:text-6xl font-playfair font-bold text-glow mb-8">
+              <h1 className="text-4xl md:text-6xl font-playfair font-bold text-glow mb-4 md:mb-6">
                 {content.performancePage.mainTitle}
               </h1>
             )}
             {content.performancePage?.mainSubtitle && (
-              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto font-inter">
+              <p className="text-xl text-muted-foreground mb-4 md:mb-6 max-w-3xl mx-auto font-inter">
                 {content.performancePage.mainSubtitle}
               </p>
             )}
@@ -214,7 +214,7 @@ const Performances = () => {
             {performanceVideos.filter(video =>
               video.video && (video.video.includes('youtube.com') || video.video.includes('youtu.be'))
             ).length > 0 && (
-              <div className="space-y-16">
+              <div className="space-y-8 md:space-y-12">
                 {performanceVideos
                   .filter(video =>
                     video.video && (video.video.includes('youtube.com') || video.video.includes('youtu.be'))
@@ -233,20 +233,20 @@ const Performances = () => {
         </section>
 
         {/* Event Posters */}
-        <section className="py-12 bg-background">
+        <section className="py-6 md:py-8 bg-background">
           <div className="container-max">
             {content.performancePage?.eventsTitle && (
-              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-6">
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-4 md:mb-6">
                 {content.performancePage.eventsTitle}
               </h2>
             )}
             {content.performancePage?.eventsDescription && (
-              <p className="text-lg text-muted-foreground text-center mb-10 max-w-3xl mx-auto font-inter">
+              <p className="text-lg text-muted-foreground text-center mb-6 md:mb-8 max-w-3xl mx-auto font-inter">
                 {content.performancePage.eventsDescription}
               </p>
             )}
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 container-max">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 container-max">
               {content.upcomingEvents && content.upcomingEvents.length > 0 ? (
                 content.upcomingEvents.map((event, index) => (
                   <div key={index} className="bg-card border border-border rounded-lg overflow-hidden group cursor-pointer hover:border-primary/50 transition-colors">
@@ -272,7 +272,7 @@ const Performances = () => {
             </div>
             
             {content.bookExperience?.title && (
-              <div className="text-center mt-10">
+              <div className="text-center mt-6 md:mt-8">
                 <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
                   <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
                     {content.bookExperience.title}
