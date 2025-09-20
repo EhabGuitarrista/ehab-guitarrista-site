@@ -4,6 +4,7 @@ import { Play } from "lucide-react";
 import { useVideoManager } from "@/hooks/useVideoManager";
 import { useCMSContent } from "@/hooks/useCMSContent";
 import { useState, useEffect } from "react";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface PerformanceVideo {
   title: string;
@@ -16,14 +17,20 @@ interface PerformanceVideo {
 
 // Dynamic Video Section Component
 const DynamicVideoSection = ({ video, index }: { video: PerformanceVideo; index: number }) => {
-  const videoRef = useVideoManager(false);
-  
   // Determine aspect ratio based on video content or index
   const isWideVideo = video.featured || index === 0; // First video or featured videos are wide
-  const aspectRatio = isWideVideo ? '16/9' : '9/16';
   const maxWidth = isWideVideo ? 'max-w-5xl' : 'max-w-md';
-  const minHeight = isWideVideo ? '300px' : '400px';
-  const maxHeight = isWideVideo ? 'none' : '600px';
+
+  // Check if it's a YouTube URL
+  const isYouTubeUrl = video.video && (
+    video.video.includes('youtube.com') ||
+    video.video.includes('youtu.be')
+  );
+
+  // Only render if we have a YouTube URL
+  if (!isYouTubeUrl) {
+    return null;
+  }
 
   return (
     <div className="w-full">
@@ -36,22 +43,13 @@ const DynamicVideoSection = ({ video, index }: { video: PerformanceVideo; index:
         </p>
       )}
       <div className={`w-full ${maxWidth} mx-auto`}>
-        <video 
-          ref={videoRef}
-          className="w-full rounded-lg object-cover"
-          controls
-          playsInline
-          preload="metadata"
-          style={{ 
-            aspectRatio: aspectRatio, 
-            minHeight: minHeight,
-            maxHeight: maxHeight
-          }}
-        >
-          <source src={video.video} type="video/quicktime" />
-          <source src={video.video} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div className="bg-card border border-border rounded-lg overflow-hidden">
+          <YouTubeEmbed
+            url={video.video}
+            title={video.title}
+            className="w-full"
+          />
+        </div>
       </div>
     </div>
   );
@@ -67,8 +65,10 @@ const Performances = () => {
       const videos: PerformanceVideo[] = [];
       let orderCounter = 100; // Start dynamic videos at order 100+ to avoid conflicts
       
-      // 1. Load from existing fixed video fields (current working system)
-      if (content.videos?.billBournePerformances?.file) {
+      // 1. Load from existing fixed video fields (current working system) - YouTube only
+      if (content.videos?.billBournePerformances?.file &&
+          (content.videos.billBournePerformances.file.includes('youtube.com') ||
+           content.videos.billBournePerformances.file.includes('youtu.be'))) {
         videos.push({
           title: content.videos.billBournePerformances.title,
           description: "Collaborative performance with renowned artist",
@@ -77,8 +77,10 @@ const Performances = () => {
           featured: true
         });
       }
-      
-      if (content.videos?.notreDame?.file) {
+
+      if (content.videos?.notreDame?.file &&
+          (content.videos.notreDame.file.includes('youtube.com') ||
+           content.videos.notreDame.file.includes('youtu.be'))) {
         videos.push({
           title: content.videos.notreDame.title,
           description: "Intimate acoustic performance in historic chapel",
@@ -87,8 +89,10 @@ const Performances = () => {
           featured: false
         });
       }
-      
-      if (content.videos?.piano?.file) {
+
+      if (content.videos?.piano?.file &&
+          (content.videos.piano.file.includes('youtube.com') ||
+           content.videos.piano.file.includes('youtu.be'))) {
         videos.push({
           title: content.videos.piano.title,
           description: "Multi-instrumental showcase",
@@ -97,8 +101,10 @@ const Performances = () => {
           featured: false
         });
       }
-      
-      if (content.videos?.ensemble?.file) {
+
+      if (content.videos?.ensemble?.file &&
+          (content.videos.ensemble.file.includes('youtube.com') ||
+           content.videos.ensemble.file.includes('youtu.be'))) {
         videos.push({
           title: content.videos.ensemble.title,
           description: "Full band performance with multiple instruments",
@@ -107,8 +113,10 @@ const Performances = () => {
           featured: false
         });
       }
-      
-      if (content.videos?.oud?.file) {
+
+      if (content.videos?.oud?.file &&
+          (content.videos.oud.file.includes('youtube.com') ||
+           content.videos.oud.file.includes('youtu.be'))) {
         videos.push({
           title: content.videos.oud.title,
           description: "Traditional Middle Eastern instrument performance",
@@ -117,8 +125,10 @@ const Performances = () => {
           featured: false
         });
       }
-      
-      if (content.videos?.video8?.file) {
+
+      if (content.videos?.video8?.file &&
+          (content.videos.video8.file.includes('youtube.com') ||
+           content.videos.video8.file.includes('youtu.be'))) {
         videos.push({
           title: content.videos.video8.title,
           description: "Additional performance video",
@@ -127,8 +137,10 @@ const Performances = () => {
           featured: false
         });
       }
-      
-      if (content.videos?.video9?.file) {
+
+      if (content.videos?.video9?.file &&
+          (content.videos.video9.file.includes('youtube.com') ||
+           content.videos.video9.file.includes('youtu.be'))) {
         videos.push({
           title: content.videos.video9.title,
           description: "Additional performance video",
@@ -137,8 +149,10 @@ const Performances = () => {
           featured: false
         });
       }
-      
-      if (content.videos?.video10?.file) {
+
+      if (content.videos?.video10?.file &&
+          (content.videos.video10.file.includes('youtube.com') ||
+           content.videos.video10.file.includes('youtu.be'))) {
         videos.push({
           title: content.videos.video10.title,
           description: "Additional performance video",
@@ -148,10 +162,12 @@ const Performances = () => {
         });
       }
       
-      // 2. Load from CMS-managed performance videos (performanceVideo1, performanceVideo2, etc.)
+      // 2. Load from CMS-managed performance videos (performanceVideo1, performanceVideo2, etc.) - YouTube only
       if (content.videos) {
         Object.keys(content.videos).forEach((key) => {
-          if (key.startsWith('performanceVideo') && content.videos[key]?.file) {
+          if (key.startsWith('performanceVideo') && content.videos[key]?.file &&
+              (content.videos[key].file.includes('youtube.com') ||
+               content.videos[key].file.includes('youtu.be'))) {
             const videoIndex = parseInt(key.replace('performanceVideo', '')) || orderCounter;
             videos.push({
               title: content.videos[key].title || `Performance Video ${videoIndex}`,
@@ -164,14 +180,16 @@ const Performances = () => {
         });
       }
       
-      // 3. Load from additional videos JSON (CMS managed) - keeping for backward compatibility
+      // 3. Load from additional videos JSON (CMS managed) - keeping for backward compatibility, YouTube only
       try {
         const response = await fetch('/data/additional-videos.json');
         if (response.ok) {
           const additionalVideosData = await response.json();
           if (additionalVideosData.videos && Array.isArray(additionalVideosData.videos)) {
             for (const videoData of additionalVideosData.videos) {
-              if (videoData.title && videoData.video) {
+              if (videoData.title && videoData.video &&
+                  (videoData.video.includes('youtube.com') ||
+                   videoData.video.includes('youtu.be'))) {
                 videos.push({
                   title: videoData.title,
                   description: videoData.description || '',
@@ -216,16 +234,23 @@ const Performances = () => {
               </p>
             )}
             
-            {/* Dynamic Performance Videos - Only show if videos exist */}
-            {performanceVideos.length > 0 && (
+            {/* Dynamic Performance Videos - Only show if YouTube videos exist */}
+            {performanceVideos.filter(video =>
+              video.video && (video.video.includes('youtube.com') || video.video.includes('youtu.be'))
+            ).length > 0 && (
               <div className="space-y-16">
-                {performanceVideos.map((video, index) => (
-                  <DynamicVideoSection 
-                    key={`${video.title}-${index}`}
-                    video={video}
-                    index={index}
-                  />
-                ))}
+                {performanceVideos
+                  .filter(video =>
+                    video.video && (video.video.includes('youtube.com') || video.video.includes('youtu.be'))
+                  )
+                  .map((video, index) => (
+                    <DynamicVideoSection
+                      key={`${video.title}-${index}`}
+                      video={video}
+                      index={index}
+                    />
+                  ))
+                }
               </div>
             )}
           </div>
