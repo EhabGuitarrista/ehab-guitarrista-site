@@ -33,9 +33,9 @@ const About = () => {
       
       <div className="container-max px-6 pb-12">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-12">
+        <div className={`grid grid-cols-1 ${content.videos?.aboutSection?.file ? 'lg:grid-cols-2' : ''} gap-8 items-start mb-12`}>
           {/* Professional Video */}
-          {content.videos?.aboutSection?.file ? (
+          {content.videos?.aboutSection?.file && (
             <div className="w-full">
               <div className="bg-card border border-border rounded-lg overflow-hidden w-full">
                 {/* Check if it's a YouTube URL or regular video file */}
@@ -69,17 +69,8 @@ const About = () => {
                 )}
               </div>
             </div>
-          ) : (
-            <div className="w-full">
-              <div className="bg-card border border-border rounded-lg overflow-hidden w-full flex items-center justify-center" style={{ minHeight: '400px' }}>
-                <div className="text-center text-muted-foreground">
-                  <p className="text-lg">No video uploaded</p>
-                  <p className="text-sm">Upload a video in the CMS to display here</p>
-                </div>
-              </div>
-            </div>
           )}
-          
+
           {/* About Content */}
           <div className="space-y-4">
             {content.about.mainDescription && (
