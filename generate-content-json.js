@@ -59,29 +59,7 @@ async function generateContentJson() {
                     break;
 
                 case 'about':
-                    content.about = section.mainDescription ? {
-                        ...section,
-                        extendedBioTitle: section.extendedBioTitle || "",
-                        // Transform flat extended bio structure to nested structure
-                        extendedBio: {
-                            earlyLife: {
-                                title: section.earlyLifeTitle || "Early Life & Education",
-                                text: section.earlyLifeText || ""
-                            },
-                            mentorship: {
-                                title: section.mentorshipTitle || "Mentorship & Influences",
-                                text: section.mentorshipText || ""
-                            },
-                            professional: {
-                                title: section.professionalTitle || "Professional Development",
-                                text: section.professionalText || ""
-                            },
-                            musicalPhilosophy: {
-                                title: section.musicalPhilosophyTitle || "",
-                                text: section.musicalPhilosophyText || ""
-                            }
-                        }
-                    } : {
+                    content.about = section.mainDescription ? section : {
                         title: "Meet Ehab",
                         mainDescription: "As a composer of original music...",
                         secondParagraph: "",
@@ -166,6 +144,17 @@ async function generateContentJson() {
                 case 'bookExperience':
                     content.bookExperience = section || {
                         title: "Book Your Experience",
+                        description: "",
+                        buttonText: "Book Now"
+                    };
+                    break;
+
+                case 'images':
+                    // Extract all image-related data from the images section
+                    content.performanceImages = section.performanceImages || [];
+                    content.upcomingEvents = section.upcomingEvents || [];
+                    content.bookExperience = section.bookExperience || {
+                        title: "Book Your Experience",
                         description: "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together.",
                         buttonText: "Schedule Consultation"
                     };
@@ -184,11 +173,7 @@ async function generateContentJson() {
         return createDefaultContent();
     }
 
-    // Ensure all required sections exist with defaults
-    const defaultContent = createDefaultContent();
-    const mergedContent = { ...defaultContent, ...content };
-
-    return mergedContent;
+    return content;
 }
 
 function createDefaultContent() {
@@ -217,12 +202,10 @@ function createDefaultContent() {
             thirdParagraph: "",
             fourthParagraph: "",
             image: "",
-            extendedBioTitle: "",
             extendedBio: {
                 earlyLife: { title: "Early Life & Education", text: "" },
                 mentorship: { title: "Mentorship & Influences", text: "" },
-                professional: { title: "Professional Development", text: "" },
-                musicalPhilosophy: { title: "", text: "" }
+                professional: { title: "Professional Development", text: "" }
             }
         },
         stats: {
