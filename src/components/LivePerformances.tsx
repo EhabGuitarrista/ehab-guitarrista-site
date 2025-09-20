@@ -54,47 +54,35 @@ const LivePerformances = () => {
           </h2>
         )}
 
-        {/* Featured Collaboration Video */}
-        {content.videos?.billBourneMainPage?.file ? (
-          <div className="mb-10" ref={videoRef}>
-            <h3 className="text-lg font-playfair font-medium text-center text-foreground mb-6">
-              {content.videos?.billBourneMainPage?.title}
-            </h3>
-            <div className="flex justify-center">
-              <div className="w-full px-0 md:px-4">
-                <div className="w-full max-w-none md:max-w-5xl mx-auto">
-                  <video 
-                    ref={liveVideoRef}
-                    className="w-full rounded-none md:rounded-lg object-cover"
-                    controls
-                    playsInline
-                    preload="metadata"
-                    style={{ aspectRatio: '16/9', minHeight: '300px' }}
-                  >
-                    <source src={content.videos?.billBourneMainPage?.file} type="video/quicktime" />
-                    <source src={content.videos?.billBourneMainPage?.file} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
+        {/* Banner Video */}
+        {content.videos?.bannerVideo?.url &&
+         (content.videos.bannerVideo.url.includes('youtube.com') ||
+          content.videos.bannerVideo.url.includes('youtu.be')) ? (
           <div className="mb-10" ref={videoRef}>
             <div className="flex justify-center">
               <div className="w-full px-0 md:px-4">
                 <div className="w-full max-w-none md:max-w-5xl mx-auto">
-                  <div className="bg-card border border-border rounded-lg overflow-hidden w-full flex items-center justify-center" style={{ aspectRatio: '16/9', minHeight: '300px' }}>
-                    <div className="text-center text-muted-foreground">
-                      <p className="text-lg">No performance video uploaded</p>
-                      <p className="text-sm">Upload a video in the CMS to display here</p>
-                    </div>
+                  <div className="bg-card border border-border rounded-lg overflow-hidden">
+                    <iframe
+                      width="100%"
+                      height="400"
+                      src={`https://www.youtube.com/embed/${content.videos.bannerVideo.url.includes('youtu.be')
+                        ? content.videos.bannerVideo.url.split('/').pop()?.split('?')[0]
+                        : content.videos.bannerVideo.url.split('v=')[1]?.split('&')[0]
+                      }`}
+                      title="Featured Performance"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full rounded-lg"
+                      style={{ aspectRatio: '16/9', minHeight: '300px' }}
+                    ></iframe>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        )}
+        ) : null}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 px-3 md:px-0">
           {allPhotos.map((photo, index) => (
