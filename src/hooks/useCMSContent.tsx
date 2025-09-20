@@ -243,7 +243,7 @@ export const useCMSContent = () => {
       // In production, just use the generated content.json with reduced error attempts
       if (isProduction) {
         try {
-          const response = await fetch('/ehab-guitarrista-site/content.json?t=' + Date.now(), {
+          const response = await fetch('/content.json?t=' + Date.now(), {
             headers: {
               'Cache-Control': 'no-cache, no-store, must-revalidate',
               'Pragma': 'no-cache',
