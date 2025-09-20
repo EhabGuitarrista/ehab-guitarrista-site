@@ -37,14 +37,14 @@ async function generateContentJson() {
             switch(item.section_name) {
                 case 'navigation':
                     content.navigation = {
-                        logoText: section.logoText || "Ehab Guitarrista",
+                        logoText: section.logoText || "",
                         menuItems: {
-                            home: section.home || "Home",
-                            music: section.music || "Music",
-                            performances: section.performances || "Performances",
-                            contact: section.contact || "Contact"
+                            home: section.home || "",
+                            music: section.music || "",
+                            performances: section.performances || "",
+                            contact: section.contact || ""
                         },
-                        ctaButton: section.ctaButton || "Book Now"
+                        ctaButton: section.ctaButton || ""
                     };
                     break;
 
@@ -132,7 +132,7 @@ async function generateContentJson() {
                         email: section.email || "contact@ehabguitarrista.com",
                         phone: section.phone || "+1 (555) 123-4567",
                         services: section.services ? (typeof section.services === 'string' ? section.services.split(',').map(s => s.trim()).filter(s => s) : section.services) : [],
-                        copyrightText: section.copyrightText || "© 2024 Ehab Guitarrista. All rights reserved.",
+                        copyrightText: section.copyrightText || "",
                         influencedByText: section.influencedByText || ""
                     };
                     break;
