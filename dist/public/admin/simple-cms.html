@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Content Editor - Ehab Guitarrista</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 2px solid #007cba; padding-bottom: 10px; }
+        .section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 6px; }
+        .section h2 { margin-top: 0; color: #007cba; }
+        label { display: block; margin: 15px 0 5px 0; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+        textarea { min-height: 100px; resize: vertical; }
+        button { background: #007cba; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin: 10px 5px; }
+        button:hover { background: #005a87; }
+        .save-btn { background: #28a745; }
+        .save-btn:hover { background: #1e7e34; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎸 Content Editor - Ehab Guitarrista</h1>
+        
+        <div id="status"></div>
+        
+        <form id="contentForm">
+            <div class="section">
+                <h2>Hero Section</h2>
+                <label>Main Title:</label>
+                <input type="text" id="heroTitle" placeholder="Ehab Guitarrista">
+                
+                <label>Subtitle:</label>
+                <input type="text" id="heroSubtitle" placeholder="Bringing Music to Life Across Canada">
+                
+                <label>Hero Image URL:</label>
+                <input type="text" id="heroImage" placeholder="/lovable-uploads/hero-image.png">
+                
+                <label>Book Performance Button Text:</label>
+                <input type="text" id="bookButton" placeholder="Book Performance">
+                
+                <label>Listen Button Text:</label>
+                <input type="text" id="listenButton" placeholder="Listen Now">
+            </div>
+            
+            <div class="section">
+                <h2>About Section</h2>
+                <label>Section Title:</label>
+                <input type="text" id="aboutTitle" placeholder="About Ehab">
+                
+                <label>Description:</label>
+                <textarea id="aboutDescription" placeholder="Tell visitors about Ehab's musical background..."></textarea>
+                
+                <label>Profile Image URL:</label>
+                <input type="text" id="aboutImage" placeholder="/lovable-uploads/profile-image.jpg">
+            </div>
+            
+            <div class="section">
+                <h2>Contact Section</h2>
+                <label>Section Title:</label>
+                <input type="text" id="contactTitle" placeholder="Get in Touch">
+                
+                <label>Description:</label>
+                <textarea id="contactDescription" placeholder="Contact information and booking details..."></textarea>
+                
+                <label>Email:</label>
+                <input type="email" id="contactEmail" placeholder="contact@ehabguitarrista.com">
+                
+                <label>Phone:</label>
+                <input type="tel" id="contactPhone" placeholder="+1 (555) 123-4567">
+            </div>
+            
+            <button type="button" onclick="loadContent()" class="load-btn">Load Current Content</button>
+            <button type="button" onclick="saveContent()" class="save-btn">💾 Save Changes</button>
+            <button type="button" onclick="previewSite()" class="preview-btn">👁️ Preview Site</button>
+        </form>
+    </div>
+
+    <script>
+        // Load existing content
+        async function loadContent() {
+            try {
+                const response = await fetch('/content.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('heroTitle').value = data.hero.title;
+                    document.getElementById('heroSubtitle').value = data.hero.subtitle;
+                    document.getElementById('heroImage').value = data.hero.image;
+                    document.getElementById('bookButton').value = data.hero.bookButtonText;
+                    document.getElementById('listenButton').value = data.hero.listenButtonText;
+                    
+                    document.getElementById('aboutTitle').value = data.about.title;
+                    document.getElementById('aboutDescription').value = data.about.description;
+                    document.getElementById('aboutImage').value = data.about.image;
+                    
+                    document.getElementById('contactTitle').value = data.contact.title;
+                    document.getElementById('contactDescription').value = data.contact.description;
+                    document.getElementById('contactEmail').value = data.contact.email;
+                    document.getElementById('contactPhone').value = data.contact.phone;
+                    
+                    showStatus('Content loaded successfully!', 'success');
+                } else {
+                    showStatus('Could not load existing content. Using defaults.', 'error');
+                }
+            } catch (error) {
+                showStatus('Error loading content: ' + error.message, 'error');
+            }
+        }
+
+        // Save content
+        async function saveContent() {
+            const contentData = {
+                hero: {
+                    title: document.getElementById('heroTitle').value,
+                    subtitle: document.getElementById('heroSubtitle').value,
+                    image: document.getElementById('heroImage').value,
+                    bookButtonText: document.getElementById('bookButton').value,
+                    listenButtonText: document.getElementById('listenButton').value
+                },
+                about: {
+                    title: document.getElementById('aboutTitle').value,
+                    description: document.getElementById('aboutDescription').value,
+                    image: document.getElementById('aboutImage').value
+                },
+                contact: {
+                    title: document.getElementById('contactTitle').value,
+                    description: document.getElementById('contactDescription').value,
+                    email: document.getElementById('contactEmail').value,
+                    phone: document.getElementById('contactPhone').value
+                }
+            };
+
+            try {
+                // Show what we would save
+                console.log('Content to save:', JSON.stringify(contentData, null, 2));
+                showStatus('Content saved to browser console! Copy the JSON and save it to content.json manually.', 'success');
+                
+                // Also save to localStorage for persistence
+                localStorage.setItem('cms-content', JSON.stringify(contentData));
+                
+            } catch (error) {
+                showStatus('Error saving content: ' + error.message, 'error');
+            }
+        }
+
+        function previewSite() {
+            window.open('/', '_blank');
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.innerHTML = `<div class="${type}">${message}</div>`;
+            setTimeout(() => status.innerHTML = '', 5000);
+        }
+
+        // Load content on page load
+        window.addEventListener('DOMContentLoaded', loadContent);
+    </script>
+</body>
+</html>

@@ -1,0 +1,3256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>URL-Based CMS - Ehab Guitarrista (ImageKit)</title>
+    <style>
+        /* Modern Professional Design */
+        * { box-sizing: border-box; }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif; 
+            margin: 0; 
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 { 
+            color: #2c3e50; 
+            font-size: 2.5em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Tab Navigation */
+        .nav-tabs { 
+            display: flex; 
+            gap: 0; 
+            margin-bottom: 40px; 
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 6px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+        }
+        
+        .nav-tab { 
+            flex: 1;
+            padding: 16px 24px; 
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none; 
+            color: #64748b; 
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+        }
+        
+        .nav-tab:hover { 
+            background: rgba(100, 116, 139, 0.1);
+            color: #475569;
+            transform: translateY(-1px);
+        }
+        
+        .nav-tab.active { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Sections */
+        .section { 
+            margin: 30px 0; 
+            padding: 30px; 
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section h2 { 
+            margin-top: 0; 
+            color: #1e293b;
+            font-size: 1.5em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .subsection { 
+            margin: 20px 0; 
+            padding: 24px; 
+            border-left: 4px solid #667eea;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 0 12px 12px 0;
+            position: relative;
+        }
+        
+        .subsection::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 0 2px 2px 0;
+        }
+        
+        .subsection h3 { 
+            margin-top: 0; 
+            color: #334155; 
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        /* Form Elements */
+        label { 
+            display: block; 
+            margin: 20px 0 8px 0; 
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        input, textarea, select { 
+            width: 100%; 
+            padding: 14px 16px; 
+            border: 2px solid #e5e7eb;
+            border-radius: 10px; 
+            font-size: 15px; 
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        input:focus, textarea:focus, select:focus { 
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+        
+        textarea { 
+            min-height: 120px; 
+            resize: vertical;
+            line-height: 1.6;
+        }
+        
+        textarea.large { 
+            min-height: 180px; 
+        }
+        
+        /* Buttons */
+        button { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            padding: 14px 28px; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-size: 15px; 
+            font-weight: 600;
+            margin: 10px 8px 10px 0; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .save-btn { 
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .save-btn:hover { 
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .upload-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 10px 20px;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* URL input styling for ImageKit URLs */
+        input[type="url"] {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 2px solid #e2e8f0;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="url"]:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            outline: none;
+        }
+
+        input[type="url"]::placeholder {
+            color: #9ca3af;
+            font-style: italic;
+        }
+        
+        .delete-btn { 
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            padding: 10px 20px; 
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(239, 68, 68, 0.3);
+        }
+        
+        .delete-btn:hover {
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+        }
+        
+        /* Status Messages */
+        .success { 
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid #22c55e;
+            color: #15803d; 
+            padding: 16px 20px; 
+            border-radius: 12px; 
+            margin: 20px 0;
+            font-weight: 600;
+        }
+        
+        .error { 
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border: 2px solid #ef4444;
+            color: #dc2626; 
+            padding: 16px 20px; 
+            border-radius: 12px; 
+            margin: 20px 0;
+            font-weight: 600;
+        }
+        
+        /* Content Containers */
+        .image-manager, .video-container { 
+            border: 2px solid #e5e7eb;
+            border-radius: 16px; 
+            padding: 24px; 
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .current-image, .current-video { 
+            text-align: center; 
+            margin: 20px 0; 
+        }
+        
+        .current-image img, .current-video video { 
+            max-width: 100%; 
+            max-height: 300px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .image-actions, .video-actions { 
+            display: flex; 
+            gap: 12px; 
+            justify-content: center; 
+            margin: 20px 0; 
+            flex-wrap: wrap; 
+        }
+        
+        .performance-item, .video-item, .audio-item { 
+            border: 2px solid #e5e7eb;
+            margin: 20px 0; 
+            padding: 24px; 
+            border-radius: 16px; 
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .performance-item:hover, .video-item:hover, .audio-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+        
+        .performance-item h4, .video-item h4, .audio-item h4 { 
+            margin-top: 0; 
+            color: #1e293b;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .form-row { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+            margin-bottom: 20px; 
+        }
+        
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        
+        .form-group label { 
+            display: block; 
+            margin: 0 0 8px 0; 
+            font-size: 13px; 
+            font-weight: 600;
+            color: #374151;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-group input, .form-group textarea { 
+            padding: 12px 16px;
+        }
+        
+        .json-output { 
+            background: #1e293b;
+            border: 2px solid #334155;
+            color: #e2e8f0;
+            padding: 20px; 
+            border-radius: 12px; 
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 13px; 
+            max-height: 400px; 
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                gap: 4px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+        
+        /* Loading Animation */
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+        
+        .loading {
+            background: linear-gradient(90deg, #f0f0f0 0px, #e0e0e0 40px, #f0f0f0 80px);
+            background-size: 200px;
+            animation: shimmer 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎸 Complete Content Editor - Ehab Guitarrista</h1>
+
+        <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; padding: 20px; border-radius: 12px; margin-bottom: 30px;">
+            <h3 style="color: #1e40af; margin-top: 0; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                🔗 ImageKit URL Instructions
+            </h3>
+            <p style="color: #1e40af; margin-bottom: 10px; font-size: 14px;">
+                This CMS now uses <strong>ImageKit URLs</strong> instead of file uploads. To add media:
+            </p>
+            <ol style="color: #1e40af; font-size: 14px; margin: 0; padding-left: 20px;">
+                <li>Upload your files to ImageKit dashboard</li>
+                <li>Copy the ImageKit URL (format: <code>https://ik.imagekit.io/your-id/filename.ext</code>)</li>
+                <li>Paste the URL into the input fields below</li>
+                <li>Click the "🔗 Set from URL" buttons to apply</li>
+            </ol>
+        </div>
+        
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <a href="#" onclick="return showTab('main')" class="nav-tab active" id="mainTab">📝 Main Editor</a>
+            <a href="#" onclick="return showTab('music')" class="nav-tab" id="musicTab">🎵 Music Player</a>
+            <a href="#" onclick="return showTab('images')" class="nav-tab" id="imagesTab">🖼️ Images</a>
+            <a href="#" onclick="return showTab('videos')" class="nav-tab" id="videosTab">🎥 Videos</a>
+        </div>
+
+        <!-- Main Save Button -->
+        <div style="text-align: center; margin: 20px 0; padding: 20px; background: #f8f9fa; border: 2px solid #28a745; border-radius: 8px;">
+            <button type="button" onclick="saveContent()" style="background: #28a745; color: white; padding: 15px 30px; border: none; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-right: 10px;">
+                💾 Save All Changes
+            </button>
+            <button type="button" onclick="loadContent()" style="background: #007cba; color: white; padding: 15px 30px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                🔄 Reload Content
+            </button>
+            <p style="margin: 10px 0 0 0; color: #666; font-size: 14px;">Save all your changes from all tabs before switching or refreshing</p>
+        </div>
+
+        <div id="status"></div>
+        
+        <!-- Main Editor Tab -->
+        <div id="mainContent" class="tab-content">
+        <form id="contentForm">
+            <!-- NAVIGATION SECTION -->
+            <div class="section">
+                <h2>🧭 Navigation Header</h2>
+                <label>Logo Text:</label>
+                <input type="text" id="navLogoText" placeholder="Ehab Guitarrista">
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 15px; margin: 20px 0;">
+                    <div>
+                        <label>Home Button:</label>
+                        <input type="text" id="navHome" placeholder="Home">
+                    </div>
+                    <div>
+                        <label>Music Button:</label>
+                        <input type="text" id="navMusic" placeholder="Music">
+                    </div>
+                    <div>
+                        <label>Performances Button:</label>
+                        <input type="text" id="navPerformances" placeholder="Performances">
+                    </div>
+                    <div>
+                        <label>Contact Button:</label>
+                        <input type="text" id="navContact" placeholder="Contact">
+                    </div>
+                    <div>
+                        <label>CTA Button:</label>
+                        <input type="text" id="navCtaButton" placeholder="Book Now">
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                </div>
+            </div>
+
+            <!-- HERO SECTION -->
+            <div class="section">
+                <h2>🎭 Hero Section</h2>
+                <label>Main Title:</label>
+                <input type="text" id="heroTitle" placeholder="Ehab Guitarrista">
+                
+                <label>Subtitle:</label>
+                <input type="text" id="heroSubtitle" placeholder="Bringing Music to Life Across Canada">
+                
+                <label>Book Performance Button Text:</label>
+                <input type="text" id="bookButton" placeholder="Book Performance">
+                
+                <label>Listen Button Text:</label>
+                <input type="text" id="listenButton" placeholder="Listen Now">
+
+                <div style="text-align: center; margin-top: 20px;">
+                </div>
+            </div>
+
+            <!-- ABOUT SECTION -->
+            <div class="section">
+                <h2>👨‍🎤 About Section</h2>
+                <label>Section Title:</label>
+                <input type="text" id="aboutTitle" placeholder="Meet Ehab">
+                
+                <label>Main Description (First Paragraph):</label>
+                <textarea id="aboutMainDescription" class="large" placeholder="As a composer of original music..."></textarea>
+                
+                <label>Second Paragraph:</label>
+                <textarea id="aboutSecondParagraph" class="large" placeholder="Born with music in his soul..."></textarea>
+                
+                <label>Third Paragraph:</label>
+                <textarea id="aboutThirdParagraph" class="large" placeholder="Ehab's sound blends traditional flamenco..."></textarea>
+                
+                <label>Fourth Paragraph:</label>
+                <textarea id="aboutFourthParagraph" class="large" placeholder="Ehab performs across Canada..."></textarea>
+
+                <!-- Extended Bio -->
+                <div class="subsection">
+                    <h3>📖 Extended Biography</h3>
+                    
+                    <label>Early Life & Education - Title:</label>
+                    <input type="text" id="earlyLifeTitle" placeholder="Early Life & Education">
+                    <label>Early Life & Education - Text:</label>
+                    <textarea id="earlyLifeText" placeholder="Ehab's musical journey began at the tender age of 5..."></textarea>
+                    
+                    <label>Mentorship & Influences - Title:</label>
+                    <input type="text" id="mentorshipTitle" placeholder="Mentorship & Influences">
+                    <label>Mentorship & Influences - Text:</label>
+                    <textarea id="mentorshipText" placeholder="Deeply influenced by legendary masters..."></textarea>
+                    
+                    <label>Professional Development - Title:</label>
+                    <input type="text" id="professionalTitle" placeholder="Professional Development">
+                    <label>Professional Development - Text:</label>
+                    <textarea id="professionalText" placeholder="Throughout his career, Ehab has continuously refined..."></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                </div>
+            </div>
+
+            <!-- STATS SECTION -->
+            <div class="section">
+                <h2>📊 Stats Section</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; margin: 20px 0;">
+                    <div>
+                        <label>Years Performing Number:</label>
+                        <input type="text" id="statsYearsNumber" placeholder="15+">
+                        <label>Years Performing Label:</label>
+                        <input type="text" id="statsYearsLabel" placeholder="Years Performing">
+                    </div>
+                    <div>
+                        <label>Cities Toured Number:</label>
+                        <input type="text" id="statsCitiesNumber" placeholder="50+">
+                        <label>Cities Toured Label:</label>
+                        <input type="text" id="statsCitiesLabel" placeholder="Cities Toured">
+                    </div>
+                    <div>
+                        <label>Shows Played Number:</label>
+                        <input type="text" id="statsShowsNumber" placeholder="200+">
+                        <label>Shows Played Label:</label>
+                        <input type="text" id="statsShowsLabel" placeholder="Shows Played">
+                    </div>
+                    <div>
+                        <label>Awards Won Number:</label>
+                        <input type="text" id="statsAwardsNumber" placeholder="15+">
+                        <label>Awards Won Label:</label>
+                        <input type="text" id="statsAwardsLabel" placeholder="Awards Won">
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                </div>
+            </div>
+
+
+            <!-- CONTACT SECTION -->
+            <div class="section">
+                <h2>📞 Contact Section</h2>
+                <label>Section Title:</label>
+                <input type="text" id="contactTitle" placeholder="Get in Touch">
+                
+                <label>Email:</label>
+                <input type="email" id="contactEmail" placeholder="contact@ehabguitarrista.com">
+                
+                <label>Phone:</label>
+                <input type="tel" id="contactPhone" placeholder="+1 (555) 123-4567">
+                
+                <label>Location:</label>
+                <input type="text" id="contactLocation" placeholder="Available across Canada">
+                
+                <label>Response Time Title:</label>
+                <input type="text" id="contactResponseTimeTitle" placeholder="Response Time">
+                
+                <label>Response Time Text:</label>
+                <textarea id="contactResponseTime" placeholder="All inquiries receive a personal response within 24 hours..."></textarea>
+                
+                <label>Book Button Text:</label>
+                <input type="text" id="contactBookButton" placeholder="Book Ehab">
+
+                <div style="text-align: center; margin-top: 20px;">
+                </div>
+            </div>
+
+            <!-- FOOTER SECTION -->
+            <div class="section">
+                <h2>🦶 Footer Section</h2>
+                <label>Brand Title:</label>
+                <input type="text" id="footerBrandTitle" placeholder="Ehab Guitarrista">
+                
+                <label>Description:</label>
+                <textarea id="footerDescription" placeholder="Professional flamenco guitarist bringing passion and artistry..."></textarea>
+                
+                <label>Email:</label>
+                <input type="email" id="footerEmail" placeholder="ehab.guitarist@email.com">
+                
+                <label>Phone:</label>
+                <input type="tel" id="footerPhone" placeholder="+1 (555) 123-4567">
+                
+                <label>Services (one per line):</label>
+                <textarea id="footerServices" placeholder="Concert Performances&#10;Wedding Ceremonies&#10;Corporate Events&#10;Private Parties&#10;Studio Recording&#10;Music Composition"></textarea>
+                
+                <label>Copyright Text:</label>
+                <input type="text" id="footerCopyrightText" placeholder="© 2025 Ehab Guitarrista. All rights reserved.">
+                
+                <label>Influenced By Text:</label>
+                <input type="text" id="footerInfluencedByText" placeholder="Influenced by: Paco De Lucia • Vicente Amigo • Al di Meola • Antonio Rey">
+
+                <div style="text-align: center; margin-top: 20px;">
+                </div>
+            </div>
+
+            <button type="button" onclick="loadContent()" class="load-btn">📥 Load Current Content</button>
+            <button type="button" onclick="previewSite()" class="preview-btn">👁️ Preview Site</button>
+        </form>
+        </div>
+
+        <!-- Images Tab -->
+        <div id="imagesContent" class="tab-content" style="display: none;">
+            <!-- Hero Image Section -->
+            <div class="section">
+                <h2>🎭 Hero Section Background</h2>
+                
+                <div class="subsection">
+                    <h3>🖼️ Hero Background Image</h3>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the background image for the hero section on the main page.
+                    </p>
+                    
+                    <div class="image-manager">
+                        <div class="current-image" id="heroCurrentImage">
+                            <!-- Current image will be loaded here -->
+                        </div>
+                        
+                        <div class="image-actions">
+                            <input type="url" id="heroImageUrl" placeholder="Paste ImageKit image URL here..." style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;"value="https://ik.imagekit.io/hmasglwc6o/Images/178b603a-1fa3-4eab-8e3d-fd9273218278.png?updatedAt=1757775259426"value="https://ik.imagekit.io/hmasglwc6o/Images/178b603a-1fa3-4eab-8e3d-fd9273218278.png?updatedAt=1757775259426"value="https://ik.imagekit.io/hmasglwc6o/Images/178b603a-1fa3-4eab-8e3d-fd9273218278.png?updatedAt=1757775259426">
+                            <button type="button" onclick="setHeroImageFromUrl()" class="upload-btn">🔗 Set Image from URL</button>
+                            <button type="button" onclick="deleteHeroImage()" class="delete-btn">🗑️ Remove Current</button>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="heroImageStatus" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Performance Images Section -->
+            <div class="section">
+                <h2>🎭 Performance Images</h2>
+                
+                <div class="subsection">
+                    <h3>📸 Live Performance Moments</h3>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the performance images that appear in the "Live Performance Moments" section.
+                    </p>
+                    
+                    <div id="performanceImagesContainer">
+                        <!-- Performance images will be populated by JavaScript -->
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="button" onclick="addPerformanceImage()" style="background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 4px; font-size: 16px; margin-right: 10px;">➕ Add Performance Image</button>
+                        <span id="performanceImagesStatus" style="margin-left: 15px; font-size: 14px; color: #666;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Events Section -->
+            <div class="section">
+                <h2>🎫 Upcoming Events</h2>
+                
+                <div class="subsection">
+                    <div class="form-group">
+                        <label>Section Title:</label>
+                        <input type="text" id="upcomingEventsTitle" value="Upcoming Events" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+                    </div>
+                    
+                    <h3>📅 Event Posters</h3>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the event posters that appear in the "Upcoming Events" section on the performances page.
+                    </p>
+                    
+                    <div id="upcomingEventsContainer">
+                        <!-- Event images will be populated by JavaScript -->
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="button" onclick="addUpcomingEvent()" style="background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 4px; font-size: 16px; margin-right: 10px;">➕ Add Event Poster</button>
+                        <span id="upcomingEventsStatus" style="margin-left: 15px; font-size: 14px; color: #666;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book Your Experience Section -->
+            <div class="section">
+                <h2>📋 Book Your Experience Section</h2>
+                
+                <div class="subsection">
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Edit the "Book Your Experience" section that appears at the bottom of the performances page.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input type="text" id="bookExperienceTitle" placeholder="Book Your Experience" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <textarea id="bookExperienceDescription" placeholder="Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together." rows="3" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box; resize: vertical;"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Button Text:</label>
+                        <input type="text" id="bookExperienceButtonText" placeholder="Schedule Consultation" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <span id="bookExperienceStatus" style="margin-left: 15px; font-size: 14px; color: #666;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Videos Tab -->
+        <div id="videosContent" class="tab-content" style="display: none;">
+            <!-- Main Page Videos -->
+            <div class="section">
+                <h2>📹 Main Page Videos (2 videos)</h2>
+                
+                <!-- About Section Video -->
+                <div class="subsection">
+                    <h3>🎬 About Section Video</h3>
+                    <p>Manage the video that appears in the About section on the main page.</p>
+                    
+                    <div class="video-container" id="aboutVideoContainer">
+                        <div class="current-video" id="aboutCurrentVideo">
+                            <p style="font-style: italic; color: #666;">No video uploaded yet. Upload one to get started!</p>
+                        </div>
+                        
+                        <div class="video-actions">
+                            <input type="url" id="aboutVideoUrl" placeholder="Paste ImageKit video URL here..." style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;"value="https://ik.imagekit.io/hmasglwc6o/Video/Ehab%20Guitarista.mov/ik-video.mp4?updatedAt=1757774955202"value="https://ik.imagekit.io/hmasglwc6o/Video/Ehab%20Guitarista.mov/ik-video.mp4?updatedAt=1757774955202"value="https://ik.imagekit.io/hmasglwc6o/Video/Ehab%20Guitarista.mov/ik-video.mp4?updatedAt=1757774955202">
+                            <button type="button" onclick="setAboutVideoFromUrl()" class="upload-btn">🔗 Set Video from URL</button>
+                            <button type="button" onclick="removeAboutVideo()" class="delete-btn">🗑️ Remove Current</button>
+                        </div>
+                        
+                        <div class="video-meta">
+                            <label>Video Title:</label>
+                            <input type="text" id="aboutVideoTitle" placeholder="Enter video title" style="width: 100%; margin-bottom: 10px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                            <span id="aboutVideoStatus" style="font-size: 12px; color: #666; display: block; margin-top: 10px;"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Page Banner Video -->
+                <div class="subsection">
+                    <h3>🎬 Main Page Banner Video</h3>
+                    <p>Manage the video that appears with artist Bill Bourne on the main page.</p>
+                    
+                    <div class="video-container" id="bannerVideoContainer">
+                        <div class="current-video" id="bannerCurrentVideo">
+                            <p style="font-style: italic; color: #666;">No video uploaded yet. Upload one to get started!</p>
+                        </div>
+                        
+                        <div class="video-actions">
+                            <input type="url" id="bannerVideoUrl" placeholder="Paste ImageKit video URL here..." style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;"value="https://ik.imagekit.io/hmasglwc6o/Video/Ehab%20with%20Bill%20Bourne.mov/ik-video.mp4?updatedAt=1757774955790"value="https://ik.imagekit.io/hmasglwc6o/Video/Ehab%20with%20Bill%20Bourne.mov/ik-video.mp4?updatedAt=1757774955790"value="https://ik.imagekit.io/hmasglwc6o/Video/Ehab%20with%20Bill%20Bourne.mov/ik-video.mp4?updatedAt=1757774955790">
+                            <button type="button" onclick="setBannerVideoFromUrl()" class="upload-btn">🔗 Set Video from URL</button>
+                            <button type="button" onclick="removeBannerVideo()" class="delete-btn">🗑️ Remove Current</button>
+                        </div>
+                        
+                        <div class="video-meta">
+                            <label>Video Title:</label>
+                            <input type="text" id="bannerVideoTitle" placeholder="Enter video title" style="width: 100%; margin-bottom: 10px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                            <span id="bannerVideoStatus" style="font-size: 12px; color: #666; display: block; margin-top: 10px;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Performance Page Videos -->
+            <div class="section">
+                <h2>🎭 Performance Page Videos</h2>
+                
+                <div class="subsection">
+                    <h3>🎪 Performance Videos Collection</h3>
+                    <p>Manage all videos that appear on the performances page.</p>
+                    
+                    <div id="performanceVideosContainer">
+                        <!-- Performance videos will be populated by JavaScript -->
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="button" onclick="addPerformanceVideo()" style="background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 4px; font-size: 16px; margin-right: 10px;">➕ Add Performance Video</button>
+                        <span id="performanceVideosStatus" style="margin-left: 15px; font-size: 14px; color: #666;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music Player Tab -->
+        <div id="musicContent" class="tab-content" style="display: none;">
+            <div class="section">
+                <h2>🎵 Music Section Settings</h2>
+                <label>Section Title:</label>
+                <input type="text" id="musicTitle" placeholder="Listen to My Music">
+
+                <label>Section Subtitle:</label>
+                <textarea id="musicSubtitle" placeholder="Flamenco compositions that blend traditional Spanish forms with jazz, blues, oriental, and classical music..."></textarea>
+
+                <label>Featured Tracks Title:</label>
+                <input type="text" id="musicFeaturedTitle" placeholder="Featured Tracks">
+
+                <div style="text-align: center; margin-top: 20px;">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎶 Track Management</h2>
+                <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
+                    Add and manage music tracks using ImageKit URLs. Upload your audio files to ImageKit first, then paste the URLs below.
+                    <br><strong>Supported formats:</strong> MP3, M4A, WAV, FLAC
+                    <br><strong>Example URL:</strong> https://ik.imagekit.io/your-id/song.mp3
+                </p>
+
+                <div id="tracksContainer">
+                    <!-- Track entries will be populated by loadData -->
+                </div>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <button type="button" onclick="addTrack()" style="background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 4px; font-size: 16px;">
+                        ➕ Add New Track
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="jsonOutput" style="margin-top: 20px;"></div>
+        
+        <!-- Save All Changes -->
+        <div class="section" style="text-align: center; background: #f8f9fa; border: 2px solid #007cba; margin-top: 30px;">
+            <h2 style="color: #007cba; margin-top: 0;">💾 Save All Changes</h2>
+            <p style="color: #666; font-size: 16px; margin-bottom: 20px;">Save all content changes to apply updates to your website.</p>
+            <button type="button" onclick="saveContent()" style="background: #28a745; color: white; padding: 15px 30px; border: none; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                💾 Save All Content Changes
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Load existing content
+        async function loadContent() {
+            try {
+                const response = await fetch('/api/load-content');
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Navigation Section
+                    if (data.navigation) {
+                        document.getElementById('navLogoText').value = data.navigation.logoText || '';
+                        document.getElementById('navHome').value = data.navigation.menuItems?.home || '';
+                        document.getElementById('navMusic').value = data.navigation.menuItems?.music || '';
+                        document.getElementById('navPerformances').value = data.navigation.menuItems?.performances || '';
+                        document.getElementById('navContact').value = data.navigation.menuItems?.contact || '';
+                        document.getElementById('navCtaButton').value = data.navigation.ctaButton || '';
+                    }
+                    
+                    // Hero Section
+                    document.getElementById('heroTitle').value = data.hero.title || '';
+                    document.getElementById('heroSubtitle').value = data.hero.subtitle || '';
+                    document.getElementById('bookButton').value = data.hero.bookButtonText || '';
+                    document.getElementById('listenButton').value = data.hero.listenButtonText || '';
+
+                    // Hero Image URL
+                    const heroImageUrlInput = document.getElementById('heroImageUrl');
+                    if (heroImageUrlInput && data.hero.image) {
+                        heroImageUrlInput.value = data.hero.image;
+                        console.log('🖼️ Populated hero image URL:', data.hero.image);
+                    }
+                    
+                    // About Section
+                    document.getElementById('aboutTitle').value = data.about.title || '';
+                    document.getElementById('aboutMainDescription').value = data.about.mainDescription || '';
+                    document.getElementById('aboutSecondParagraph').value = data.about.secondParagraph || '';
+                    document.getElementById('aboutThirdParagraph').value = data.about.thirdParagraph || '';
+                    document.getElementById('aboutFourthParagraph').value = data.about.fourthParagraph || '';
+                    
+                    // Extended Bio
+                    if (data.about.extendedBio) {
+                        document.getElementById('earlyLifeTitle').value = data.about.extendedBio.earlyLife?.title || '';
+                        document.getElementById('earlyLifeText').value = data.about.extendedBio.earlyLife?.text || '';
+                        document.getElementById('mentorshipTitle').value = data.about.extendedBio.mentorship?.title || '';
+                        document.getElementById('mentorshipText').value = data.about.extendedBio.mentorship?.text || '';
+                        document.getElementById('professionalTitle').value = data.about.extendedBio.professional?.title || '';
+                        document.getElementById('professionalText').value = data.about.extendedBio.professional?.text || '';
+                    }
+                    
+                    // Stats Section
+                    if (data.stats) {
+                        document.getElementById('statsYearsNumber').value = data.stats.yearsPerforming?.number || '';
+                        document.getElementById('statsYearsLabel').value = data.stats.yearsPerforming?.label || '';
+                        document.getElementById('statsCitiesNumber').value = data.stats.citiesToured?.number || '';
+                        document.getElementById('statsCitiesLabel').value = data.stats.citiesToured?.label || '';
+                        document.getElementById('statsShowsNumber').value = data.stats.showsPlayed?.number || '';
+                        document.getElementById('statsShowsLabel').value = data.stats.showsPlayed?.label || '';
+                        document.getElementById('statsAwardsNumber').value = data.stats.awardsWon?.number || '';
+                        document.getElementById('statsAwardsLabel').value = data.stats.awardsWon?.label || '';
+                    }
+                    
+                    // Music Section
+                    if (data.music) {
+                        document.getElementById('musicTitle').value = data.music.title || '';
+                        document.getElementById('musicSubtitle').value = data.music.subtitle || '';
+                        document.getElementById('musicFeaturedTitle').value = data.music.featuredTracksTitle || '';
+                        
+                        // Load tracks (only if tracksContainer exists - Music tab may be hidden)
+                        const tracksContainer = document.getElementById('tracksContainer');
+                        if (tracksContainer) {
+                            tracksContainer.innerHTML = '';
+                            if (data.music.tracks && Array.isArray(data.music.tracks)) {
+                                // Load tracks sequentially to handle async addTrack
+                                for (let i = 0; i < data.music.tracks.length; i++) {
+                                    const track = data.music.tracks[i];
+                                    await addTrack(track.title, track.description, track.file, i);
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Contact Section
+                    document.getElementById('contactTitle').value = data.contact.title || '';
+                    document.getElementById('contactEmail').value = data.contact.email || '';
+                    document.getElementById('contactPhone').value = data.contact.phone || '';
+                    document.getElementById('contactLocation').value = data.contact.location || '';
+                    document.getElementById('contactResponseTimeTitle').value = data.contact.responseTimeTitle || '';
+                    document.getElementById('contactResponseTime').value = data.contact.responseTime || '';
+                    document.getElementById('contactBookButton').value = data.contact.bookButtonText || '';
+                    
+                    // Footer Section
+                    if (data.footer) {
+                        document.getElementById('footerBrandTitle').value = data.footer.brandTitle || '';
+                        document.getElementById('footerDescription').value = data.footer.description || '';
+                        document.getElementById('footerEmail').value = data.footer.email || '';
+                        document.getElementById('footerPhone').value = data.footer.phone || '';
+                        document.getElementById('footerServices').value = data.footer.services?.join('\n') || '';
+                        document.getElementById('footerCopyrightText').value = data.footer.copyrightText || '';
+                        document.getElementById('footerInfluencedByText').value = data.footer.influencedByText || '';
+                    }
+
+                    // Video URLs - populate input fields
+                    if (data.videos) {
+                        const aboutVideoUrlInput = document.getElementById('aboutVideoUrl');
+                        const bannerVideoUrlInput = document.getElementById('bannerVideoUrl');
+
+                        if (aboutVideoUrlInput && data.videos.aboutSection?.file) {
+                            aboutVideoUrlInput.value = data.videos.aboutSection.file;
+                            console.log('🎥 Populated about video URL:', data.videos.aboutSection.file);
+                        }
+
+                        if (bannerVideoUrlInput && data.videos.billBourneMainPage?.file) {
+                            bannerVideoUrlInput.value = data.videos.billBourneMainPage.file;
+                            console.log('🎬 Populated banner video URL:', data.videos.billBourneMainPage.file);
+                        }
+                    }
+
+                    // Performance Images - load into performanceImagesData
+                    if (data.performanceImages) {
+                        performanceImagesData = data.performanceImages;
+                        console.log('📸 Loaded performance images:', performanceImagesData.length, 'items');
+                        // Render performance images in the Images tab (if active)
+                        if (document.getElementById('performanceImagesContainer')) {
+                            renderPerformanceImages();
+                        }
+                    }
+
+                    showStatus('✅ Content loaded successfully!', 'success');
+                    
+                    // Initialize file list after content loads
+                    await refreshFileList();
+                    
+                    // Initialize central file upload handler
+                    // URL-based audio system - no file upload listeners needed
+                } else {
+                    showStatus('❌ Could not load existing content. Using empty fields.', 'error');
+                    
+                    // Still initialize file list even if content fails to load
+                    await refreshFileList();
+                    
+                    // Initialize central file upload handler
+                    // URL-based audio system - no file upload listeners needed
+                }
+            } catch (error) {
+                console.log('Content loading completed with some elements not found (hidden tabs):', error.message);
+                // This is normal - some elements don't exist when tabs are hidden
+                // No need to show error to user
+                
+                // Initialize central file upload handler
+                // URL-based audio system - no file upload listeners needed
+            }
+        }
+
+        // Save content automatically
+        async function saveSection(sectionName) {
+            // Create content object with just the specified section
+            let sectionData = {};
+
+            switch(sectionName) {
+                case 'navigation':
+                    sectionData = {
+                        navigation: {
+                            logoText: document.getElementById('navLogoText').value,
+                            menuItems: {
+                                home: document.getElementById('navHome').value,
+                                music: document.getElementById('navMusic').value,
+                                performances: document.getElementById('navPerformances').value,
+                                contact: document.getElementById('navContact').value
+                            },
+                            ctaButton: document.getElementById('navCtaButton').value
+                        }
+                    };
+                    break;
+
+                case 'hero':
+                    sectionData = {
+                        hero: {
+                            title: document.getElementById('heroTitle').value,
+                            subtitle: document.getElementById('heroSubtitle').value,
+                            bookButtonText: document.getElementById('bookButton').value,
+                            listenButtonText: document.getElementById('listenButton').value,
+                            image: ""
+                        }
+                    };
+                    break;
+
+                case 'about':
+                    sectionData = {
+                        about: {
+                            title: document.getElementById('aboutTitle').value,
+                            mainDescription: document.getElementById('aboutMainDescription').value,
+                            secondParagraph: document.getElementById('aboutSecondParagraph').value,
+                            thirdParagraph: document.getElementById('aboutThirdParagraph').value,
+                            fourthParagraph: document.getElementById('aboutFourthParagraph').value,
+                            extendedBio: {
+                                earlyLife: {
+                                    title: document.getElementById('earlyLifeTitle').value,
+                                    text: document.getElementById('earlyLifeText').value
+                                },
+                                mentorship: {
+                                    title: document.getElementById('mentorshipTitle').value,
+                                    text: document.getElementById('mentorshipText').value
+                                },
+                                professional: {
+                                    title: document.getElementById('professionalTitle').value,
+                                    text: document.getElementById('professionalText').value
+                                }
+                            }
+                        }
+                    };
+                    break;
+
+                case 'stats':
+                    sectionData = {
+                        stats: {
+                            yearsPerforming: {
+                                number: document.getElementById('statsYearsNumber').value,
+                                label: document.getElementById('statsYearsLabel').value
+                            },
+                            citiesToured: {
+                                number: document.getElementById('statsCitiesNumber').value,
+                                label: document.getElementById('statsCitiesLabel').value
+                            },
+                            showsPlayed: {
+                                number: document.getElementById('statsShowsNumber').value,
+                                label: document.getElementById('statsShowsLabel').value
+                            },
+                            awardsWon: {
+                                number: document.getElementById('statsAwardsNumber').value,
+                                label: document.getElementById('statsAwardsLabel').value
+                            }
+                        }
+                    };
+                    break;
+
+                case 'music':
+                    sectionData = {
+                        music: {
+                            title: document.getElementById('musicTitle').value,
+                            subtitle: document.getElementById('musicSubtitle').value,
+                            featuredTracksTitle: document.getElementById('musicFeaturedTitle').value,
+                            tracks: collectTracks()
+                        }
+                    };
+                    break;
+
+                case 'contact':
+                    sectionData = {
+                        contact: {
+                            title: document.getElementById('contactTitle').value,
+                            email: document.getElementById('contactEmail').value,
+                            phone: document.getElementById('contactPhone').value,
+                            location: document.getElementById('contactLocation').value,
+                            responseTimeTitle: document.getElementById('contactResponseTimeTitle').value,
+                            responseTime: document.getElementById('contactResponseTime').value,
+                            bookButtonText: document.getElementById('contactBookButton').value
+                        }
+                    };
+                    break;
+
+                case 'footer':
+                    sectionData = {
+                        footer: {
+                            brandTitle: document.getElementById('footerBrandTitle').value,
+                            description: document.getElementById('footerDescription').value,
+                            email: document.getElementById('footerEmail').value,
+                            phone: document.getElementById('footerPhone').value,
+                            services: document.getElementById('footerServices').value.split('\n').filter(s => s.trim()),
+                            copyrightText: document.getElementById('footerCopyrightText').value,
+                            influencedByText: document.getElementById('footerInfluencedByText').value
+                        }
+                    };
+                    break;
+
+                default:
+                    console.log('Section not implemented yet:', sectionName);
+                    return;
+            }
+
+            // Save just this section by merging with existing content
+            try {
+                const response = await fetch('/api/load-content');
+                let existingContent = {};
+                if (response.ok) {
+                    existingContent = await response.json();
+                }
+
+                // Merge the section data
+                const updatedContent = { ...existingContent, ...sectionData };
+
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(updatedContent)
+                });
+
+                const result = await saveResponse.json();
+
+                if (result.success) {
+                    alert(`✅ ${sectionName} section saved successfully!`);
+                } else {
+                    alert(`❌ Failed to save ${sectionName} section: ${result.error}`);
+                }
+            } catch (error) {
+                alert(`❌ Error saving ${sectionName} section: ${error.message}`);
+            }
+        }
+
+        // 🚀 INSTANT SAVE SYSTEM WITH localStorage + GitHub API
+
+        // Save instantly to localStorage
+        function saveToLocalStorage(data) {
+            try {
+                localStorage.setItem('cms-content', JSON.stringify(data));
+                localStorage.setItem('cms-timestamp', Date.now().toString());
+                console.log('💾 Saved to localStorage instantly');
+                updateSaveStatus('✅ Saved locally! Syncing...', 'success');
+            } catch (error) {
+                console.error('localStorage save failed:', error);
+            }
+        }
+
+        // Load from localStorage on page refresh
+        function loadFromLocalStorage() {
+            try {
+                const saved = localStorage.getItem('cms-content');
+                const timestamp = localStorage.getItem('cms-timestamp');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    console.log('📱 Loaded from localStorage, saved at:', new Date(parseInt(timestamp)));
+                    return data;
+                }
+            } catch (error) {
+                console.error('localStorage load failed:', error);
+            }
+            return null;
+        }
+
+        // Auto-save on any input change
+        function enableAutoSave() {
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', debounce(() => {
+                    const currentData = collectAllFormData();
+                    saveToLocalStorage(currentData);
+                }, 500)); // Auto-save after 0.5 seconds of no typing
+            });
+            console.log('🔄 Auto-save enabled on', inputs.length, 'inputs');
+        }
+
+        // Debounce function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Collect all form data for instant save
+        function collectAllFormData() {
+            const aboutVideoUrl = document.getElementById('aboutVideoUrl')?.value?.trim() || '';
+            const bannerVideoUrl = document.getElementById('bannerVideoUrl')?.value?.trim() || '';
+            const heroImageUrl = document.getElementById('heroImageUrl')?.value?.trim() || '';
+
+            return {
+                navigation: {
+                    logoText: document.getElementById('navLogoText')?.value || '',
+                    menuItems: {
+                        home: document.getElementById('navHome')?.value || '',
+                        music: document.getElementById('navMusic')?.value || '',
+                        performances: document.getElementById('navPerformances')?.value || '',
+                        contact: document.getElementById('navContact')?.value || ''
+                    },
+                    ctaButton: document.getElementById('navCtaButton')?.value || ''
+                },
+                hero: {
+                    title: document.getElementById('heroTitle')?.value || '',
+                    subtitle: document.getElementById('heroSubtitle')?.value || '',
+                    bookButtonText: document.getElementById('bookButton')?.value || '',
+                    listenButtonText: document.getElementById('listenButton')?.value || '',
+                    image: heroImageUrl
+                },
+                videos: {
+                    aboutSection: {
+                        title: document.getElementById('aboutVideoTitle')?.value || '',
+                        file: aboutVideoUrl
+                    },
+                    billBourneMainPage: {
+                        title: document.getElementById('bannerVideoTitle')?.value || '',
+                        file: bannerVideoUrl
+                    }
+                },
+                performanceImages: performanceImagesData || [],
+                timestamp: Date.now()
+            };
+        }
+
+        // Update save status with visual feedback
+        function updateSaveStatus(message, type) {
+            const statusDiv = document.getElementById('save-status') || createSaveStatusDiv();
+            statusDiv.innerHTML = `<div class="${type}">${message}</div>`;
+            statusDiv.className = `save-status ${type}`;
+        }
+
+        // Create save status display
+        function createSaveStatusDiv() {
+            const statusDiv = document.createElement('div');
+            statusDiv.id = 'save-status';
+            statusDiv.className = 'save-status';
+            statusDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 10px 15px;
+                border-radius: 5px;
+                z-index: 10000;
+                font-size: 14px;
+                max-width: 300px;
+            `;
+            document.body.appendChild(statusDiv);
+            return statusDiv;
+        }
+
+        // Load saved data into form fields
+        function populateFormFromLocalStorage() {
+            const saved = loadFromLocalStorage();
+            if (!saved) return;
+
+            // Populate navigation
+            if (saved.navigation) {
+                if (document.getElementById('navLogoText')) document.getElementById('navLogoText').value = saved.navigation.logoText || '';
+                if (document.getElementById('navHome')) document.getElementById('navHome').value = saved.navigation.menuItems?.home || '';
+                if (document.getElementById('navMusic')) document.getElementById('navMusic').value = saved.navigation.menuItems?.music || '';
+                if (document.getElementById('navPerformances')) document.getElementById('navPerformances').value = saved.navigation.menuItems?.performances || '';
+                if (document.getElementById('navContact')) document.getElementById('navContact').value = saved.navigation.menuItems?.contact || '';
+                if (document.getElementById('navCtaButton')) document.getElementById('navCtaButton').value = saved.navigation.ctaButton || '';
+            }
+
+            // Populate hero
+            if (saved.hero) {
+                if (document.getElementById('heroTitle')) document.getElementById('heroTitle').value = saved.hero.title || '';
+                if (document.getElementById('heroSubtitle')) document.getElementById('heroSubtitle').value = saved.hero.subtitle || '';
+                if (document.getElementById('bookButton')) document.getElementById('bookButton').value = saved.hero.bookButtonText || '';
+                if (document.getElementById('listenButton')) document.getElementById('listenButton').value = saved.hero.listenButtonText || '';
+                if (document.getElementById('heroImageUrl')) document.getElementById('heroImageUrl').value = saved.hero.image || '';
+            }
+
+            // Populate videos
+            if (saved.videos) {
+                if (document.getElementById('aboutVideoUrl')) document.getElementById('aboutVideoUrl').value = saved.videos.aboutSection?.file || '';
+                if (document.getElementById('bannerVideoUrl')) document.getElementById('bannerVideoUrl').value = saved.videos.billBourneMainPage?.file || '';
+                if (document.getElementById('aboutVideoTitle')) document.getElementById('aboutVideoTitle').value = saved.videos.aboutSection?.title || '';
+                if (document.getElementById('bannerVideoTitle')) document.getElementById('bannerVideoTitle').value = saved.videos.billBourneMainPage?.title || '';
+            }
+
+            console.log('📋 Form populated from localStorage');
+            updateSaveStatus('📱 Loaded saved changes from local storage', 'success');
+        }
+
+        async function saveContent() {
+            const contentData = {
+                navigation: {
+                    logoText: document.getElementById('navLogoText').value,
+                    menuItems: {
+                        home: document.getElementById('navHome').value,
+                        music: document.getElementById('navMusic').value,
+                        performances: document.getElementById('navPerformances').value,
+                        contact: document.getElementById('navContact').value
+                    },
+                    ctaButton: document.getElementById('navCtaButton').value
+                },
+                hero: {
+                    title: document.getElementById('heroTitle').value,
+                    subtitle: document.getElementById('heroSubtitle').value,
+                    bookButtonText: document.getElementById('bookButton').value,
+                    listenButtonText: document.getElementById('listenButton').value
+                },
+                about: {
+                    title: document.getElementById('aboutTitle').value,
+                    mainDescription: document.getElementById('aboutMainDescription').value,
+                    secondParagraph: document.getElementById('aboutSecondParagraph').value,
+                    thirdParagraph: document.getElementById('aboutThirdParagraph').value,
+                    fourthParagraph: document.getElementById('aboutFourthParagraph').value,
+                    extendedBio: {
+                        earlyLife: {
+                            title: document.getElementById('earlyLifeTitle').value,
+                            text: document.getElementById('earlyLifeText').value
+                        },
+                        mentorship: {
+                            title: document.getElementById('mentorshipTitle').value,
+                            text: document.getElementById('mentorshipText').value
+                        },
+                        professional: {
+                            title: document.getElementById('professionalTitle').value,
+                            text: document.getElementById('professionalText').value
+                        }
+                    }
+                },
+                stats: {
+                    yearsPerforming: {
+                        number: document.getElementById('statsYearsNumber').value,
+                        label: document.getElementById('statsYearsLabel').value
+                    },
+                    citiesToured: {
+                        number: document.getElementById('statsCitiesNumber').value,
+                        label: document.getElementById('statsCitiesLabel').value
+                    },
+                    showsPlayed: {
+                        number: document.getElementById('statsShowsNumber').value,
+                        label: document.getElementById('statsShowsLabel').value
+                    },
+                    awardsWon: {
+                        number: document.getElementById('statsAwardsNumber').value,
+                        label: document.getElementById('statsAwardsLabel').value
+                    }
+                },
+                music: {
+                    title: document.getElementById('musicTitle').value,
+                    subtitle: document.getElementById('musicSubtitle').value,
+                    featuredTracksTitle: document.getElementById('musicFeaturedTitle').value,
+                    tracks: collectTracks()
+                },
+                contact: {
+                    title: document.getElementById('contactTitle').value,
+                    email: document.getElementById('contactEmail').value,
+                    phone: document.getElementById('contactPhone').value,
+                    location: document.getElementById('contactLocation').value,
+                    responseTimeTitle: document.getElementById('contactResponseTimeTitle').value,
+                    responseTime: document.getElementById('contactResponseTime').value,
+                    bookButtonText: document.getElementById('contactBookButton').value
+                },
+                footer: {
+                    brandTitle: document.getElementById('footerBrandTitle').value,
+                    description: document.getElementById('footerDescription').value,
+                    email: document.getElementById('footerEmail').value,
+                    phone: document.getElementById('footerPhone').value,
+                    services: document.getElementById('footerServices').value.split('\n').filter(s => s.trim()),
+                    copyrightText: document.getElementById('footerCopyrightText').value,
+                    influencedByText: document.getElementById('footerInfluencedByText').value
+                }
+            };
+
+            // Collect video and image URLs from input fields directly
+            const aboutVideoUrl = document.getElementById('aboutVideoUrl') ? document.getElementById('aboutVideoUrl').value.trim() : '';
+            const bannerVideoUrl = document.getElementById('bannerVideoUrl') ? document.getElementById('bannerVideoUrl').value.trim() : '';
+            const heroImageUrl = document.getElementById('heroImageUrl') ? document.getElementById('heroImageUrl').value.trim() : '';
+
+            // Always include videos section
+            contentData.videos = {
+                aboutSection: {
+                    title: document.getElementById('aboutVideoTitle') ? document.getElementById('aboutVideoTitle').value : '',
+                    file: aboutVideoUrl || currentAboutVideo || ''
+                },
+                billBourneMainPage: {
+                    title: document.getElementById('bannerVideoTitle') ? document.getElementById('bannerVideoTitle').value : '',
+                    file: bannerVideoUrl || currentBannerVideo || ''
+                }
+            };
+
+            // Always include hero image
+            contentData.hero.image = heroImageUrl || currentHeroImage || '';
+
+            // Collect performance images data
+            contentData.performanceImages = performanceImagesData;
+
+            try {
+                showStatus('💾 Saving content...', 'success');
+
+                // Load existing content first to preserve all data
+                const loadResponse = await fetch('/api/load-content');
+                let existingContent = {};
+                if (loadResponse.ok) {
+                    existingContent = await loadResponse.json();
+                }
+
+                // Merge form data with existing content (preserving images, videos, etc.)
+                const mergedContent = { ...existingContent, ...contentData };
+
+                // Send merged content to save API
+                const response = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(mergedContent)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showStatus('✅ Content saved successfully! Refresh your main site to see changes.', 'success');
+                    document.getElementById('jsonOutput').innerHTML = 
+                        '<div class="success">🎉 <strong>Content Saved Successfully!</strong><br>' +
+                        '🔄 Just refresh your main site to see the changes!<br>' +
+                        '🌐 <a href="/" target="_blank">Open Main Site →</a></div>';
+                } else {
+                    showStatus('❌ Error saving content: ' + result.error, 'error');
+                }
+                
+            } catch (error) {
+                showStatus('❌ Error saving content: ' + error.message, 'error');
+            }
+        }
+
+        function previewSite() {
+            window.open('/', '_blank');
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.innerHTML = `<div class="${type}">${message}</div>`;
+            setTimeout(() => status.innerHTML = '', 8000);
+        }
+
+        // Centralized File Manager Functions
+        
+        function addAudioFromUrl() {
+            const urlInput = document.getElementById('centralAudioUrl');
+            const url = urlInput.value.trim();
+            if (!url) {
+                alert('Please paste an ImageKit audio URL first.');
+                return;
+            }
+            handleCentralAudioUrl(url);
+        }
+        
+        
+        async function handleCentralAudioUrl(url) {
+            const statusSpan = document.getElementById('centralUploadStatus');
+            statusSpan.textContent = '⏳ Adding audio URL...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Validate URL format
+                if (!url.includes('imagekit.io') && !url.startsWith('http')) {
+                    throw new Error('Please provide a valid ImageKit URL or HTTP(S) URL');
+                }
+
+                // Extract filename from URL
+                const fileName = url.split('/').pop().split('?')[0];
+
+                statusSpan.textContent = `✅ ${fileName} added successfully!`;
+                statusSpan.style.color = '#28a745';
+
+                // Refresh the file list
+                await refreshFileList();
+
+                // Update all track dropdowns
+                updateAllDropdowns(url, fileName);
+
+                // Clear the input
+                document.getElementById('centralAudioUrl').value = '';
+
+            } catch (error) {
+                statusSpan.textContent = `❌ Error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+            }
+        }
+        
+        async function refreshFileList() {
+            const filesList = document.getElementById('audioFilesList');
+
+            // Skip if element doesn't exist (happens when other tabs are active)
+            if (!filesList) {
+                console.log('Skipping audio file list refresh - element not found (normal when tab not active)');
+                return;
+            }
+
+            try {
+                // Fetch audio files from the API
+                const response = await fetch('/api/list-audio');
+                const result = await response.json();
+
+                if (!result.success) {
+                    filesList.innerHTML = '<p style="color: #dc3545; font-style: italic;">Error loading audio files.</p>';
+                    return;
+                }
+
+                const audioFiles = result.audioFiles || [];
+
+                if (audioFiles.length === 0) {
+                    filesList.innerHTML = '<p style="color: #666; font-style: italic;">No audio files found.</p>';
+                    return;
+                }
+
+                filesList.innerHTML = audioFiles.map(filename => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #eee; margin-bottom: 5px;">
+                    <span style="flex-grow: 1; font-family: monospace; font-size: 14px;">
+                        📄 ${filename}
+                    </span>
+                    <button 
+                        type="button" 
+                        onclick="deleteCentralFile('${filename}')" 
+                        style="background: #dc3545; color: white; padding: 4px 8px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer;"
+                        title="Delete ${filename}"
+                    >
+                        🗑️ Delete
+                    </button>
+                </div>
+            `).join('');
+
+            } catch (error) {
+                console.error('Error fetching audio files:', error);
+                filesList.innerHTML = '<p style="color: #dc3545; font-style: italic;">Error loading audio files.</p>';
+            }
+        }
+        
+        async function deleteCentralFile(filename) {
+            if (!confirm(`Are you sure you want to delete "${filename}"?\\n\\nThis action cannot be undone and will remove the file from all tracks using it.`)) {
+                return;
+            }
+            
+            const filePath = `/audio/${filename}`;
+            
+            try {
+                const response = await fetch('/api/delete-audio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ filePath })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showStatus(`✅ File "${filename}" deleted successfully!`, 'success');
+                    
+                    // Refresh the file list
+                    await refreshFileList();
+                    
+                    // Remove from all dropdowns
+                    removeFromAllDropdowns(filePath);
+                } else {
+                    showStatus(`❌ Error deleting file: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Error deleting file: ${error.message}`, 'error');
+            }
+        }
+        
+        // Remove file option from all track dropdowns
+        function removeFromAllDropdowns(filePath) {
+            const dropdowns = document.querySelectorAll('.track-file');
+            dropdowns.forEach(dropdown => {
+                const optionToRemove = dropdown.querySelector(`option[value="${filePath}"]`);
+                if (optionToRemove) {
+                    // If this option was selected, clear the selection
+                    if (dropdown.value === filePath) {
+                        dropdown.value = '';
+                    }
+                    optionToRemove.remove();
+                }
+            });
+        }
+
+        // Track Management Functions
+        let trackCounter = 0;
+        
+        function addTrack(title = '', description = '', file = '', index = null) {
+            const tracksContainer = document.getElementById('tracksContainer');
+
+            // Calculate the correct track number based on existing track divs
+            const existingTracks = tracksContainer.children;
+            const trackNumber = index !== null ? index + 1 : existingTracks.length + 1;
+
+            const trackDiv = document.createElement('div');
+            trackDiv.style.cssText = 'border: 2px solid #e2e8f0; margin: 15px 0; padding: 20px; border-radius: 12px; background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);';
+            trackDiv.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <strong style="color: #1e293b; font-size: 18px;">🎵 Track ${trackNumber}</strong>
+                    <button type="button" onclick="removeTrack(this)" style="background: #ef4444; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; transition: all 0.2s;">🗑️ Remove</button>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label style="display: block; margin: 0 0 8px 0; font-size: 14px; font-weight: 600; color: #374151;">Track Title:</label>
+                        <input type="text" class="track-title" value="${title}" placeholder="Enter song title" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: border-color 0.2s;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin: 0 0 8px 0; font-size: 14px; font-weight: 600; color: #374151;">Description:</label>
+                        <input type="text" class="track-description" value="${description}" placeholder="Enter song description" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: border-color 0.2s;">
+                    </div>
+                </div>
+                <div>
+                    <label style="display: block; margin: 0 0 8px 0; font-size: 14px; font-weight: 600; color: #374151;">ImageKit Audio URL:</label>
+                    <input type="url" class="track-file" value="${file}" placeholder="https://ik.imagekit.io/your-id/song.mp3" style="width: 100%; padding: 12px; border: 2px solid #10b981; border-radius: 8px; font-size: 14px; transition: border-color 0.2s;" onchange="previewAudio(this)">
+                    <div class="audio-preview" style="margin-top: 10px; display: none; padding: 10px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px;">
+                        <audio controls style="width: 100%; height: 40px;"></audio>
+                    </div>
+                </div>
+            `;
+            tracksContainer.appendChild(trackDiv);
+        }
+
+        function previewAudio(input) {
+            const previewDiv = input.parentElement.querySelector('.audio-preview');
+            const audioElement = previewDiv.querySelector('audio');
+            const url = input.value.trim();
+
+            if (url && (url.includes('imagekit.io') || url.startsWith('http'))) {
+                audioElement.src = url;
+                previewDiv.style.display = 'block';
+            } else {
+                previewDiv.style.display = 'none';
+            }
+        }
+
+        async function renderTracks() {
+            const tracksContainer = document.getElementById('tracksContainer');
+            if (!tracksContainer) {
+                console.log('tracksContainer not found - tab may not be visible yet');
+                return;
+            }
+
+            // Clear existing tracks
+            tracksContainer.innerHTML = '';
+
+            try {
+                // Load tracks from content.json
+                const response = await fetch('/api/load-content');
+                if (response.ok) {
+                    const data = await response.json();
+                    const tracks = data.music?.tracks || [];
+
+                    // Render each track
+                    tracks.forEach((track, index) => {
+                        addTrack(track.title || '', track.description || '', track.file || '', index);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading tracks:', error);
+            }
+        }
+
+        function removeTrack(button) {
+            const trackDiv = button.closest('div').parentElement;
+            trackDiv.remove();
+            
+            // Renumber all remaining tracks
+            renumberTracks();
+        }
+        
+        function renumberTracks() {
+            const tracksContainer = document.getElementById('tracksContainer');
+            const trackDivs = tracksContainer.children;
+            
+            for (let i = 0; i < trackDivs.length; i++) {
+                const trackHeader = trackDivs[i].querySelector('strong');
+                if (trackHeader) {
+                    trackHeader.textContent = `Track ${i + 1}`;
+                }
+            }
+        }
+        
+        function collectTracks() {
+            const tracks = [];
+            const trackDivs = document.querySelectorAll('#tracksContainer > div');
+            trackDivs.forEach(trackDiv => {
+                const title = trackDiv.querySelector('.track-title').value;
+                const description = trackDiv.querySelector('.track-description').value;
+                const file = trackDiv.querySelector('.track-file').value;
+                
+                if (title.trim() && file.trim()) {
+                    tracks.push({
+                        title: title,
+                        description: description,
+                        file: file
+                    });
+                }
+            });
+            return tracks;
+        }
+
+        // File Upload Functions
+        function triggerFileUpload(button) {
+            const fileInput = button.parentElement.querySelector('.track-upload');
+            fileInput.click();
+        }
+        
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const statusSpan = event.target.parentElement.querySelector('.upload-status');
+            const selectElement = event.target.parentElement.parentElement.querySelector('.track-file');
+            
+            // Validate file type
+            const allowedTypes = ['.mp3', '.m4a', '.wav', '.flac'];
+            const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+            if (!allowedTypes.includes(fileExtension)) {
+                statusSpan.textContent = 'Invalid file type. Please select mp3, m4a, wav, or flac files.';
+                statusSpan.style.color = '#dc3545';
+                return;
+            }
+            
+            statusSpan.textContent = 'Uploading...';
+            statusSpan.style.color = '#007cba';
+            
+            try {
+                const formData = new FormData();
+                formData.append('audioFile', file);
+                
+                const response = await fetch('/api/upload-audio', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    statusSpan.textContent = 'Upload successful!';
+                    statusSpan.style.color = '#28a745';
+                    
+                    // Add the new file to the dropdown and select it
+                    const newOption = document.createElement('option');
+                    newOption.value = result.filePath;
+                    newOption.textContent = `${file.name} (${fileExtension.substring(1)})`;
+                    newOption.selected = true;
+                    selectElement.appendChild(newOption);
+                    
+                    // Update all other dropdowns in the page with the new file
+                    updateAllDropdowns(result.filePath, `${file.name} (${fileExtension.substring(1)})`);
+                    
+                    setTimeout(() => {
+                        statusSpan.textContent = '';
+                    }, 3000);
+                } else {
+                    const error = await response.text();
+                    statusSpan.textContent = `Upload failed: ${error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+            } catch (error) {
+                statusSpan.textContent = `Upload error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+            }
+            
+            // Clear the file input
+            event.target.value = '';
+        }
+        
+        async function updateAllDropdowns(filePath, fileName) {
+            // Rebuild all track file dropdowns with fresh data from API
+            try {
+                const response = await fetch('/api/list-audio');
+                const result = await response.json();
+
+                if (!result.success) return;
+
+                const allSelects = document.querySelectorAll('.track-file');
+                allSelects.forEach(select => {
+                    const currentValue = select.value;
+
+                    // Rebuild options
+                    select.innerHTML = '<option value="">Select an audio file...</option>';
+
+                    if (result.audioFiles) {
+                        result.audioFiles.forEach(filename => {
+                            const audioFilePath = `/audio/${filename}`;
+                            const displayName = filename.replace(/\.[^.]+$/, '');
+                            const extension = filename.split('.').pop()?.toUpperCase() || '';
+                            const option = document.createElement('option');
+                            option.value = audioFilePath;
+                            option.textContent = `${displayName} (${extension})`;
+
+                            // Preserve selection if it was the same file
+                            if (audioFilePath === currentValue) {
+                                option.selected = true;
+                            }
+
+                            select.appendChild(option);
+                        });
+                    }
+                });
+            } catch (error) {
+                console.error('Error updating dropdowns:', error);
+            }
+        }
+        
+        async function deleteAudioFile(button) {
+            const selectElement = button.parentElement.parentElement.querySelector('.track-file');
+            const selectedFile = selectElement.value;
+            const statusSpan = button.parentElement.querySelector('.upload-status');
+            
+            if (!selectedFile || !selectedFile.startsWith('/audio/')) {
+                statusSpan.textContent = 'Please select a local audio file to delete.';
+                statusSpan.style.color = '#dc3545';
+                setTimeout(() => statusSpan.textContent = '', 3000);
+                return;
+            }
+            
+            if (!confirm(`Are you sure you want to delete "${selectedFile}"? This action cannot be undone.`)) {
+                return;
+            }
+            
+            statusSpan.textContent = 'Deleting...';
+            statusSpan.style.color = '#007cba';
+            
+            try {
+                const response = await fetch('/api/delete-audio', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ filePath: selectedFile })
+                });
+                
+                if (response.ok) {
+                    statusSpan.textContent = 'File deleted successfully!';
+                    statusSpan.style.color = '#28a745';
+                    
+                    // Remove from all dropdowns
+                    removeFromAllDropdowns(selectedFile);
+                    
+                    setTimeout(() => {
+                        statusSpan.textContent = '';
+                    }, 3000);
+                } else {
+                    const error = await response.text();
+                    statusSpan.textContent = `Delete failed: ${error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+            } catch (error) {
+                statusSpan.textContent = `Delete error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+            }
+        }
+        
+        function removeFromAllDropdowns(filePath) {
+            const allSelects = document.querySelectorAll('.track-file');
+            allSelects.forEach(select => {
+                const optionToRemove = Array.from(select.options).find(option => option.value === filePath);
+                if (optionToRemove) {
+                    optionToRemove.remove();
+                }
+                // Reset selection if the deleted file was selected
+                if (select.value === filePath) {
+                    select.value = '';
+                }
+            });
+        }
+
+        // Image Management Variables and Functions
+        let currentHeroImage = '';
+        let performanceImagesData = [];
+        let upcomingEventsData = [];
+
+        // Initialize image management when tab is shown
+        function initializeImageManagement() {
+            // URL-based image system - no file upload listeners needed
+            loadCurrentImages();
+        }
+
+        async function loadCurrentImages() {
+            try {
+                const response = await fetch('/api/load-content');
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Load hero image
+                    currentHeroImage = data.hero?.image || '';
+                    displayHeroImage();
+                    
+                    // Load performance images
+                    performanceImagesData = data.performanceImages || [];
+                    renderPerformanceImages();
+                    
+                    // Load upcoming events
+                    upcomingEventsData = data.upcomingEvents || [];
+                    
+                    // Load section title
+                    const titleElement = document.getElementById('upcomingEventsTitle');
+                    if (titleElement) {
+                        titleElement.value = data.upcomingEventsTitle || 'Upcoming Events';
+                    }
+                    
+                    renderUpcomingEvents();
+                    
+                    // Load Book Your Experience data
+                    if (data.bookExperience) {
+                        const titleEl = document.getElementById('bookExperienceTitle');
+                        const descEl = document.getElementById('bookExperienceDescription');
+                        const buttonEl = document.getElementById('bookExperienceButtonText');
+                        if (titleEl) titleEl.value = data.bookExperience.title || 'Book Your Experience';
+                        if (descEl) descEl.value = data.bookExperience.description || '';
+                        if (buttonEl) buttonEl.value = data.bookExperience.buttonText || 'Schedule Consultation';
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading current images:', error);
+                showStatus('❌ Error loading current images', 'error');
+            }
+        }
+
+        // Hero Image Functions
+        function displayHeroImage() {
+            const container = document.getElementById('heroCurrentImage');
+            if (!container) return;
+            
+            if (currentHeroImage) {
+                container.innerHTML = `
+                    <div>
+                        <img src="${currentHeroImage}" alt="Current Hero Image" style="max-width: 100%; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <p style="margin: 10px 0 0 0; font-size: 14px; color: #666;">Current: ${currentHeroImage}</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '<p style="color: #999; font-style: italic; padding: 40px;">No hero image set. Upload one to get started!</p>';
+            }
+        }
+
+        function setHeroImageFromUrl() {
+            const urlInput = document.getElementById('heroImageUrl');
+            const url = urlInput.value.trim();
+            if (!url) {
+                alert('Please paste an ImageKit image URL first.');
+                return;
+            }
+            handleHeroImageUrl(url);
+        }
+
+        async function handleHeroImageUrl(url) {
+            const statusSpan = document.getElementById('heroImageStatus');
+            if (statusSpan) {
+                statusSpan.textContent = '⏳ Setting hero image from URL...';
+                statusSpan.style.color = '#007cba';
+            }
+
+            try {
+                // Validate URL format
+                if (!url.includes('imagekit.io') && !url.startsWith('http')) {
+                    throw new Error('Please provide a valid ImageKit URL or HTTP(S) URL');
+                }
+
+                currentHeroImage = url;
+                displayHeroImage();
+                if (statusSpan) {
+                    statusSpan.textContent = '✅ Image set from URL! Click "Save Hero Image" to apply.';
+                    statusSpan.style.color = '#28a745';
+                }
+
+                // Clear the input
+                document.getElementById('heroImageUrl').value = '';
+
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+            }
+        }
+
+        function deleteHeroImage() {
+            if (!currentHeroImage) {
+                showStatus('❌ No hero image to delete', 'error');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to remove the current hero image?')) {
+                return;
+            }
+
+            currentHeroImage = '';
+            displayHeroImage();
+            
+            const statusSpan = document.getElementById('heroImageStatus');
+            if (statusSpan) {
+                statusSpan.textContent = '✅ Hero image removed! Click "Save Hero Image" to apply.';
+                statusSpan.style.color = '#28a745';
+            }
+        }
+
+        async function saveHeroImage() {
+            const statusSpan = document.getElementById('heroImageStatus');
+            
+            if (statusSpan) {
+                statusSpan.textContent = '⏳ Saving hero image...';
+                statusSpan.style.color = '#007cba';
+            }
+
+            try {
+                // Load current content
+                const response = await fetch('/api/load-content');
+                const currentData = await response.json();
+
+                // Update hero image
+                if (!currentData.hero) {
+                    currentData.hero = {};
+                }
+                currentData.hero.image = currentHeroImage;
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    if (statusSpan) {
+                        statusSpan.textContent = '✅ Hero image saved successfully!';
+                        statusSpan.style.color = '#28a745';
+                    }
+                    showStatus('✅ Hero image updated! Changes should appear on your main site.', 'success');
+                } else {
+                    if (statusSpan) {
+                        statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                        statusSpan.style.color = '#dc3545';
+                    }
+                }
+                
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                showStatus('❌ Failed to save hero image', 'error');
+            }
+        }
+
+        // Performance Images Functions
+        function renderPerformanceImages() {
+            const container = document.getElementById('performanceImagesContainer');
+            if (!container) return;
+            
+            if (performanceImagesData.length === 0) {
+                container.innerHTML = '<p style="color: #666; font-style: italic; text-align: center; padding: 20px;">No performance images added yet. Click "Add Performance Image" to get started.</p>';
+                return;
+            }
+
+            container.innerHTML = performanceImagesData.map((item, index) => `
+                <div class="performance-item">
+                    <h4>
+                        Performance Image ${index + 1}
+                        <button type="button" onclick="removePerformanceImage(${index})" style="background: #dc3545; color: white; padding: 4px 8px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer;">🗑️ Remove</button>
+                    </h4>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Title:</label>
+                            <input type="text" value="${item.title || ''}" onchange="updatePerformanceImage(${index}, 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Description:</label>
+                            <input type="text" value="${item.description || ''}" onchange="updatePerformanceImage(${index}, 'description', this.value)">
+                        </div>
+                    </div>
+                    
+                    <div class="image-manager">
+                        <div class="current-image">
+                            ${item.image ? `<img src="${item.image}" alt="${item.alt || ''}" style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">` : '<p style="color: #999; font-style: italic; padding: 20px;">No image uploaded yet</p>'}
+                            ${item.image ? `<p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">Current: ${item.image}</p>` : ''}
+                        </div>
+                        
+                        <div class="image-actions">
+                            <input type="url" id="performanceImageUrl-${index}" placeholder="Paste ImageKit image URL here..." value="${item.image || ''}" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+                            <button type="button" onclick="setPerformanceImageFromUrl(${index})" class="upload-btn">🔗 Set Image from URL</button>
+                            ${item.image ? `<button type="button" onclick="deletePerformanceImage(${index})" class="delete-btn">🗑️ Remove Image</button>` : ''}
+                        </div>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="performanceStatus-${index}" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add event listeners for file uploads
+            performanceImagesData.forEach((item, index) => {
+                const fileInput = document.getElementById(`performanceImageUpload-${index}`);
+                if (fileInput) {
+                    // URL input - no event listener needed, handled by button click
+                }
+            });
+        }
+
+        function addPerformanceImage() {
+            const newIndex = performanceImagesData.length + 1;
+            performanceImagesData.push({
+                title: `Performance ${newIndex}`,
+                description: "Enter description for this performance",
+                image: "",
+                alt: "Performance image alt text for accessibility"
+            });
+            
+            renderPerformanceImages();
+            showStatus(`✅ New performance section added! Don't forget to save when you're done editing.`, 'success');
+        }
+
+        function removePerformanceImage(index) {
+            if (confirm('Are you sure you want to remove this performance image?')) {
+                performanceImagesData.splice(index, 1);
+                renderPerformanceImages();
+            }
+        }
+
+        function updatePerformanceImage(index, field, value) {
+            if (performanceImagesData[index]) {
+                performanceImagesData[index][field] = value;
+            }
+        }
+
+        function setPerformanceImageFromUrl(index) {
+            const urlInput = document.getElementById(`performanceImageUrl-${index}`);
+            const url = urlInput.value.trim();
+            if (!url) {
+                alert('Please paste an ImageKit image URL first.');
+                return;
+            }
+            handlePerformanceImageUrl(url, index);
+        }
+
+        async function handlePerformanceImageUrl(url, index) {
+            try {
+                // Validate URL format
+                if (!url.includes('imagekit.io') && !url.startsWith('http')) {
+                    throw new Error('Please provide a valid ImageKit URL or HTTP(S) URL');
+                }
+
+                performanceImagesData[index].image = url;
+                renderPerformanceImages();
+                showStatus(`✅ Image set from URL for performance ${index + 1}! Click "Save All Performance Images" to apply.`, 'success');
+
+                // Clear the input
+                document.getElementById(`performanceImageUrl-${index}`).value = '';
+
+            } catch (error) {
+                showStatus(`❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function deletePerformanceImage(index) {
+            if (confirm('Are you sure you want to remove this image?')) {
+                performanceImagesData[index].image = '';
+                renderPerformanceImages();
+            }
+        }
+
+        async function savePerformanceImages() {
+            const statusSpan = document.getElementById('performanceImagesStatus');
+            
+            if (statusSpan) {
+                statusSpan.textContent = '⏳ Saving performance images...';
+                statusSpan.style.color = '#007cba';
+            }
+
+            try {
+                // Load current content
+                const response = await fetch('/api/load-content');
+                const currentData = await response.json();
+
+                // Update performance images
+                currentData.performanceImages = performanceImagesData;
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    if (statusSpan) {
+                        statusSpan.textContent = '✅ Performance images saved successfully!';
+                        statusSpan.style.color = '#28a745';
+                    }
+                    showStatus('✅ Performance images updated! Changes should appear on your main site.', 'success');
+                } else {
+                    if (statusSpan) {
+                        statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                        statusSpan.style.color = '#dc3545';
+                    }
+                }
+                
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                showStatus('❌ Failed to save performance images', 'error');
+            }
+        }
+
+        // Upcoming Events Functions - COMPLETE VERSION
+        function renderUpcomingEvents() {
+            const container = document.getElementById('upcomingEventsContainer');
+            if (!container) return;
+            
+            if (upcomingEventsData.length === 0) {
+                container.innerHTML = '<p style="color: #666; font-style: italic; text-align: center; padding: 20px;">No upcoming events added yet. Click "Add Event Poster" to get started.</p>';
+                return;
+            }
+
+            container.innerHTML = upcomingEventsData.map((item, index) => `
+                <div class="performance-item">
+                    <h4>
+                        Event Poster ${index + 1}
+                        <button type="button" onclick="removeUpcomingEvent(${index})" style="background: #dc3545; color: white; padding: 4px 8px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer;">🗑️ Remove</button>
+                    </h4>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Event Title:</label>
+                            <input type="text" value="${item.title || ''}" onchange="updateUpcomingEvent(${index}, 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Event Description:</label>
+                            <input type="text" value="${item.description || ''}" onchange="updateUpcomingEvent(${index}, 'description', this.value)">
+                        </div>
+                    </div>
+                    
+                    <div class="image-manager">
+                        <div class="current-image">
+                            ${item.image ? `<img src="${item.image}" alt="${item.alt || item.title}" style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">` : '<p style="color: #999; font-style: italic; padding: 20px;">No poster uploaded yet</p>'}
+                            ${item.image ? `<p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">Current: ${item.image}</p>` : ''}
+                        </div>
+                        
+                        <div class="image-actions">
+                            <input type="url" id="upcomingEventUrl-${index}" placeholder="Paste ImageKit image URL here..." value="${item.image || ''}" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+                            <button type="button" onclick="setUpcomingEventFromUrl(${index})" class="upload-btn">🔗 Set Poster from URL</button>
+                            ${item.image ? `<button type="button" onclick="deleteUpcomingEventImage(${index})" class="delete-btn">🗑️ Remove Poster</button>` : ''}
+                        </div>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="upcomingEventStatus-${index}" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add event listeners for file uploads
+            upcomingEventsData.forEach((item, index) => {
+                const fileInput = document.getElementById(`upcomingEventUpload-${index}`);
+                if (fileInput) {
+                    // URL input - no event listener needed, handled by button click
+                }
+            });
+        }
+
+        function addUpcomingEvent() {
+            const newIndex = upcomingEventsData.length + 1;
+            upcomingEventsData.push({
+                title: `Event ${newIndex}`,
+                description: "Enter event description and date",
+                image: "",
+                alt: ""
+            });
+            
+            renderUpcomingEvents();
+            showStatus(`✅ New event poster section added! Don't forget to save when you're done editing.`, 'success');
+        }
+
+        function removeUpcomingEvent(index) {
+            if (confirm('Are you sure you want to remove this event poster?')) {
+                upcomingEventsData.splice(index, 1);
+                renderUpcomingEvents();
+            }
+        }
+
+        function updateUpcomingEvent(index, field, value) {
+            if (upcomingEventsData[index]) {
+                upcomingEventsData[index][field] = value;
+                if (field === 'title') {
+                    upcomingEventsData[index].alt = value + ' event poster';
+                }
+            }
+        }
+
+        function setUpcomingEventFromUrl(index) {
+            const urlInput = document.getElementById(`upcomingEventUrl-${index}`);
+            const url = urlInput.value.trim();
+            if (!url) {
+                alert('Please paste an ImageKit image URL first.');
+                return;
+            }
+            handleUpcomingEventUrl(url, index);
+        }
+
+        async function handleUpcomingEventUrl(url, index) {
+            try {
+                // Validate URL format
+                if (!url.includes('imagekit.io') && !url.startsWith('http')) {
+                    throw new Error('Please provide a valid ImageKit URL or HTTP(S) URL');
+                }
+
+                upcomingEventsData[index].image = url;
+                renderUpcomingEvents();
+                showStatus(`✅ Poster set from URL for event ${index + 1}! Click "Save" to apply.`, 'success');
+
+                // Clear the input
+                document.getElementById(`upcomingEventUrl-${index}`).value = '';
+
+            } catch (error) {
+                showStatus(`❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function deleteUpcomingEventImage(index) {
+            if (confirm('Are you sure you want to remove this poster?')) {
+                upcomingEventsData[index].image = '';
+                renderUpcomingEvents();
+            }
+        }
+
+        async function saveIndividualUpcomingEvent(index) {
+            const statusSpan = document.getElementById(`upcomingEventStatus-${index}`);
+            
+            statusSpan.textContent = '⏳ Saving...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Load current content
+                const response = await fetch('/api/load-content');
+                const currentData = await response.json();
+
+                // Update upcoming events and title
+                currentData.upcomingEvents = upcomingEventsData;
+                currentData.upcomingEventsTitle = document.getElementById('upcomingEventsTitle').value;
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    statusSpan.textContent = '✅ Saved!';
+                    statusSpan.style.color = '#28a745';
+                    setTimeout(() => {
+                        statusSpan.textContent = '';
+                    }, 3000);
+                } else {
+                    statusSpan.textContent = `❌ Error: ${saveResult.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                
+            } catch (error) {
+                statusSpan.textContent = `❌ Error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+            }
+        }
+
+        async function saveUpcomingEvents() {
+            const statusSpan = document.getElementById('upcomingEventsStatus');
+            
+            statusSpan.textContent = '⏳ Saving upcoming events...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Load current content
+                const response = await fetch('/api/load-content');
+                const currentData = await response.json();
+
+                // Update upcoming events and title
+                currentData.upcomingEvents = upcomingEventsData;
+                currentData.upcomingEventsTitle = document.getElementById('upcomingEventsTitle').value;
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    statusSpan.textContent = '✅ Upcoming events saved successfully!';
+                    statusSpan.style.color = '#28a745';
+                    showStatus('✅ Upcoming events updated! Changes should appear on your main site.', 'success');
+                } else {
+                    statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                
+            } catch (error) {
+                statusSpan.textContent = `❌ Error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+                showStatus('❌ Failed to save upcoming events', 'error');
+            }
+        }
+
+        // Book Experience Functions
+        async function saveBookExperience() {
+            const statusSpan = document.getElementById('bookExperienceStatus');
+            
+            if (statusSpan) {
+                statusSpan.textContent = '⏳ Saving Book Experience section...';
+                statusSpan.style.color = '#007cba';
+            }
+            
+            try {
+                // Load current content
+                const response = await fetch('/api/load-content');
+                const currentData = await response.json();
+                
+                // Update Book Your Experience data
+                const titleEl = document.getElementById('bookExperienceTitle');
+                const descEl = document.getElementById('bookExperienceDescription');
+                const buttonEl = document.getElementById('bookExperienceButtonText');
+                
+                currentData.bookExperience = {
+                    title: titleEl ? titleEl.value : '',
+                    description: descEl ? descEl.value : '',
+                    buttonText: buttonEl ? buttonEl.value : ''
+                };
+                
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+                
+                if (saveResponse.ok) {
+                    if (statusSpan) {
+                        statusSpan.textContent = '✅ Book Experience section saved!';
+                        statusSpan.style.color = '#28a745';
+                        setTimeout(() => statusSpan.textContent = '', 8000);
+                    }
+                    showStatus('✅ Book Experience section saved successfully!', 'success');
+                } else {
+                    throw new Error('Failed to save');
+                }
+            } catch (error) {
+                console.error('Error saving Book Experience section:', error);
+                if (statusSpan) {
+                    statusSpan.textContent = '❌ Save failed';
+                    statusSpan.style.color = '#dc3545';
+                }
+                showStatus('❌ Failed to save Book Experience section', 'error');
+            }
+        }
+
+        // Video Management Variables and Functions
+        let currentAboutVideo = '';
+        let currentBannerVideo = '';
+        let performanceVideosData = [];
+        let audioFilesData = [];
+
+        // Initialize video management when tab is shown
+        function initializeVideoManagement() {
+            // Initialize video management - URL-based system only
+            console.log('🎥 Initializing video management...');
+            loadCurrentVideos();
+        }
+
+        function initializeMusicManagement() {
+            // Load and render tracks when music tab is shown
+            setTimeout(() => {
+                renderTracks();
+            }, 100); // Small delay to ensure tab content is visible
+        }
+
+        function saveAllTracks() {
+            // Save all tracks to content.json
+            saveSection('music');
+        }
+
+        async function loadCurrentVideos() {
+            try {
+                const response = await fetch('/api/load-content');
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Load main page videos
+                    currentAboutVideo = data.videos?.aboutSection?.file || '';
+                    currentBannerVideo = data.videos?.billBourneMainPage?.file || '';
+
+                    console.log('🎥 DEBUG - Video loading:', {
+                        currentAboutVideo: currentAboutVideo,
+                        hasVideosData: !!data.videos,
+                        aboutSectionData: data.videos?.aboutSection
+                    });
+
+                    // Populate video URL input fields
+                    const aboutVideoUrlInput = document.getElementById('aboutVideoUrl');
+                    const bannerVideoUrlInput = document.getElementById('bannerVideoUrl');
+                    if (aboutVideoUrlInput) {
+                        aboutVideoUrlInput.value = currentAboutVideo;
+                        console.log('🎥 Set input field value:', currentAboutVideo);
+                    }
+                    if (bannerVideoUrlInput) bannerVideoUrlInput.value = currentBannerVideo;
+
+                    // Display current videos
+                    displayAboutVideo();
+                    displayBannerVideo();
+                    
+                    // Load video titles
+                    const aboutTitleEl = document.getElementById('aboutVideoTitle');
+                    const bannerTitleEl = document.getElementById('bannerVideoTitle');
+                    if (aboutTitleEl) aboutTitleEl.value = data.videos?.aboutSection?.title || '';
+                    if (bannerTitleEl) bannerTitleEl.value = data.videos?.billBourneMainPage?.title || '';
+                    
+                    // Load performance videos
+                    loadPerformanceVideos(data);
+                    
+                    // Load audio files
+                    loadAudioFiles(data);
+                }
+            } catch (error) {
+                console.error('Error loading current videos:', error);
+                showStatus('❌ Error loading current videos', 'error');
+            }
+        }
+
+        // About Video Functions
+        function displayAboutVideo() {
+            console.log('🎥 displayAboutVideo() called with:', currentAboutVideo);
+            const container = document.getElementById('aboutCurrentVideo');
+            if (!container) {
+                console.log('❌ aboutCurrentVideo container not found!');
+                return;
+            }
+
+            if (currentAboutVideo) {
+                console.log('✅ Displaying video with URL:', currentAboutVideo);
+                container.innerHTML = `
+                    <div>
+                        <video controls style="max-width: 100%; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <source src="${currentAboutVideo}" type="video/mp4">
+                            <source src="${currentAboutVideo}" type="video/quicktime">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p style="margin: 10px 0 0 0; font-size: 14px; color: #666;"><strong>Current:</strong> ${currentAboutVideo}</p>
+                    </div>
+                `;
+            } else {
+                console.log('⚠️ No video to display');
+                container.innerHTML = '<p style="color: #999; font-style: italic; padding: 40px;">No video uploaded yet. Upload one to get started!</p>';
+            }
+        }
+
+        function setAboutVideoFromUrl() {
+            const urlInput = document.getElementById('aboutVideoUrl');
+            const url = urlInput.value.trim();
+            if (!url) {
+                alert('Please paste an ImageKit video URL first.');
+                return;
+            }
+            handleAboutVideoUrl(url);
+        }
+
+        async function handleAboutVideoUrl(url) {
+            const statusSpan = document.getElementById('aboutVideoStatus');
+            if (statusSpan) {
+                statusSpan.textContent = '⏳ Setting video from URL...';
+                statusSpan.style.color = '#007cba';
+            }
+
+            try {
+                // Validate URL format
+                if (!url.includes('imagekit.io') && !url.startsWith('http')) {
+                    throw new Error('Please provide a valid ImageKit URL or HTTP(S) URL');
+                }
+
+                currentAboutVideo = url;
+                displayAboutVideo();
+                if (statusSpan) {
+                    statusSpan.textContent = '✅ Video set from URL! Click "Save" to apply.';
+                    statusSpan.style.color = '#28a745';
+                }
+
+                // Clear the input
+                document.getElementById('aboutVideoUrl').value = '';
+
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+            }
+        }
+
+        function removeAboutVideo() {
+            if (!currentAboutVideo) {
+                showStatus('❌ No video to remove', 'error');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to remove the current video?')) {
+                return;
+            }
+
+            currentAboutVideo = '';
+            displayAboutVideo();
+            
+            const statusSpan = document.getElementById('aboutVideoStatus');
+            if (statusSpan) {
+                statusSpan.textContent = '✅ Video removed! Click "Save" to apply.';
+                statusSpan.style.color = '#28a745';
+            }
+        }
+
+        async function saveAboutVideo() {
+            const statusSpan = document.getElementById('aboutVideoStatus');
+            const titleEl = document.getElementById('aboutVideoTitle');
+            
+            if (statusSpan) {
+                statusSpan.textContent = '⏳ Saving video...';
+                statusSpan.style.color = '#007cba';
+            }
+
+            try {
+                // Load current content
+                const response = await fetch('/api/load-content');
+                const currentData = await response.json();
+
+                // Update about video
+                if (!currentData.videos) currentData.videos = {};
+                if (!currentData.videos.aboutSection) currentData.videos.aboutSection = {};
+                
+                currentData.videos.aboutSection.file = currentAboutVideo;
+                currentData.videos.aboutSection.title = titleEl ? titleEl.value : '';
+
+                // Save content
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    if (statusSpan) {
+                        statusSpan.textContent = '✅ Video saved successfully!';
+                        statusSpan.style.color = '#28a745';
+                    }
+                    showStatus('✅ About video updated!', 'success');
+                } else {
+                    if (statusSpan) {
+                        statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                        statusSpan.style.color = '#dc3545';
+                    }
+                }
+                
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                showStatus('❌ Failed to save video', 'error');
+            }
+        }
+
+        // Banner Video Functions (similar to about video)
+        function displayBannerVideo() {
+            const container = document.getElementById('bannerCurrentVideo');
+            if (!container) return;
+            
+            if (currentBannerVideo) {
+                container.innerHTML = `
+                    <div>
+                        <video controls style="max-width: 100%; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <source src="${currentBannerVideo}" type="video/mp4">
+                            <source src="${currentBannerVideo}" type="video/quicktime">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p style="margin: 10px 0 0 0; font-size: 14px; color: #666;">Current: ${currentBannerVideo}</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '<p style="color: #999; font-style: italic; padding: 40px;">No video uploaded yet. Upload one to get started!</p>';
+            }
+        }
+
+        function setBannerVideoFromUrl() {
+            const urlInput = document.getElementById('bannerVideoUrl');
+            const url = urlInput.value.trim();
+            if (!url) {
+                alert('Please paste an ImageKit video URL first.');
+                return;
+            }
+            handleBannerVideoUrl(url);
+        }
+
+        async function handleBannerVideoUrl(url) {
+            const statusSpan = document.getElementById('bannerVideoStatus');
+            if (statusSpan) {
+                statusSpan.textContent = '⏳ Setting video from URL...';
+                statusSpan.style.color = '#007cba';
+            }
+
+            try {
+                // Validate URL format
+                if (!url.includes('imagekit.io') && !url.startsWith('http')) {
+                    throw new Error('Please provide a valid ImageKit URL or HTTP(S) URL');
+                }
+
+                currentBannerVideo = url;
+                displayBannerVideo();
+                if (statusSpan) {
+                    statusSpan.textContent = '✅ Video set from URL! Click "Save" to apply.';
+                    statusSpan.style.color = '#28a745';
+                }
+
+                // Clear the input
+                document.getElementById('bannerVideoUrl').value = '';
+
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+            }
+        }
+
+        function removeBannerVideo() {
+            if (!currentBannerVideo) {
+                showStatus('❌ No video to remove', 'error');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to remove the current video?')) {
+                return;
+            }
+
+            currentBannerVideo = '';
+            displayBannerVideo();
+            
+            const statusSpan = document.getElementById('bannerVideoStatus');
+            if (statusSpan) {
+                statusSpan.textContent = '✅ Video removed! Click "Save" to apply.';
+                statusSpan.style.color = '#28a745';
+            }
+        }
+
+        async function saveBannerVideo() {
+            const statusSpan = document.getElementById('bannerVideoStatus');
+            const titleEl = document.getElementById('bannerVideoTitle');
+            
+            if (statusSpan) {
+                statusSpan.textContent = '⏳ Saving video...';
+                statusSpan.style.color = '#007cba';
+            }
+
+            try {
+                // Load current content
+                const response = await fetch('/api/load-content');
+                const currentData = await response.json();
+
+                // Update banner video
+                if (!currentData.videos) currentData.videos = {};
+                if (!currentData.videos.billBourneMainPage) currentData.videos.billBourneMainPage = {};
+                
+                currentData.videos.billBourneMainPage.file = currentBannerVideo;
+                currentData.videos.billBourneMainPage.title = titleEl ? titleEl.value : '';
+
+                // Save content
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    if (statusSpan) {
+                        statusSpan.textContent = '✅ Video saved successfully!';
+                        statusSpan.style.color = '#28a745';
+                    }
+                    showStatus('✅ Banner video updated!', 'success');
+                } else {
+                    if (statusSpan) {
+                        statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                        statusSpan.style.color = '#dc3545';
+                    }
+                }
+                
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                showStatus('❌ Failed to save video', 'error');
+            }
+        }
+
+        // Performance Videos Functions
+        function loadPerformanceVideos(data) {
+            performanceVideosData = [];
+            
+            // Load existing performance videos from various fields
+            const videoFields = [
+                'billBournePerformances', 'notreDame', 'piano', 'ensemble', 'oud', 
+                'video8', 'video9', 'video10'
+            ];
+            
+            // First load original video fields
+            videoFields.forEach((field, index) => {
+                if (data.videos?.[field]?.file) {
+                    performanceVideosData.push({
+                        title: data.videos[field].title || `Performance Video ${index + 1}`,
+                        description: `Performance video from ${field}`,
+                        video: data.videos[field].file,
+                        order: index + 1
+                    });
+                }
+            });
+            
+            // Also load any dynamically created performance videos
+            if (data.videos) {
+                Object.keys(data.videos).forEach((key) => {
+                    if (key.startsWith('performanceVideo') && data.videos[key]?.file) {
+                        const videoIndex = parseInt(key.replace('performanceVideo', '')) - 1;
+                        // Only add if not already exists
+                        if (videoIndex >= performanceVideosData.length) {
+                            performanceVideosData.push({
+                                title: data.videos[key].title || `Performance Video ${videoIndex + 1}`,
+                                description: `Dynamic performance video`,
+                                video: data.videos[key].file,
+                                order: videoIndex + 1
+                            });
+                        }
+                    }
+                });
+            }
+            
+            renderPerformanceVideos();
+        }
+
+        function renderPerformanceVideos() {
+            const container = document.getElementById('performanceVideosContainer');
+            if (!container) return;
+            
+            if (performanceVideosData.length === 0) {
+                container.innerHTML = '<p style="color: #666; font-style: italic; text-align: center; padding: 20px;">No performance videos added yet. Click "Add Performance Video" to get started.</p>';
+                return;
+            }
+
+            container.innerHTML = performanceVideosData.map((item, index) => `
+                <div class="video-item">
+                    <h4>
+                        ${item.title}
+                        <button type="button" onclick="removePerformanceVideo(${index})" style="background: #dc3545; color: white; padding: 4px 8px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer;">🗑️ Remove</button>
+                    </h4>
+                    
+                    <div class="current-video">
+                        ${item.video ? `
+                            <video controls style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <source src="${item.video}" type="video/mp4">
+                                <source src="${item.video}" type="video/quicktime">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">Current: ${item.video}</p>
+                        ` : '<p style="color: #999; font-style: italic; padding: 20px;">No video uploaded yet</p>'}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input type="text" value="${item.title}" onchange="updatePerformanceVideo(${index}, 'title', this.value)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Upload New Video:</label>
+                        <input type="url" placeholder="Paste ImageKit video URL here..." onchange="handlePerformanceVideoUrl(${index}, this)" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 15px;">
+                        <span style="margin-left: 15px; font-size: 14px; color: #666;"></span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addPerformanceVideo() {
+            const newIndex = performanceVideosData.length + 1;
+            performanceVideosData.push({
+                title: `Performance Video ${newIndex}`,
+                description: "Enter description for this video",
+                video: "",
+                order: newIndex
+            });
+            
+            renderPerformanceVideos();
+            showStatus(`✅ New performance video section added!`, 'success');
+        }
+
+        function removePerformanceVideo(index) {
+            if (confirm('Are you sure you want to remove this performance video?')) {
+                performanceVideosData.splice(index, 1);
+                renderPerformanceVideos();
+            }
+        }
+
+        function updatePerformanceVideo(index, field, value) {
+            if (performanceVideosData[index]) {
+                performanceVideosData[index][field] = value;
+            }
+        }
+
+        async function handlePerformanceVideoUrl(index, urlInput) {
+            const url = urlInput.value.trim();
+            if (!url) return;
+
+            const statusSpan = urlInput.parentElement.parentElement.querySelector('.save-btn + span') ||
+                              urlInput.parentElement.querySelector('span');
+
+            try {
+                if (statusSpan) {
+                    statusSpan.textContent = '🔗 Setting video from URL...';
+                    statusSpan.style.color = '#007bff';
+                }
+
+                // Validate URL format
+                if (!url.includes('imagekit.io') && !url.startsWith('http')) {
+                    throw new Error('Please provide a valid ImageKit URL or HTTP(S) URL');
+                }
+
+                performanceVideosData[index].video = url;
+                renderPerformanceVideos();
+                if (statusSpan) {
+                    statusSpan.textContent = '✅ Video set from URL! Click "Save This Video" to apply.';
+                    statusSpan.style.color = '#28a745';
+                }
+
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+            }
+
+            // Clear the URL input
+            urlInput.value = '';
+        }
+        
+        async function savePerformanceVideo(index) {
+            if (index < 0 || index >= performanceVideosData.length) return;
+            
+            const statusSpan = document.querySelector(`#performanceVideosContainer .video-item:nth-child(${index + 1}) .save-btn + span`) ||
+                              document.querySelector(`#performanceVideosContainer .video-item:nth-child(${index + 1}) span`);
+            
+            try {
+                if (statusSpan) {
+                    statusSpan.textContent = '💾 Saving video...';
+                    statusSpan.style.color = '#007bff';
+                }
+                
+                // Load current content
+                const response = await fetch('/api/load-content');
+                const currentData = await response.json();
+                
+                // Ensure videos structure exists
+                if (!currentData.videos) {
+                    currentData.videos = {};
+                }
+                
+                // Create a unique key for this performance video
+                const videoKey = `performanceVideo${index + 1}`;
+                
+                // Update the performance video
+                currentData.videos[videoKey] = {
+                    title: performanceVideosData[index].title,
+                    file: performanceVideosData[index].video
+                };
+                
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+                const saveResult = await saveResponse.json();
+                
+                if (saveResult.success) {
+                    if (statusSpan) {
+                        statusSpan.textContent = '✅ Video saved successfully!';
+                        statusSpan.style.color = '#28a745';
+                    }
+                    showStatus(`✅ Performance video "${performanceVideosData[index].title}" saved!`, 'success');
+                } else {
+                    if (statusSpan) {
+                        statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                        statusSpan.style.color = '#dc3545';
+                    }
+                }
+                
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                showStatus('❌ Failed to save performance video', 'error');
+            }
+        }
+        
+        async function saveAllPerformanceVideos() {
+            const statusSpan = document.getElementById('performanceVideosStatus');
+            
+            try {
+                if (statusSpan) {
+                    statusSpan.textContent = '💾 Saving all performance videos...';
+                    statusSpan.style.color = '#007bff';
+                }
+                
+                // Load current content
+                const response = await fetch('/api/load-content');
+                const currentData = await response.json();
+                
+                // Ensure videos structure exists
+                if (!currentData.videos) {
+                    currentData.videos = {};
+                }
+                
+                // Save all performance videos
+                performanceVideosData.forEach((video, index) => {
+                    const videoKey = `performanceVideo${index + 1}`;
+                    currentData.videos[videoKey] = {
+                        title: video.title,
+                        file: video.video
+                    };
+                });
+                
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+                const saveResult = await saveResponse.json();
+                
+                if (saveResult.success) {
+                    if (statusSpan) {
+                        statusSpan.textContent = '✅ All performance videos saved successfully!';
+                        statusSpan.style.color = '#28a745';
+                    }
+                    showStatus('✅ All performance videos saved!', 'success');
+                } else {
+                    if (statusSpan) {
+                        statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                        statusSpan.style.color = '#dc3545';
+                    }
+                }
+                
+            } catch (error) {
+                if (statusSpan) {
+                    statusSpan.textContent = `❌ Error: ${error.message}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                showStatus('❌ Failed to save performance videos', 'error');
+            }
+        }
+
+        // Audio Files Functions
+        function loadAudioFiles(data) {
+            audioFilesData = [];
+            
+            if (data.music?.tracks) {
+                data.music.tracks.forEach((track, index) => {
+                    audioFilesData.push({
+                        title: track.title || `Audio Track ${index + 1}`,
+                        description: track.description || '',
+                        file: track.file || '',
+                        order: index + 1
+                    });
+                });
+            }
+            
+            renderAudioFiles();
+        }
+
+        function renderAudioFiles() {
+            const container = document.getElementById('audioFilesContainer');
+            if (!container) return;
+            
+            if (audioFilesData.length === 0) {
+                container.innerHTML = '<p style="color: #666; font-style: italic; text-align: center; padding: 20px;">No audio files added yet. Click "Add Audio File" to get started.</p>';
+                return;
+            }
+
+            container.innerHTML = audioFilesData.map((item, index) => `
+                <div class="audio-item">
+                    <h4>
+                        ${item.title}
+                        <button type="button" onclick="removeAudioFile(${index})" style="background: #dc3545; color: white; padding: 4px 8px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer;">🗑️ Remove</button>
+                    </h4>
+                    
+                    <div class="current-video">
+                        ${item.file ? `
+                            <audio controls style="width: 100%; margin: 10px 0;">
+                                <source src="${item.file}" type="audio/mpeg">
+                                <source src="${item.file}" type="audio/mp4">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">Current: ${item.file}</p>
+                        ` : '<p style="color: #999; font-style: italic; padding: 20px;">No audio file uploaded yet</p>'}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input type="text" value="${item.title}" onchange="updateAudioFile(${index}, 'title', this.value)">
+                    </div>
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <input type="text" value="${item.description}" onchange="updateAudioFile(${index}, 'description', this.value)">
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addAudioFile() {
+            const newIndex = audioFilesData.length + 1;
+            audioFilesData.push({
+                title: `Audio Track ${newIndex}`,
+                description: "Enter description for this audio track",
+                file: "",
+                order: newIndex
+            });
+            
+            renderAudioFiles();
+            showStatus(`✅ New audio file section added!`, 'success');
+        }
+
+        function removeAudioFile(index) {
+            if (confirm('Are you sure you want to remove this audio file?')) {
+                audioFilesData.splice(index, 1);
+                renderAudioFiles();
+            }
+        }
+
+        function updateAudioFile(index, field, value) {
+            if (audioFilesData[index]) {
+                audioFilesData[index][field] = value;
+            }
+        }
+
+        function saveAllAudioFiles() {
+            showStatus('✅ Audio files management coming soon!', 'success');
+        }
+
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Save current tab to localStorage
+            localStorage.setItem('cmsCurrentTab', tabName);
+            
+            // Hide all tab contents
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('imagesContent').style.display = 'none';
+            document.getElementById('videosContent').style.display = 'none';
+            document.getElementById('musicContent').style.display = 'none';
+
+            // Remove active class from all tabs
+            document.getElementById('mainTab').classList.remove('active');
+            document.getElementById('imagesTab').classList.remove('active');
+            document.getElementById('videosTab').classList.remove('active');
+            document.getElementById('musicTab').classList.remove('active');
+            
+            // Show selected tab and mark as active
+            if (tabName === 'main') {
+                document.getElementById('mainContent').style.display = 'block';
+                document.getElementById('mainTab').classList.add('active');
+            } else if (tabName === 'images') {
+                document.getElementById('imagesContent').style.display = 'block';
+                document.getElementById('imagesTab').classList.add('active');
+                // Don't reinitialize - preserve unsaved changes
+            } else if (tabName === 'videos') {
+                document.getElementById('videosContent').style.display = 'block';
+                document.getElementById('videosTab').classList.add('active');
+                // Don't reinitialize - preserve unsaved changes
+            } else if (tabName === 'music') {
+                document.getElementById('musicContent').style.display = 'block';
+                document.getElementById('musicTab').classList.add('active');
+                // Initialize music management when music tab is shown
+                initializeMusicManagement();
+            }
+            return false; // Prevent navigation
+        }
+
+        // Load content on page load and restore tab state
+        window.addEventListener('DOMContentLoaded', function() {
+            // Load from localStorage first for instant display, then from server
+            populateFormFromLocalStorage();
+            loadContent();
+
+            // Initialize auto-save functionality
+            enableAutoSave();
+
+            // Restore the last active tab or default to main
+            const savedTab = localStorage.getItem('cmsCurrentTab');
+            const tabToShow = savedTab || 'main';
+            showTab(tabToShow);
+        });
+    </script>
+</body>
+</html>

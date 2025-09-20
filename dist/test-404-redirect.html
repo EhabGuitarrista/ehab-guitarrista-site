@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test 404 Redirect Logic</title>
+    <script>
+        function testRedirectLogic() {
+            // Simulate the 404 redirect logic
+            var testUrls = [
+                'https://ehabguitarrista.github.io/ehab-guitarrista-site/performances',
+                'https://ehabguitarrista.github.io/ehab-guitarrista-site/performances/',
+                'https://ehabguitarrista.github.io/ehab-guitarrista-site/',
+                'https://ehabguitarrista.github.io/ehab-guitarrista-site'
+            ];
+
+            var basePath = '/ehab-guitarrista-site';
+
+            testUrls.forEach(function(url) {
+                var mockLocation = new URL(url);
+                var baseUrl = mockLocation.protocol + '//' + mockLocation.hostname + (mockLocation.port ? ':' + mockLocation.port : '');
+                var routePath = mockLocation.pathname.replace(basePath, '');
+
+                if (!routePath || routePath === '/') {
+                    routePath = '';
+                }
+
+                var redirectUrl = baseUrl + basePath + '/#' + routePath + mockLocation.search + mockLocation.hash;
+
+                console.log('Original URL:', url);
+                console.log('Route path extracted:', routePath);
+                console.log('Would redirect to:', redirectUrl);
+                console.log('---');
+            });
+        }
+
+        // Test the logic when page loads
+        window.onload = function() {
+            testRedirectLogic();
+
+            // Also test with current location
+            console.log('Current location test:');
+            var l = window.location;
+            var baseUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '');
+            var basePath = '/ehab-guitarrista-site';
+            var routePath = l.pathname.replace(basePath, '');
+
+            if (!routePath || routePath === '/') {
+                routePath = '';
+            }
+
+            console.log('Current pathname:', l.pathname);
+            console.log('Base path:', basePath);
+            console.log('Route path:', routePath);
+            console.log('Would redirect to:', baseUrl + basePath + '/#' + routePath + l.search + l.hash);
+        };
+    </script>
+</head>
+<body>
+    <h1>404 Redirect Logic Test</h1>
+    <p>Check the browser console for test results.</p>
+    <p>Current URL: <span id="currentUrl"></span></p>
+    <script>
+        document.getElementById('currentUrl').textContent = window.location.href;
+    </script>
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Manager - Ehab Guitarrista CMS</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        .nav {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav a {
+            text-decoration: none;
+            color: #d4a574;
+            font-weight: 500;
+            margin-right: 2rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .nav a:hover, .nav a.active {
+            background: #d4a574;
+            color: white;
+        }
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #d4a574;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.5rem;
+        }
+        .video-item {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s;
+        }
+        .video-item:hover {
+            border-color: #d4a574;
+        }
+        .page-section {
+            border-left: 4px solid #d4a574;
+            padding-left: 1rem;
+            margin: 2rem 0;
+        }
+        .page-section h3 {
+            color: #d4a574;
+            margin-bottom: 1rem;
+        }
+        .video-manager {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f8f9fa;
+            margin: 15px 0;
+        }
+        .current-video {
+            text-align: center;
+            margin: 15px 0;
+        }
+        .current-video video {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .video-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .upload-btn {
+            background: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .upload-btn:hover {
+            background: #1e7e34;
+        }
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .delete-btn:hover {
+            background: #c82333;
+        }
+        .save-btn {
+            background: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .save-btn:hover {
+            background: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Video Manager</h1>
+            <p>Manage all videos across your website</p>
+        </div>
+
+        <div class="nav">
+            <a href="complete-cms.html">🏠 Home</a>
+            <a href="images.html">🖼️ Images</a>
+            <a href="videos.html" class="active">🎬 Videos</a>
+        </div>
+
+        <!-- Main Page Videos -->
+        <div class="section">
+            <div class="page-section">
+                <h3>📱 Main Page Videos (2 videos)</h3>
+                
+                <!-- About Section Video -->
+                <div class="video-item">
+                    <h4>🎬 About Section Video</h4>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the video that appears in the About section on the main page.
+                    </p>
+                    
+                    <div class="video-manager">
+                        <div class="current-video" id="aboutCurrentVideo">
+                            <!-- Current video will be loaded here -->
+                        </div>
+                        
+                        <div class="video-actions">
+                            <input type="file" id="aboutVideoFile" accept=".mp4,.mov,.webm" style="display: none;">
+                            <button type="button" onclick="triggerVideoUpload('about')" class="upload-btn">📁 Upload New Video</button>
+                            <button type="button" onclick="deleteVideo('about')" class="delete-btn">🗑️ Remove Current</button>
+                            <button type="button" onclick="saveVideo('about')" class="save-btn">💾 Save</button>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Video Title:</label>
+                            <input type="text" id="aboutTitle" placeholder="About Ehab Video" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="aboutVideoStatus" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bill Bourne Video (Main Page) -->
+                <div class="video-item">
+                    <h4>🎬 Live Performance Moments Video (Main Page)</h4>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the Bill Bourne video that appears on the main page.
+                    </p>
+                    
+                    <div class="video-manager">
+                        <div class="current-video" id="billBourneMainPageCurrentVideo">
+                            <!-- Current video will be loaded here -->
+                        </div>
+                        
+                        <div class="video-actions">
+                            <input type="file" id="billBourneMainPageVideoFile" accept=".mp4,.mov,.webm" style="display: none;">
+                            <button type="button" onclick="triggerVideoUpload('billBourneMainPage')" class="upload-btn">📁 Upload New Video</button>
+                            <button type="button" onclick="deleteVideo('billBourneMainPage')" class="delete-btn">🗑️ Remove Current</button>
+                            <button type="button" onclick="saveVideo('billBourneMainPage')" class="save-btn">💾 Save</button>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Video Title:</label>
+                            <input type="text" id="billBourneMainPageTitle" placeholder="With Renowned Artist Bill Bourne" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="billBourneMainPageVideoStatus" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performances Page Videos -->
+        <div class="section">
+            <div class="page-section">
+                <h3>🎭 Performances Page Videos (5 videos)</h3>
+                
+                <!-- Bill Bourne Video (Performances Page) -->
+                <div class="video-item">
+                    <h4>🎬 With Renowned Artist Bill Bourne (Performances Page)</h4>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the Bill Bourne video that appears on the Performances page. This is separate from the main page version.
+                    </p>
+                    
+                    <div class="video-manager">
+                        <div class="current-video" id="billBournePerformancesCurrentVideo">
+                            <!-- Current video will be loaded here -->
+                        </div>
+                        
+                        <div class="video-actions">
+                            <input type="file" id="billBournePerformancesVideoFile" accept=".mp4,.mov,.webm" style="display: none;">
+                            <button type="button" onclick="triggerVideoUpload('billBournePerformances')" class="upload-btn">📁 Upload New Video</button>
+                            <button type="button" onclick="deleteVideo('billBournePerformances')" class="delete-btn">🗑️ Remove Current</button>
+                            <button type="button" onclick="saveVideo('billBournePerformances')" class="save-btn">💾 Save</button>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Video Title:</label>
+                            <input type="text" id="billBournePerformancesTitle" placeholder="With Renowned Artist Bill Bourne" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="billBournePerformancesVideoStatus" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notre Dame Chapel Video -->
+                <div class="video-item">
+                    <h4>🎬 Notre Dame Chapel Performance</h4>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the Notre Dame Chapel performance video.
+                    </p>
+                    
+                    <div class="video-manager">
+                        <div class="current-video" id="notreDameCurrentVideo">
+                            <!-- Current video will be loaded here -->
+                        </div>
+                        
+                        <div class="video-actions">
+                            <input type="file" id="notreDameVideoFile" accept=".mp4,.mov,.webm" style="display: none;">
+                            <button type="button" onclick="triggerVideoUpload('notreDame')" class="upload-btn">📁 Upload New Video</button>
+                            <button type="button" onclick="deleteVideo('notreDame')" class="delete-btn">🗑️ Remove Current</button>
+                            <button type="button" onclick="saveVideo('notreDame')" class="save-btn">💾 Save</button>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Video Title:</label>
+                            <input type="text" id="notreDameTitle" placeholder="Notre Dame Chapel Performance" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="notreDameVideoStatus" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Piano Performance Video -->
+                <div class="video-item">
+                    <h4>🎬 Piano Performance</h4>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the piano performance video.
+                    </p>
+                    
+                    <div class="video-manager">
+                        <div class="current-video" id="pianoCurrentVideo">
+                            <!-- Current video will be loaded here -->
+                        </div>
+                        
+                        <div class="video-actions">
+                            <input type="file" id="pianoVideoFile" accept=".mp4,.mov,.webm" style="display: none;">
+                            <button type="button" onclick="triggerVideoUpload('piano')" class="upload-btn">📁 Upload New Video</button>
+                            <button type="button" onclick="deleteVideo('piano')" class="delete-btn">🗑️ Remove Current</button>
+                            <button type="button" onclick="saveVideo('piano')" class="save-btn">💾 Save</button>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Video Title:</label>
+                            <input type="text" id="pianoTitle" placeholder="Piano Performance" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="pianoVideoStatus" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ensemble Performance Video -->
+                <div class="video-item">
+                    <h4>🎬 Ensemble Performance</h4>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the ensemble performance video.
+                    </p>
+                    
+                    <div class="video-manager">
+                        <div class="current-video" id="ensembleCurrentVideo">
+                            <!-- Current video will be loaded here -->
+                        </div>
+                        
+                        <div class="video-actions">
+                            <input type="file" id="ensembleVideoFile" accept=".mp4,.mov,.webm" style="display: none;">
+                            <button type="button" onclick="triggerVideoUpload('ensemble')" class="upload-btn">📁 Upload New Video</button>
+                            <button type="button" onclick="deleteVideo('ensemble')" class="delete-btn">🗑️ Remove Current</button>
+                            <button type="button" onclick="saveVideo('ensemble')" class="save-btn">💾 Save</button>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Video Title:</label>
+                            <input type="text" id="ensembleTitle" placeholder="Ensemble Performance" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="ensembleVideoStatus" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oud Performance Video -->
+                <div class="video-item">
+                    <h4>🎬 Oud Performance</h4>
+                    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                        Manage the oud performance video.
+                    </p>
+                    
+                    <div class="video-manager">
+                        <div class="current-video" id="oudCurrentVideo">
+                            <!-- Current video will be loaded here -->
+                        </div>
+                        
+                        <div class="video-actions">
+                            <input type="file" id="oudVideoFile" accept=".mp4,.mov,.webm" style="display: none;">
+                            <button type="button" onclick="triggerVideoUpload('oud')" class="upload-btn">📁 Upload New Video</button>
+                            <button type="button" onclick="deleteVideo('oud')" class="delete-btn">🗑️ Remove Current</button>
+                            <button type="button" onclick="saveVideo('oud')" class="save-btn">💾 Save</button>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Video Title:</label>
+                            <input type="text" id="oudTitle" placeholder="Oud Performance" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <span id="oudVideoStatus" style="font-size: 12px; color: #666;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentContent = {};
+        let currentVideoFiles = {};
+
+        // Video mapping configuration
+        const videoMappings = [
+            { key: 'aboutSection', prefix: 'about' },
+            { key: 'billBourneMainPage', prefix: 'billBourneMainPage' },
+            { key: 'billBournePerformances', prefix: 'billBournePerformances' },
+            { key: 'notreDame', prefix: 'notreDame' },
+            { key: 'piano', prefix: 'piano' },
+            { key: 'ensemble', prefix: 'ensemble' },
+            { key: 'oud', prefix: 'oud' }
+        ];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners for file uploads
+            videoMappings.forEach(mapping => {
+                const fileInput = document.getElementById(mapping.prefix + 'VideoFile');
+                if (fileInput) {
+                    fileInput.addEventListener('change', (event) => handleVideoUpload(event, mapping.key));
+                }
+            });
+            loadCurrentVideos();
+        });
+
+        // Load current videos
+        async function loadCurrentVideos() {
+            try {
+                const response = await fetch('/content.json?t=' + Date.now());
+                if (response.ok) {
+                    currentContent = await response.json();
+                    console.log('Loaded content:', currentContent);
+                    
+                    // Store current video files for easy access
+                    if (currentContent.videos) {
+                        videoMappings.forEach(mapping => {
+                            if (currentContent.videos[mapping.key]) {
+                                currentVideoFiles[mapping.key] = currentContent.videos[mapping.key].file;
+                            }
+                        });
+                    }
+                    
+                    // Wait for DOM to be ready
+                    let retries = 0;
+                    const maxRetries = 10;
+                    
+                    function attemptPopulation() {
+                        const aboutTitle = document.getElementById('aboutTitle');
+                        const aboutCurrentVideo = document.getElementById('aboutCurrentVideo');
+                        
+                        if (aboutTitle && aboutCurrentVideo) {
+                            populateVideoFields();
+                            displayAllVideos();
+                        } else {
+                            retries++;
+                            if (retries < maxRetries) {
+                                setTimeout(attemptPopulation, 200);
+                            }
+                        }
+                    }
+                    
+                    attemptPopulation();
+                }
+            } catch (error) {
+                console.error('Error loading current videos:', error);
+                showStatus('❌ Error loading current videos', 'error');
+            }
+        }
+
+        // Populate video fields with current data
+        function populateVideoFields() {
+            if (!currentContent.videos) return;
+            
+            const videos = currentContent.videos;
+            
+            videoMappings.forEach(mapping => {
+                if (videos[mapping.key]) {
+                    const titleField = document.getElementById(mapping.prefix + 'Title');
+                    if (titleField) {
+                        titleField.value = videos[mapping.key].title || '';
+                    }
+                }
+            });
+        }
+
+        // Display all videos using the new interface
+        function displayAllVideos() {
+            videoMappings.forEach(mapping => {
+                displayVideo(mapping.key, mapping.prefix);
+            });
+        }
+
+        // Display individual video in unified interface
+        function displayVideo(videoKey, prefix) {
+            const container = document.getElementById(prefix + 'CurrentVideo');
+            if (!container) return;
+            
+            const videoFile = currentVideoFiles[videoKey];
+            
+            if (videoFile) {
+                // Show video preview and current file info
+                container.innerHTML = `
+                    <div>
+                        <video src="${videoFile}" controls style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">Current: ${videoFile}</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '<p style="color: #999; font-style: italic; padding: 40px;">No video uploaded yet. Upload one to get started!</p>';
+            }
+        }
+
+        // Trigger video upload
+        function triggerVideoUpload(prefix) {
+            document.getElementById(prefix + 'VideoFile').click();
+        }
+
+        // Handle video upload
+        async function handleVideoUpload(event, videoKey) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const mapping = videoMappings.find(m => m.key === videoKey);
+            if (!mapping) return;
+
+            const statusSpan = document.getElementById(mapping.prefix + 'VideoStatus');
+            statusSpan.textContent = '⏳ Uploading video...';
+            statusSpan.style.color = '#007cba';
+
+            const formData = new FormData();
+            formData.append('videoFile', file);
+
+            try {
+                const response = await fetch('/api/upload-video', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    currentVideoFiles[videoKey] = result.filePath;
+                    displayVideo(videoKey, mapping.prefix);
+                    statusSpan.textContent = '✅ Video uploaded! Click "Save" to apply.';
+                    statusSpan.style.color = '#28a745';
+                } else {
+                    statusSpan.textContent = `❌ Upload failed: ${result.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+            } catch (error) {
+                statusSpan.textContent = `❌ Upload error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+            }
+
+            // Clear the input
+            event.target.value = '';
+        }
+
+        // Delete video
+        function deleteVideo(prefix) {
+            const mapping = videoMappings.find(m => m.prefix === prefix);
+            if (!mapping) return;
+
+            const videoFile = currentVideoFiles[mapping.key];
+            if (!videoFile) {
+                showStatus('❌ No video to delete', 'error');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to remove the current video?')) {
+                return;
+            }
+
+            currentVideoFiles[mapping.key] = '';
+            displayVideo(mapping.key, prefix);
+            
+            const statusSpan = document.getElementById(prefix + 'VideoStatus');
+            statusSpan.textContent = '✅ Video removed! Click "Save" to apply.';
+            statusSpan.style.color = '#28a745';
+        }
+
+        // Save video
+        async function saveVideo(prefix) {
+            const mapping = videoMappings.find(m => m.prefix === prefix);
+            if (!mapping) return;
+
+            const statusSpan = document.getElementById(prefix + 'VideoStatus');
+            
+            statusSpan.textContent = '⏳ Saving video...';
+            statusSpan.style.color = '#007cba';
+
+            try {
+                // Get current values
+                const title = document.getElementById(prefix + 'Title').value;
+                const currentFile = currentVideoFiles[mapping.key] || '';
+
+                // Update content object
+                if (!currentContent.videos) {
+                    currentContent.videos = {};
+                }
+                
+                currentContent.videos[mapping.key] = {
+                    title: title,
+                    file: currentFile
+                };
+
+                // Save content to both files
+                const saveResponse = await fetch('/api/save-content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentContent)
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    statusSpan.textContent = '✅ Video saved successfully!';
+                    statusSpan.style.color = '#28a745';
+                    showStatus('✅ Video updated! Changes should appear on your main site.', 'success');
+                } else {
+                    statusSpan.textContent = `❌ Error saving: ${saveResult.error}`;
+                    statusSpan.style.color = '#dc3545';
+                }
+                
+            } catch (error) {
+                statusSpan.textContent = `❌ Error: ${error.message}`;
+                statusSpan.style.color = '#dc3545';
+                showStatus('❌ Failed to save video', 'error');
+            }
+        }
+
+        // Show status message (add a status div if needed)
+        function showStatus(message, type) {
+            console.log(`${type.toUpperCase()}: ${message}`);
+            // You can add a status div to the HTML if you want to show these messages
+        }
+        
+    </script>
+</body>
+</html>

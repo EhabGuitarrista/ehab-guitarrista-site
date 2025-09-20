@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ehab Guitarrista</title>
+    <script>
+        // Single Page Apps for GitHub Pages
+        // Redirect /ehab-guitarrista-site/performances to /ehab-guitarrista-site/#/performances
+
+        (function() {
+            var l = window.location;
+            var baseUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '');
+            var basePath = '/ehab-guitarrista-site';
+
+            // Debug logging (will be visible in browser console)
+            console.log('404 redirect - Original URL:', l.href);
+            console.log('404 redirect - Pathname:', l.pathname);
+            console.log('404 redirect - Base path:', basePath);
+
+            // Clean up the pathname first - remove multiple slashes
+            var cleanPathname = l.pathname.replace(/\/+/g, '/');
+            console.log('404 redirect - Clean pathname:', cleanPathname);
+
+            // Extract the route path after the base path
+            var routePath = '';
+            if (cleanPathname.startsWith(basePath)) {
+                routePath = cleanPathname.substring(basePath.length);
+            } else {
+                // Fallback - if base path not found, use the whole pathname
+                routePath = cleanPathname;
+            }
+
+            // Clean up the route path
+            if (routePath === '/' || routePath === '') {
+                routePath = '';
+            } else if (routePath.startsWith('/')) {
+                routePath = routePath.substring(1);
+            }
+
+            // Build the redirect URL - ensure we don't double up on slashes
+            var redirectUrl = baseUrl + basePath + '/#' + (routePath ? '/' + routePath : '') + l.search + l.hash;
+
+            console.log('404 redirect - Route path extracted:', routePath);
+            console.log('404 redirect - Redirecting to:', redirectUrl);
+
+            // Add a small delay to ensure console logs are visible
+            setTimeout(function() {
+                window.location.replace(redirectUrl);
+            }, 100);
+        })();
+    </script>
+</head>
+<body>
+    <div style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+        <h1>Redirecting...</h1>
+        <p>Taking you to the correct page...</p>
+        <div id="debug-info" style="margin-top: 20px; padding: 20px; background: #f5f5f5; border-radius: 5px; text-align: left; max-width: 600px; margin: 20px auto;">
+            <h3>Debug Information:</h3>
+            <p><strong>Current URL:</strong> <span id="current-url"></span></p>
+            <p><strong>Redirecting to:</strong> <span id="redirect-url"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Update the visual debug info
+        document.getElementById('current-url').textContent = window.location.href;
+
+        // Calculate redirect URL to show in UI (same logic as above)
+        var l = window.location;
+        var baseUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '');
+        var basePath = '/ehab-guitarrista-site';
+
+        // Clean up the pathname first - remove multiple slashes
+        var cleanPathname = l.pathname.replace(/\/+/g, '/');
+
+        // Extract the route path after the base path
+        var routePath = '';
+        if (cleanPathname.startsWith(basePath)) {
+            routePath = cleanPathname.substring(basePath.length);
+        } else {
+            routePath = cleanPathname;
+        }
+
+        // Clean up the route path
+        if (routePath === '/' || routePath === '') {
+            routePath = '';
+        } else if (routePath.startsWith('/')) {
+            routePath = routePath.substring(1);
+        }
+
+        // Build the redirect URL - ensure we don't double up on slashes
+        var redirectUrl = baseUrl + basePath + '/#' + (routePath ? '/' + routePath : '') + l.search + l.hash;
+        document.getElementById('redirect-url').textContent = redirectUrl;
+    </script>
+</body>
+</html>
