@@ -213,6 +213,19 @@ async function generateContentJson() {
                         performanceVideos: section.performanceVideos || [],
                         performances: section.performances || []
                     };
+
+                    // Map performance videos array to individual video keys (performanceVideo1, performanceVideo2, etc.)
+                    if (section.performanceVideos && Array.isArray(section.performanceVideos)) {
+                        section.performanceVideos.forEach((video, index) => {
+                            if (video.url) {
+                                content.videos[`performanceVideo${index + 1}`] = {
+                                    title: video.title || '',
+                                    description: video.description || '',
+                                    file: video.url
+                                };
+                            }
+                        });
+                    }
                     break;
 
             }
