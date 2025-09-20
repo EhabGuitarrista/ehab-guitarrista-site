@@ -36,6 +36,7 @@ const Contact = () => {
 
     // Validate recipient email from CMS
     const recipientEmail = content.contact.email;
+    console.log('Recipient email from CMS:', recipientEmail);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!recipientEmail || !emailRegex.test(recipientEmail)) {
