@@ -20,13 +20,13 @@
     <!-- Single Page Apps for GitHub Pages -->
     <script>
       (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) {
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
+        if (l.hash && l.hash.length > 1) {
+          // Extract the path from the hash (e.g., #/performances -> /performances)
+          var hashPath = l.hash.slice(1);
+          if (hashPath.startsWith('/')) {
+            // Replace the current URL with the proper path for React Router
+            window.history.replaceState(null, null, l.pathname + hashPath + l.search);
+          }
         }
       }(window.location))
     </script>
