@@ -87,6 +87,17 @@ async function generateContentJson() {
                             }
                         }
                     };
+
+                    // Initialize videos structure if it doesn't exist
+                    if (!content.videos) {
+                        content.videos = {};
+                    }
+
+                    // Add about section video to videos structure
+                    content.videos.aboutSection = {
+                        title: section.videoTitle || "",
+                        file: section.videoUrl || ""
+                    };
                     break;
 
                 case 'stats':
@@ -192,10 +203,13 @@ async function generateContentJson() {
                     break;
 
                 case 'videos':
-                    content.videos = section.performances ? section : {
-                        aboutSection: { title: '', file: '' },
-                        billBourneMainPage: { title: '', file: '' },
-                        performances: []
+                    content.videos = {
+                        bannerVideo: section.bannerVideo || {
+                            title: '',
+                            url: ''
+                        },
+                        performanceVideos: section.performanceVideos || [],
+                        performances: section.performances || []
                     };
                     break;
 
