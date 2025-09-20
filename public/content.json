@@ -1,15 +1,4 @@
 {
-  "videos": {
-    "aboutSection": {
-      "title": "",
-      "file": ""
-    },
-    "billBourneMainPage": {
-      "title": "",
-      "file": ""
-    },
-    "performances": []
-  },
   "navigation": {
     "logoText": "Ehab Guitarrista+",
     "menuItems": {
@@ -115,5 +104,23 @@
     ],
     "copyrightText": "© 2024 Ehab Guitarrista. All rights reserved.++",
     "influencedByText": "Influenced by the masters of flamenco and world music+"
+  },
+  "performanceImages": [],
+  "upcomingEvents": [],
+  "bookExperience": {
+    "title": "Book Your Experience",
+    "description": "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together.",
+    "buttonText": "Schedule Consultation"
+  },
+  "videos": {
+    "aboutSection": {
+      "title": "",
+      "file": ""
+    },
+    "billBourneMainPage": {
+      "title": "",
+      "file": ""
+    },
+    "performances": []
   }
 }

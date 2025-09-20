@@ -184,7 +184,11 @@ async function generateContentJson() {
         return createDefaultContent();
     }
 
-    return content;
+    // Ensure all required sections exist with defaults
+    const defaultContent = createDefaultContent();
+    const mergedContent = { ...defaultContent, ...content };
+
+    return mergedContent;
 }
 
 function createDefaultContent() {
