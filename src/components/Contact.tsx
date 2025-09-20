@@ -47,7 +47,7 @@ ${formData.message ? `Message: ${formData.message}` : ''}
     `.trim();
 
     // Create mailto link
-    const mailtoLink = `mailto:${content.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:ehab.guitarrista@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     // Open email client
     window.location.href = mailtoLink;
