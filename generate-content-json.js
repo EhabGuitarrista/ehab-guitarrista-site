@@ -166,8 +166,8 @@ async function generateContentJson() {
                 case 'bookExperience':
                     content.bookExperience = section || {
                         title: "Book Your Experience",
-                        description: "",
-                        buttonText: "Book Now"
+                        description: "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together.",
+                        buttonText: "Schedule Consultation"
                     };
                     break;
 
@@ -255,8 +255,8 @@ function createDefaultContent() {
         upcomingEvents: [],
         bookExperience: {
             title: "Book Your Experience",
-            description: "",
-            buttonText: "Book Now"
+            description: "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together.",
+            buttonText: "Schedule Consultation"
         },
         videos: {
             aboutSection: {},
