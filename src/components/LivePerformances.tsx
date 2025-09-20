@@ -48,9 +48,11 @@ const LivePerformances = () => {
   return (
     <section id="gallery" className="py-12 bg-background">
       <div className="container-max">
-        <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center text-foreground mb-6">
-          Live Performance Moments
-        </h2>
+        {content.livePerformanceMoments?.title && (
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center text-foreground mb-6">
+            {content.livePerformanceMoments.title}
+          </h2>
+        )}
 
         {/* Featured Collaboration Video */}
         {content.videos.billBourneMainPage.file ? (

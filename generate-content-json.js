@@ -172,6 +172,21 @@ async function generateContentJson() {
                         performances: []
                     };
                     break;
+
+                case 'livePerformanceMoments':
+                    content.livePerformanceMoments = {
+                        title: section.title || ""
+                    };
+                    break;
+
+                case 'performancePage':
+                    content.performancePage = {
+                        mainTitle: section.mainTitle || "",
+                        mainSubtitle: section.mainSubtitle || "",
+                        eventsTitle: section.eventsTitle || "",
+                        eventsDescription: section.eventsDescription || ""
+                    };
+                    break;
             }
         });
     } else {
@@ -254,6 +269,15 @@ function createDefaultContent() {
             aboutSection: {},
             billBourneMainPage: {},
             performances: []
+        },
+        livePerformanceMoments: {
+            title: ""
+        },
+        performancePage: {
+            mainTitle: "",
+            mainSubtitle: "",
+            eventsTitle: "",
+            eventsDescription: ""
         }
     };
 }

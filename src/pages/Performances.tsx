@@ -205,12 +205,16 @@ const Performances = () => {
         {/* Hero Section */}
         <section className="pt-6 pb-8 bg-background">
           <div className="container-max text-center">
-            <h1 className="text-4xl md:text-6xl font-playfair font-bold text-glow mb-8">
-              Live Performances
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto font-inter">
-              Experience the passion and artistry of flamenco guitar across Canada's most prestigious venues.
-            </p>
+            {content.performancePage?.mainTitle && (
+              <h1 className="text-4xl md:text-6xl font-playfair font-bold text-glow mb-8">
+                {content.performancePage.mainTitle}
+              </h1>
+            )}
+            {content.performancePage?.mainSubtitle && (
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto font-inter">
+                {content.performancePage.mainSubtitle}
+              </p>
+            )}
             
             {/* Dynamic Performance Videos - Only show if videos exist */}
             {performanceVideos.length > 0 && (
@@ -230,12 +234,16 @@ const Performances = () => {
         {/* Event Posters */}
         <section className="py-12 bg-background">
           <div className="container-max">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-6">
-              {content.upcomingEventsTitle || 'Upcoming & Recent Events'}
-            </h2>
-            <p className="text-lg text-muted-foreground text-center mb-10 max-w-3xl mx-auto font-inter">
-              From intimate venues to grand concert halls, discover Ehab's upcoming performances and recent highlights.
-            </p>
+            {content.performancePage?.eventsTitle && (
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-6">
+                {content.performancePage.eventsTitle}
+              </h2>
+            )}
+            {content.performancePage?.eventsDescription && (
+              <p className="text-lg text-muted-foreground text-center mb-10 max-w-3xl mx-auto font-inter">
+                {content.performancePage.eventsDescription}
+              </p>
+            )}
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 container-max">
               {content.upcomingEvents && content.upcomingEvents.length > 0 ? (
