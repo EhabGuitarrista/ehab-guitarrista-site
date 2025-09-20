@@ -34,9 +34,23 @@ const Contact = () => {
       return;
     }
 
-    // Create email content for mailto link
-    const subject = `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`;
-    const body = `
+    // Validate recipient email from CMS
+    const recipientEmail = content.contact.email;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!recipientEmail || !emailRegex.test(recipientEmail)) {
+      toast({
+        title: "Email Configuration Error",
+        description: "Invalid recipient email address in CMS settings. Please contact the site administrator.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      // Create email content for mailto link
+      const subject = `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`;
+      const body = `
 Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}
@@ -44,30 +58,39 @@ Event Date: ${formData.eventDate}
 Event Type: ${formData.eventType}
 Venue: ${formData.venue}
 ${formData.message ? `Message: ${formData.message}` : ''}
-    `.trim();
+      `.trim();
 
-    // Create mailto link
-    const mailtoLink = `mailto:ehab.guitarrista@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Create mailto link using exact email from CMS
+      const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    // Open email client
-    window.location.href = mailtoLink;
+      // Try to open email client
+      window.location.href = mailtoLink;
 
-    // Show success message
-    toast({
-      title: "Email Client Opened",
-      description: "Your email client should open with the booking details filled in.",
-    });
+      // Show success message
+      toast({
+        title: "Email Client Opened",
+        description: `Opening email to ${recipientEmail}. Please send the email from your email client.`,
+      });
 
-    // Clear form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      eventDate: "",
-      eventType: "",
-      venue: "",
-      message: ""
-    });
+      // Clear form only after successful mailto attempt
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        eventDate: "",
+        eventType: "",
+        venue: "",
+        message: ""
+      });
+
+    } catch (error) {
+      console.error('Mailto error:', error);
+      toast({
+        title: "Email Error",
+        description: "Failed to open email client. Please try again or contact directly.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
