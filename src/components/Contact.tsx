@@ -48,27 +48,21 @@ const Contact = () => {
     }
 
     try {
-      // Send using EmailJS (200 free emails/month, perfect for static sites)
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      // Send using simple Formspree endpoint (zero setup required)
+      const response = await fetch(`https://formspree.io/${recipientEmail}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          service_id: 'service_guitarist',
-          template_id: 'template_booking',
-          user_id: 'jHfqN8GRV9_Qz6kST',
-          template_params: {
-            to_email: recipientEmail,
-            from_name: formData.name,
-            from_email: formData.email,
-            phone: formData.phone,
-            event_date: formData.eventDate,
-            event_type: formData.eventType,
-            venue: formData.venue,
-            message: formData.message || 'No additional message',
-            subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`
-          }
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          eventDate: formData.eventDate,
+          eventType: formData.eventType,
+          venue: formData.venue,
+          message: formData.message,
+          _subject: `Booking Inquiry - ${formData.eventType} on ${formData.eventDate}`
         })
       });
 
