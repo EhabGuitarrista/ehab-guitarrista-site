@@ -150,17 +150,16 @@ const Performances = () => {
         <div className="text-center">
           <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
             <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-              Book Your Experience
+              {content.bookExperience?.title}
             </h3>
             <p className="text-muted-foreground mb-6">
-              Ready to bring the magic of flamenco guitar to your event? Let's create 
-              something extraordinary together.
+              {content.bookExperience?.description}
             </p>
-            <button 
+            <button
               className="btn-primary"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Schedule Consultation
+              {content.bookExperience?.buttonText}
             </button>
           </div>
         </div>
