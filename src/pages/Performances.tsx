@@ -257,10 +257,44 @@ const Performances = () => {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <div className="p-4">
+                    <div className="p-4 space-y-3">
                       <h3 className="text-lg font-semibold text-foreground text-center">
                         {event.title}
                       </h3>
+
+                      {/* Event Details */}
+                      <div className="space-y-2 text-sm">
+                        {event.date && (
+                          <div className="flex items-center justify-center text-muted-foreground">
+                            <span className="font-medium">📅 {event.date}</span>
+                          </div>
+                        )}
+
+                        {event.time && (
+                          <div className="flex items-center justify-center text-muted-foreground">
+                            <span className="font-medium">🕒 {event.time}</span>
+                          </div>
+                        )}
+
+                        {event.location && (
+                          <div className="flex items-center justify-center text-muted-foreground">
+                            <span className="font-medium">📍 {event.location}</span>
+                          </div>
+                        )}
+
+                        {event.ticketLink && (
+                          <div className="flex items-center justify-center pt-2">
+                            <a
+                              href={event.ticketLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-sm font-medium"
+                            >
+                              🎫 Click here for tickets
+                            </a>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))

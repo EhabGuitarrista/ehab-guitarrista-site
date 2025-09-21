@@ -49,7 +49,10 @@ async function generateContentJson() {
                 if (section.upcomingEvents) {
                     content.upcomingEvents = section.upcomingEvents.map(event => ({
                         title: event.name || "",
-                        description: event.location || "",
+                        date: event.date || "",
+                        time: event.time || "",
+                        location: event.location || "",
+                        ticketLink: event.ticketLink || "",
                         url: event.imageUrl || "",
                         caption: event.name || "",
                         alt: `${event.name || 'Event'} poster`
