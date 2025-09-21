@@ -187,48 +187,26 @@ const Music = () => {
     );
   }
 
-  // Show empty state if no tracks or all tracks have empty files
+  // Check if there are valid tracks with audio files
   const hasValidTracks = tracks && tracks.length > 0 && tracks.some(track => {
     const audioUrl = track.file || (track as any).url || '';
     return audioUrl && audioUrl.trim() !== '';
   });
 
-  if (!tracks || tracks.length === 0 || !hasValidTracks) {
-    return (
-      <section id="music" className="section-padding bg-background py-24 md:py-32">
-        <div className="container-max text-center">
-          {content.music.title && (
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow mb-6">
-              {content.music.title}
-            </h2>
-          )}
-          {content.music.subtitle && (
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto font-inter">
-              {content.music.subtitle}
-            </p>
-          )}
-          <div className="bg-muted/20 rounded-lg p-8 max-w-2xl mx-auto">
-            <p className="text-lg text-muted-foreground mb-4">
-              Music tracks will appear here once uploaded through the CMS.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Visit the admin panel to add your musical compositions.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
+  // If no valid tracks, don't render the music section at all
+  if (!hasValidTracks) {
+    return null;
   }
 
   return (
     <section id="music" className="section-padding bg-background py-24 md:py-32">
       <div className="container-max">
-        {content.music.title && (
+        {content.music.title && content.music.title.trim() !== '' && (
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-glow text-center mb-6">
             {content.music.title}
           </h2>
         )}
-        {content.music.subtitle && (
+        {content.music.subtitle && content.music.subtitle.trim() !== '' && (
           <p className="text-xl md:text-2xl text-muted-foreground text-center mb-16 max-w-4xl mx-auto font-inter">
             {content.music.subtitle}
           </p>
@@ -310,7 +288,7 @@ const Music = () => {
           
           {/* Featured Tracks */}
           <div>
-            {content.music.featuredTracksTitle && (
+            {content.music.featuredTracksTitle && content.music.featuredTracksTitle.trim() !== '' && (
               <h3 className="text-2xl font-playfair font-bold mb-6 text-foreground">
                 {content.music.featuredTracksTitle}
               </h3>
