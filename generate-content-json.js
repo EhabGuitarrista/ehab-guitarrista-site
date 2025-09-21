@@ -34,12 +34,8 @@ async function generateContentJson() {
         data.forEach(item => {
             const section = item.content || {};
 
-            // Handle dynamic arrays
-            if (item.section_name === 'dynamic_content') {
-                if (section.audioTracks) {
-                    content.audioTracks = section.audioTracks;
-                }
-
+            // Handle dynamic arrays from images section
+            if (item.section_name === 'images') {
                 if (section.performanceImages) {
                     content.performanceImages = section.performanceImages.map(img => ({
                         title: img.caption || "",
