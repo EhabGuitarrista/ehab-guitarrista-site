@@ -38,9 +38,9 @@ const LivePerformances = () => {
 
   // Use CMS data for performance photos
   const performancePhotos = content.performanceImages?.map(item => ({
-    url: item.image,
-    title: item.title,
-    description: item.description
+    url: item.url,
+    title: item.caption || item.title || 'Performance Image',
+    description: item.caption || item.description || ''
   })) || [];
 
   const allPhotos = [...performancePhotos];

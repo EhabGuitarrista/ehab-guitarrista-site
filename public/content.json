@@ -1,50 +1,13 @@
 {
-  "stats": {
-    "yearsPerforming": {
-      "number": "a",
-      "label": "a"
+  "navigation": {
+    "logoText": "Ehab Guitarristaaaaaa",
+    "menuItems": {
+      "home": "Home+",
+      "music": "Music+",
+      "performances": "Performances+",
+      "contact": "Contact+"
     },
-    "citiesToured": {
-      "number": "50+",
-      "label": "Cities Toured"
-    },
-    "showsPlayed": {
-      "number": "200+",
-      "label": "Shows Played"
-    },
-    "awardsWon": {
-      "number": "15+",
-      "label": "Awards Won"
-    }
-  },
-  "livePerformanceMoments": {
-    "title": "hhhuuuuuuuuuu"
-  },
-  "music": {
-    "title": "My Music+",
-    "tracks": [
-      {
-        "url": "",
-        "title": "",
-        "description": ""
-      }
-    ],
-    "subtitle": "Original Compositions & Performances+",
-    "featuredTitle": "Featured Tracks+"
-  },
-  "contact": {
-    "title": "Get in Touch",
-    "formTitle": "Please Fill This In",
-    "infoTitle": "Contact Information",
-    "emailLabel": "Email",
-    "phoneLabel": "WhatsApp",
-    "locationLabel": "Locations",
-    "email": "ehab.guitarrista@gmail.com",
-    "phone": "+1 (555) 123-++++",
-    "location": "Available across Canada",
-    "responseTimeTitle": "Response Time",
-    "responseTime": "All inquiries receive a personal response from Ehab to Schedule an Appointment",
-    "bookButtonText": "Book Now"
+    "ctaButton": "Book Now!"
   },
   "footer": {
     "brandTitle": "Ehab Guitarrista",
@@ -61,7 +24,13 @@
     "copyrightText": "",
     "influencedByText": "Influenced by the masters of flamenco and world music"
   },
-  "performanceImages": [],
+  "performanceImages": [
+    {
+      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758440704/ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64.jpg",
+      "caption": "aaa",
+      "publicId": "ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64"
+    }
+  ],
   "upcomingEvents": [],
   "bookExperience": {
     "title": "YEAH",
@@ -74,52 +43,10 @@
     "eventsTitle": "bbbbb",
     "eventsDescription": "bbbb"
   },
-  "videos": {
-    "bannerVideo": {
-      "url": "https://youtu.be/yX7lZSmxysk"
-    },
-    "performanceVideos": [
-      {
-        "url": "https://youtu.be/yX7lZSmxysk",
-        "title": "PPPP",
-        "description": "PPPP"
-      },
-      {
-        "url": "https://youtu.be/sGyMGzWHh5w",
-        "title": "tt",
-        "description": "ttttt"
-      }
-    ],
-    "performances": [],
-    "performanceVideo1": {
-      "title": "PPPP",
-      "description": "PPPP",
-      "file": "https://youtu.be/yX7lZSmxysk"
-    },
-    "performanceVideo2": {
-      "title": "tt",
-      "description": "ttttt",
-      "file": "https://youtu.be/sGyMGzWHh5w"
-    },
-    "aboutSection": {
-      "title": "",
-      "file": "https://youtu.be/sGyMGzWHh5w"
-    }
-  },
-  "navigation": {
-    "logoText": "Ehab Guitarristaaaaaa",
-    "menuItems": {
-      "home": "Home+",
-      "music": "Music+",
-      "performances": "Performances+",
-      "contact": "Contact+"
-    },
-    "ctaButton": "Book Now!"
-  },
   "hero": {
     "title": "Ehab Guitarrista+",
     "subtitle": "Bringing Music to Life Across Canada+",
-    "image": "",
+    "image": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758440511/ehab-guitarrista/images/68242477-a1d5-423e-835d-65e8d78356e2.jpg",
     "bookButtonText": "Book Performance!",
     "listenButtonText": "Check Out My Music Below!"
   },
@@ -150,5 +77,84 @@
         "text": "h"
       }
     }
+  },
+  "videos": {
+    "aboutSection": {
+      "title": "",
+      "file": "https://youtu.be/sGyMGzWHh5w"
+    },
+    "bannerVideo": {
+      "url": "https://youtu.be/yX7lZSmxysk"
+    },
+    "performanceVideos": [
+      {
+        "url": "https://youtu.be/yX7lZSmxysk",
+        "title": "PPPP",
+        "description": "PPPP"
+      },
+      {
+        "url": "https://youtu.be/sGyMGzWHh5w",
+        "title": "tt",
+        "description": "ttttt"
+      }
+    ],
+    "performances": [],
+    "performanceVideo1": {
+      "title": "PPPP",
+      "description": "PPPP",
+      "file": "https://youtu.be/yX7lZSmxysk"
+    },
+    "performanceVideo2": {
+      "title": "tt",
+      "description": "ttttt",
+      "file": "https://youtu.be/sGyMGzWHh5w"
+    }
+  },
+  "stats": {
+    "yearsPerforming": {
+      "number": "a",
+      "label": "a"
+    },
+    "citiesToured": {
+      "number": "50+",
+      "label": "Cities Toured"
+    },
+    "showsPlayed": {
+      "number": "200+",
+      "label": "Shows Played"
+    },
+    "awardsWon": {
+      "number": "15+",
+      "label": "Awards Won"
+    }
+  },
+  "livePerformanceMoments": {
+    "title": "hhhuuuuuuuuuu"
+  },
+  "music": {
+    "title": "MUUUUSIC",
+    "subtitle": "SUBTITLE MUSIC",
+    "featuredTracksTitle": "TRACK TITLE",
+    "tracks": [
+      {
+        "title": "HAHAHAH",
+        "description": "AHHAHA",
+        "file": "https://res.cloudinary.com/dkkjoae6z/video/upload/v1758438369/ehab-guitarrista/audio/Tuesday%20night%20loop%20-%20With%20Ehab.m4a"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "formTitle": "Kindly Fill This In",
+    "infoTitle": "Contact Information",
+    "emailLabel": "Email",
+    "phoneLabel": "WhatsApp",
+    "locationLabel": "Locations",
+    "email": "ehab.guitarrista@gmail.com",
+    "phone": "+1 (555) 123-++++",
+    "location": "Available across Canada",
+    "responseTimeTitle": "Response Time",
+    "responseTime": "All inquiries receive a personal response from Ehab to Schedule an Appointment",
+    "bookButtonText": "Book Now"
   }
 }
