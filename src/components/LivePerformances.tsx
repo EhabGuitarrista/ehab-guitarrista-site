@@ -39,7 +39,7 @@ const LivePerformances = () => {
   // Use CMS data for performance photos
   const performancePhotos = content.performanceImages?.map(item => ({
     url: item.url,
-    title: item.caption || item.title || 'Performance Image',
+    title: item.caption || item.title || '',
     description: item.description || ''
   })) || [];
 
@@ -101,10 +101,12 @@ const LivePerformances = () => {
                   <Camera className="w-8 h-8 text-white" />
                 </div>
               </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-foreground mb-1">{photo.title}</h3>
-                <p className="text-sm text-muted-foreground">{photo.description}</p>
-              </div>
+              {(photo.title || photo.description) && (
+                <div className="p-4">
+                  {photo.title && <h3 className="text-lg font-semibold text-foreground mb-1">{photo.title}</h3>}
+                  {photo.description && <p className="text-sm text-muted-foreground">{photo.description}</p>}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -127,10 +129,12 @@ const LivePerformances = () => {
                 alt={allPhotos[selectedImage].title}
                 className="max-w-full max-h-full object-contain rounded-lg"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-4 rounded-b-lg">
-                <h3 className="text-xl font-semibold mb-1">{allPhotos[selectedImage].title}</h3>
-                <p className="text-white/80">{allPhotos[selectedImage].description}</p>
-              </div>
+              {(allPhotos[selectedImage].title || allPhotos[selectedImage].description) && (
+                <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-4 rounded-b-lg">
+                  {allPhotos[selectedImage].title && <h3 className="text-xl font-semibold mb-1">{allPhotos[selectedImage].title}</h3>}
+                  {allPhotos[selectedImage].description && <p className="text-white/80">{allPhotos[selectedImage].description}</p>}
+                </div>
+              )}
             </div>
           </div>
         )}
