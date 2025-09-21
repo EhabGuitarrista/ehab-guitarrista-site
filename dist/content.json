@@ -1,55 +1,4 @@
 {
-  "navigation": {
-    "logoText": "Ehab Guitarristaaaaaa",
-    "menuItems": {
-      "home": "Home+",
-      "music": "Music+",
-      "performances": "Performances+",
-      "contact": "Contact+"
-    },
-    "ctaButton": "Book Now!"
-  },
-  "footer": {
-    "brandTitle": "Ehab Guitarrista",
-    "description": "Professional Flamenco Guitarist & Composer",
-    "email": "ehab.guitarrista@gmail.com",
-    "phone": "",
-    "services": [
-      "Performances",
-      "Private Events",
-      "Studio Sessions",
-      "Collaborations",
-      "SERVICE"
-    ],
-    "copyrightText": "",
-    "influencedByText": "Influenced by the masters of flamenco and world music"
-  },
-  "performanceImages": [
-    {
-      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758440704/ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64.jpg",
-      "caption": "aaa",
-      "publicId": "ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64"
-    }
-  ],
-  "upcomingEvents": [],
-  "bookExperience": {
-    "title": "YEAH",
-    "buttonText": "YEAH",
-    "description": "YEAH"
-  },
-  "performancePage": {
-    "mainTitle": "bbbbbbb",
-    "mainSubtitle": "bbbbb",
-    "eventsTitle": "bbbbb",
-    "eventsDescription": "bbbb"
-  },
-  "hero": {
-    "title": "Ehab Guitarrista+",
-    "subtitle": "Bringing Music to Life Across Canada+",
-    "image": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758440511/ehab-guitarrista/images/68242477-a1d5-423e-835d-65e8d78356e2.jpg",
-    "bookButtonText": "Book Performance!",
-    "listenButtonText": "Check Out My Music Below!"
-  },
   "about": {
     "title": "Meet Ehab!",
     "mainDescription": "=",
@@ -156,5 +105,76 @@
     "responseTimeTitle": "Response Time",
     "responseTime": "All inquiries receive a personal response from Ehab to Schedule an Appointment",
     "bookButtonText": "Book Now"
+  },
+  "footer": {
+    "brandTitle": "Ehab Guitarrista",
+    "description": "Professional Flamenco Guitarist & Composer",
+    "email": "ehab.guitarrista@gmail.com",
+    "phone": "",
+    "services": [
+      "Performances",
+      "Private Events",
+      "Studio Sessions",
+      "Collaborations",
+      "SERVICE"
+    ],
+    "copyrightText": "",
+    "influencedByText": "Influenced by the masters of flamenco and world music"
+  },
+  "navigation": {
+    "logoText": "Ehab Guitarristaaaaaa",
+    "menuItems": {
+      "home": "Home+",
+      "music": "Music+",
+      "performances": "Performances+",
+      "contact": "Contact+"
+    },
+    "ctaButton": "Book Now!"
+  },
+  "hero": {
+    "title": "Ehab Guitarrista+",
+    "subtitle": "Bringing Music to Life Across Canada+",
+    "image": "",
+    "bookButtonText": "Book Performance!",
+    "listenButtonText": "Check Out My Music Below!"
+  },
+  "performanceImages": [
+    {
+      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758440704/ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64.jpg",
+      "caption": "aaa",
+      "publicId": "ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64"
+    },
+    {
+      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758441242/ehab-guitarrista/images/8417eead-347b-4735-ad12-698254ce88d7.jpg",
+      "caption": "wedding",
+      "publicId": "ehab-guitarrista/images/8417eead-347b-4735-ad12-698254ce88d7"
+    }
+  ],
+  "upcomingEvents": [
+    {
+      "title": "hhh",
+      "description": "hhhhh",
+      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758441242/ehab-guitarrista/images/8417eead-347b-4735-ad12-698254ce88d7.jpg",
+      "caption": "hhh",
+      "alt": "hhh poster"
+    },
+    {
+      "title": "",
+      "description": "",
+      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758441283/ehab-guitarrista/images/34f4cef6-dd7e-425d-9bc2-c31f848591c1.jpg",
+      "caption": "",
+      "alt": "Event poster"
+    }
+  ],
+  "bookExperience": {
+    "title": "YEAH",
+    "buttonText": "YEAH",
+    "description": "YEAH"
+  },
+  "performancePage": {
+    "mainTitle": "bbbbbbb",
+    "mainSubtitle": "bbbbb",
+    "eventsTitle": "bbbbb",
+    "eventsDescription": "bbbb"
   }
 }

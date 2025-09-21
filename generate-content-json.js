@@ -193,10 +193,6 @@ async function generateContentJson() {
                     content.performanceImages = Array.isArray(section) ? section : [];
                     break;
 
-                case 'upcomingEvents':
-                    content.upcomingEvents = Array.isArray(section) ? section : [];
-                    content.upcomingEventsTitle = "Upcoming Events";
-                    break;
 
                 case 'bookExperience':
                     content.bookExperience = section || {
@@ -209,7 +205,6 @@ async function generateContentJson() {
                 case 'images':
                     // Extract all image-related data from the images section
                     content.performanceImages = section.performanceImages || [];
-                    content.upcomingEvents = section.upcomingEvents || [];
                     content.bookExperience = section.bookExperience || {
                         title: "Book Your Experience",
                         description: "Ready to bring the magic of flamenco guitar to your event? Let's create something extraordinary together.",
