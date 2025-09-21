@@ -126,15 +126,15 @@ async function generateContentJson() {
                     break;
 
                 case 'music':
-                    content.music = section.tracks ? section : {
-                        title: "My Music",
-                        subtitle: "Original Compositions & Performances",
-                        featuredTracksTitle: "Featured Tracks",
-                        tracks: [{
-                            title: "Sample Track",
-                            description: "Add your music tracks through the CMS",
-                            file: ""
-                        }]
+                    content.music = {
+                        title: section.title || "My Music",
+                        subtitle: section.subtitle || "Original Compositions & Performances",
+                        featuredTracksTitle: section.featuredTitle || "Featured Tracks",
+                        tracks: (section.tracks || []).map(track => ({
+                            title: track.title || "",
+                            description: track.description || "",
+                            file: track.url || "" // Map 'url' from CMS to 'file' for the music player
+                        }))
                     };
                     break;
 
