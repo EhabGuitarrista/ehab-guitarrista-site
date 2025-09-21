@@ -1,4 +1,51 @@
 {
+  "stats": {
+    "yearsPerforming": {
+      "number": "a",
+      "label": "a"
+    },
+    "citiesToured": {
+      "number": "50+",
+      "label": "Cities Toured"
+    },
+    "showsPlayed": {
+      "number": "200+",
+      "label": "Shows Played"
+    },
+    "awardsWon": {
+      "number": "15+",
+      "label": "Awards Won"
+    }
+  },
+  "livePerformanceMoments": {
+    "title": "hhhuuuuuuuuuu"
+  },
+  "music": {
+    "title": "MUUUUSIC",
+    "subtitle": "SUBTITLE MUSIC",
+    "featuredTracksTitle": "TRACK TITLE",
+    "tracks": [
+      {
+        "title": "HAHAHAH",
+        "description": "AHHAHA",
+        "file": "https://res.cloudinary.com/dkkjoae6z/video/upload/v1758438369/ehab-guitarrista/audio/Tuesday%20night%20loop%20-%20With%20Ehab.m4a"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "formTitle": "Kindly Fill This In",
+    "infoTitle": "Contact Information",
+    "emailLabel": "Email",
+    "phoneLabel": "WhatsApp",
+    "locationLabel": "Locations",
+    "email": "ehab.guitarrista@gmail.com",
+    "phone": "+1 (555) 123-++++",
+    "location": "Available across Canada",
+    "responseTimeTitle": "Response Time",
+    "responseTime": "All inquiries receive a personal response from Ehab to Schedule an Appointment",
+    "bookButtonText": "Book Now"
+  },
   "footer": {
     "brandTitle": "Ehab Guitarrista",
     "description": "Professional Flamenco Guitarist & Composer",
@@ -13,52 +60,6 @@
     ],
     "copyrightText": "",
     "influencedByText": "Influenced by the masters of flamenco and world music"
-  },
-  "performanceImages": [
-    {
-      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758440704/ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64.jpg",
-      "caption": "aaa",
-      "publicId": "ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64",
-      "description": "bbbbbbbcccccc"
-    },
-    {
-      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758441242/ehab-guitarrista/images/8417eead-347b-4735-ad12-698254ce88d7.jpg",
-      "caption": "",
-      "publicId": "ehab-guitarrista/images/8417eead-347b-4735-ad12-698254ce88d7"
-    }
-  ],
-  "upcomingEvents": [
-    {
-      "title": "hhh",
-      "date": "2025-09-18",
-      "time": "16:58",
-      "location": "hhhhh",
-      "ticketLink": "",
-      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758441242/ehab-guitarrista/images/8417eead-347b-4735-ad12-698254ce88d7.jpg",
-      "caption": "hhh",
-      "alt": "hhh poster"
-    },
-    {
-      "title": "",
-      "date": "",
-      "time": "",
-      "location": "",
-      "ticketLink": "",
-      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758441283/ehab-guitarrista/images/34f4cef6-dd7e-425d-9bc2-c31f848591c1.jpg",
-      "caption": "",
-      "alt": "Event poster"
-    }
-  ],
-  "bookExperience": {
-    "title": "YEAH",
-    "buttonText": "YEAH",
-    "description": "YEAH"
-  },
-  "performancePage": {
-    "mainTitle": "bbbbbbb",
-    "mainSubtitle": "bbbbb",
-    "eventsTitle": "bbbbb",
-    "eventsDescription": "bbbb"
   },
   "videos": {
     "bannerVideo": {
@@ -137,51 +138,50 @@
       }
     }
   },
-  "stats": {
-    "yearsPerforming": {
-      "number": "a",
-      "label": "a"
+  "performanceImages": [
+    {
+      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758440704/ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64.jpg",
+      "caption": "aaa",
+      "publicId": "ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64",
+      "description": "bbbbbbbcccccc"
     },
-    "citiesToured": {
-      "number": "50+",
-      "label": "Cities Toured"
-    },
-    "showsPlayed": {
-      "number": "200+",
-      "label": "Shows Played"
-    },
-    "awardsWon": {
-      "number": "15+",
-      "label": "Awards Won"
+    {
+      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758441242/ehab-guitarrista/images/8417eead-347b-4735-ad12-698254ce88d7.jpg",
+      "caption": "",
+      "publicId": "ehab-guitarrista/images/8417eead-347b-4735-ad12-698254ce88d7"
     }
+  ],
+  "upcomingEvents": [
+    {
+      "title": "RED",
+      "date": "2025-12-12",
+      "time": "02:56",
+      "location": "REDDDDDDDDDD",
+      "ticketLink": "",
+      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758477034/ehab-guitarrista/images/f8e15299-5222-4da8-99c8-d5bc24f794ab.jpg",
+      "caption": "RED",
+      "alt": "RED poster"
+    },
+    {
+      "title": "",
+      "date": "",
+      "time": "",
+      "location": "",
+      "ticketLink": "",
+      "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758441283/ehab-guitarrista/images/34f4cef6-dd7e-425d-9bc2-c31f848591c1.jpg",
+      "caption": "",
+      "alt": "Event poster"
+    }
+  ],
+  "bookExperience": {
+    "title": "YEAH",
+    "buttonText": "YEAH",
+    "description": "YEAH"
   },
-  "livePerformanceMoments": {
-    "title": "hhhuuuuuuuuuu"
-  },
-  "music": {
-    "title": "MUUUUSIC",
-    "subtitle": "SUBTITLE MUSIC",
-    "featuredTracksTitle": "TRACK TITLE",
-    "tracks": [
-      {
-        "title": "HAHAHAH",
-        "description": "AHHAHA",
-        "file": "https://res.cloudinary.com/dkkjoae6z/video/upload/v1758438369/ehab-guitarrista/audio/Tuesday%20night%20loop%20-%20With%20Ehab.m4a"
-      }
-    ]
-  },
-  "contact": {
-    "title": "Get in Touch",
-    "formTitle": "Kindly Fill This In",
-    "infoTitle": "Contact Information",
-    "emailLabel": "Email",
-    "phoneLabel": "WhatsApp",
-    "locationLabel": "Locations",
-    "email": "ehab.guitarrista@gmail.com",
-    "phone": "+1 (555) 123-++++",
-    "location": "Available across Canada",
-    "responseTimeTitle": "Response Time",
-    "responseTime": "All inquiries receive a personal response from Ehab to Schedule an Appointment",
-    "bookButtonText": "Book Now"
+  "performancePage": {
+    "mainTitle": "bbbbbbb",
+    "mainSubtitle": "bbbbb",
+    "eventsTitle": "bbbbb",
+    "eventsDescription": "bbbb"
   }
 }
