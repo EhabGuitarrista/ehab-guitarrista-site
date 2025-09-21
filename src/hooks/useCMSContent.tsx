@@ -298,6 +298,18 @@ export const useCMSContent = () => {
               };
             }
 
+            // Transform audio tracks: map 'url' to 'file' for compatibility
+            if (transformedData.audioTracks && Array.isArray(transformedData.audioTracks)) {
+              transformedData.music = {
+                ...transformedData.music,
+                tracks: transformedData.audioTracks.map((track: any) => ({
+                  title: track.title || "",
+                  description: track.description || "",
+                  file: track.url || ""  // Map CMS 'url' to website 'file'
+                }))
+              };
+            }
+
             setContent({ ...defaultContent, ...transformedData });
           }
         } catch (e) {
@@ -365,6 +377,18 @@ export const useCMSContent = () => {
                   text: data.musicalPhilosophyText || ""
                 }
               }
+            };
+          }
+
+          // Transform audio tracks: map 'url' to 'file' for compatibility
+          if (transformedData.audioTracks && Array.isArray(transformedData.audioTracks)) {
+            transformedData.music = {
+              ...transformedData.music,
+              tracks: transformedData.audioTracks.map((track: any) => ({
+                title: track.title || "",
+                description: track.description || "",
+                file: track.url || ""  // Map CMS 'url' to website 'file'
+              }))
             };
           }
 

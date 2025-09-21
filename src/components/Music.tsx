@@ -188,7 +188,10 @@ const Music = () => {
   }
 
   // Show empty state if no tracks or all tracks have empty files
-  const hasValidTracks = tracks && tracks.length > 0 && tracks.some(track => track.file && track.file.trim() !== '');
+  const hasValidTracks = tracks && tracks.length > 0 && tracks.some(track => {
+    const audioUrl = track.file || (track as any).url || '';
+    return audioUrl && audioUrl.trim() !== '';
+  });
 
   if (!tracks || tracks.length === 0 || !hasValidTracks) {
     return (
@@ -234,10 +237,10 @@ const Music = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Audio Player */}
           <div className="audio-player">
-            {tracks[validCurrentTrack]?.file && (
+            {(tracks[validCurrentTrack]?.file || (tracks[validCurrentTrack] as any)?.url) && (
               <audio
                 ref={audioRef}
-                src={tracks[validCurrentTrack]?.file}
+                src={tracks[validCurrentTrack]?.file || (tracks[validCurrentTrack] as any)?.url}
                 preload="metadata"
               />
             )}
