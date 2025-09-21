@@ -127,9 +127,9 @@ async function generateContentJson() {
 
                 case 'music':
                     content.music = {
-                        title: section.title || "My Music",
-                        subtitle: section.subtitle || "Original Compositions & Performances",
-                        featuredTracksTitle: section.featuredTitle || "Featured Tracks",
+                        title: section.title || "",
+                        subtitle: section.subtitle || "",
+                        featuredTracksTitle: section.featuredTitle || "",
                         tracks: (section.tracks || []).map(track => ({
                             title: track.title || "",
                             description: track.description || "",
