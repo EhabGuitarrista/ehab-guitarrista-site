@@ -34,6 +34,31 @@ async function generateContentJson() {
         data.forEach(item => {
             const section = item.content || {};
 
+            // Handle dynamic arrays
+            if (item.section_name === 'dynamic_content') {
+                if (section.audioTracks) {
+                    content.audioTracks = section.audioTracks;
+                }
+
+                if (section.performanceImages) {
+                    content.performanceImages = section.performanceImages.map(img => ({
+                        title: img.caption || "",
+                        description: img.caption || "",
+                        image: img.url || "",
+                        alt: img.caption || "Performance image"
+                    }));
+                }
+
+                if (section.upcomingEvents) {
+                    content.upcomingEvents = section.upcomingEvents.map(event => ({
+                        title: event.name || "",
+                        description: event.location || "",
+                        image: event.imageUrl || "",
+                        alt: `${event.name || 'Event'} poster`
+                    }));
+                }
+            }
+
             switch(item.section_name) {
                 case 'navigation':
                     content.navigation = {
