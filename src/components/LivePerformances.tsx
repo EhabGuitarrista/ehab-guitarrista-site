@@ -40,7 +40,7 @@ const LivePerformances = () => {
   const performancePhotos = content.performanceImages?.map(item => ({
     url: item.url,
     title: item.caption || item.title || 'Performance Image',
-    description: item.caption || item.description || ''
+    description: item.description || ''
   })) || [];
 
   const allPhotos = [...performancePhotos];

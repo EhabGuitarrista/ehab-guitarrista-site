@@ -39,8 +39,9 @@ async function generateContentJson() {
                 if (section.performanceImages) {
                     content.performanceImages = section.performanceImages.map(img => ({
                         title: img.caption || "",
-                        description: img.caption || "",
-                        image: img.url || "",
+                        description: img.description || "",
+                        url: img.url || "",
+                        caption: img.caption || "",
                         alt: img.caption || "Performance image"
                     }));
                 }
