@@ -49,7 +49,8 @@ async function generateContentJson() {
                     content.upcomingEvents = section.upcomingEvents.map(event => ({
                         title: event.name || "",
                         description: event.location || "",
-                        image: event.imageUrl || "",
+                        url: event.imageUrl || "",
+                        caption: event.name || "",
                         alt: `${event.name || 'Event'} poster`
                     }));
                 }

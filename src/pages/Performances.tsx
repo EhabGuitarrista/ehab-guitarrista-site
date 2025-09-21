@@ -251,8 +251,8 @@ const Performances = () => {
                 content.upcomingEvents.map((event, index) => (
                   <div key={index} className="bg-card border border-border rounded-lg overflow-hidden group cursor-pointer hover:border-primary/50 transition-colors">
                     <div className="aspect-[3/4] bg-muted overflow-hidden">
-                      <img 
-                        src={event.image}
+                      <img
+                        src={event.url}
                         alt={event.alt || `${event.title} event poster`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
