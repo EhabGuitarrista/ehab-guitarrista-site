@@ -1,4 +1,81 @@
 {
+  "navigation": {
+    "logoText": "Ehab Guitarrista99",
+    "menuItems": {
+      "home": "Home9",
+      "music": "Music+",
+      "performances": "Performances+",
+      "contact": "Contact+"
+    },
+    "ctaButton": "Book Now!"
+  },
+  "hero": {
+    "title": "Ehab Guitarrista9",
+    "subtitle": "Bringing Music to Life Across Canada+",
+    "image": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758439825/ehab-guitarrista/images/178b603a-1fa3-4eab-8e3d-fd9273218278.jpg",
+    "bookButtonText": "Book Performance!",
+    "listenButtonText": "Check Out My Music Below!"
+  },
+  "about": {
+    "title": "Meet Ehab!",
+    "mainDescription": "=",
+    "secondParagraph": "90",
+    "thirdParagraph": "90",
+    "fourthParagraph": "+",
+    "videoUrl": "https://youtu.be/sGyMGzWHh5w",
+    "videoTitle": "",
+    "image": "",
+    "extendedBio": {
+      "earlyLife": {
+        "title": "a",
+        "text": "b"
+      },
+      "mentorship": {
+        "title": "c",
+        "text": "d"
+      },
+      "professional": {
+        "title": "e",
+        "text": "f"
+      },
+      "musicalPhilosophy": {
+        "title": "g",
+        "text": "h90"
+      }
+    }
+  },
+  "videos": {
+    "aboutSection": {
+      "title": "",
+      "file": "https://youtu.be/sGyMGzWHh5w"
+    },
+    "bannerVideo": {
+      "url": "https://youtu.be/yX7lZSmxysk"
+    },
+    "performanceVideos": [
+      {
+        "url": "https://youtu.be/yX7lZSmxysk",
+        "title": "PPPP",
+        "description": "PPPP"
+      },
+      {
+        "url": "https://youtu.be/hpErGEMqrKw",
+        "title": "TEST",
+        "description": "TEST"
+      }
+    ],
+    "performances": [],
+    "performanceVideo1": {
+      "title": "PPPP",
+      "description": "PPPP",
+      "file": "https://youtu.be/yX7lZSmxysk"
+    },
+    "performanceVideo2": {
+      "title": "TEST",
+      "description": "TEST",
+      "file": "https://youtu.be/hpErGEMqrKw"
+    }
+  },
   "stats": {
     "yearsPerforming": {
       "number": "a",
@@ -18,7 +95,7 @@
     }
   },
   "livePerformanceMoments": {
-    "title": "hhhuuuuuuuuuu"
+    "title": "LIIIVE"
   },
   "music": {
     "title": "MUUUUSIC",
@@ -29,6 +106,11 @@
         "title": "HAHAHAH",
         "description": "AHHAHA",
         "file": "https://res.cloudinary.com/dkkjoae6z/video/upload/v1758438369/ehab-guitarrista/audio/Tuesday%20night%20loop%20-%20With%20Ehab.m4a"
+      },
+      {
+        "title": "Test",
+        "description": "Test",
+        "file": "https://res.cloudinary.com/dkkjoae6z/video/upload/v1758601431/ehab-guitarrista/audio/Ehab%20-Haze%20-mix%20-%20Mastered.mp3"
       }
     ]
   },
@@ -61,83 +143,6 @@
     "copyrightText": "",
     "influencedByText": "Influenced by the masters of flamenco and world music"
   },
-  "videos": {
-    "bannerVideo": {
-      "url": "https://youtu.be/yX7lZSmxysk"
-    },
-    "performanceVideos": [
-      {
-        "url": "https://youtu.be/yX7lZSmxysk",
-        "title": "PPPP",
-        "description": "PPPP"
-      },
-      {
-        "url": "https://youtu.be/sGyMGzWHh5w",
-        "title": "tt",
-        "description": "ttttt"
-      }
-    ],
-    "performances": [],
-    "performanceVideo1": {
-      "title": "PPPP",
-      "description": "PPPP",
-      "file": "https://youtu.be/yX7lZSmxysk"
-    },
-    "performanceVideo2": {
-      "title": "tt",
-      "description": "ttttt",
-      "file": "https://youtu.be/sGyMGzWHh5w"
-    },
-    "aboutSection": {
-      "title": "",
-      "file": "https://youtu.be/sGyMGzWHh5w"
-    }
-  },
-  "navigation": {
-    "logoText": "Ehab Guitarristaaaaaa",
-    "menuItems": {
-      "home": "Home+",
-      "music": "Music+",
-      "performances": "Performances+",
-      "contact": "Contact+"
-    },
-    "ctaButton": "Book Now!"
-  },
-  "hero": {
-    "title": "Ehab Guitarrista+",
-    "subtitle": "Bringing Music to Life Across Canada+",
-    "image": "",
-    "bookButtonText": "Book Performance!",
-    "listenButtonText": "Check Out My Music Below!"
-  },
-  "about": {
-    "title": "Meet Ehab!",
-    "mainDescription": "=",
-    "secondParagraph": "",
-    "thirdParagraph": "",
-    "fourthParagraph": "+",
-    "videoUrl": "https://youtu.be/sGyMGzWHh5w",
-    "videoTitle": "",
-    "image": "",
-    "extendedBio": {
-      "earlyLife": {
-        "title": "a",
-        "text": "b"
-      },
-      "mentorship": {
-        "title": "c",
-        "text": "d"
-      },
-      "professional": {
-        "title": "e",
-        "text": "f"
-      },
-      "musicalPhilosophy": {
-        "title": "g",
-        "text": "h"
-      }
-    }
-  },
   "performanceImages": [
     {
       "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758440704/ehab-guitarrista/images/671be344-9a00-42cd-bf9e-044efec21e64.jpg",
@@ -163,25 +168,25 @@
       "alt": "RED poster"
     },
     {
-      "title": "",
-      "date": "",
-      "time": "",
-      "location": "",
+      "title": "TESTTTT",
+      "date": "2025-12-25",
+      "time": "21:09",
+      "location": "TESTTT",
       "ticketLink": "",
       "url": "https://res.cloudinary.com/dkkjoae6z/image/upload/v1758441283/ehab-guitarrista/images/34f4cef6-dd7e-425d-9bc2-c31f848591c1.jpg",
-      "caption": "",
-      "alt": "Event poster"
+      "caption": "TESTTTT",
+      "alt": "TESTTTT poster"
     }
   ],
   "bookExperience": {
-    "title": "YEAH",
-    "buttonText": "YEAH",
-    "description": "YEAH"
+    "title": "YEAHk",
+    "buttonText": "YEAHk",
+    "description": "YEAHk"
   },
   "performancePage": {
-    "mainTitle": "bbbbbbb",
-    "mainSubtitle": "bbbbb",
-    "eventsTitle": "bbbbb",
-    "eventsDescription": "bbbb"
+    "mainTitle": "bbbbbbbkkk",
+    "mainSubtitle": "bbbbbkkk",
+    "eventsTitle": "bbbbbkkk",
+    "eventsDescription": "bbbbkk"
   }
 }
