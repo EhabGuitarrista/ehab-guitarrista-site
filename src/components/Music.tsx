@@ -310,6 +310,21 @@ const Music = () => {
                       size="sm"
                       variant={validCurrentTrack === index && isPlaying ? "default" : "outline"}
                       className="rounded-full w-10 h-10 p-0 transition-all duration-300 transform hover:scale-110"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (validCurrentTrack === index) {
+                          handlePlayPause();
+                        } else {
+                          handleTrackSelect(index);
+                          setTimeout(() => {
+                            audioRef.current?.play().then(() => {
+                              setIsPlaying(true);
+                            }).catch((error) => {
+                              console.error('Error playing track:', error);
+                            });
+                          }, 100);
+                        }
+                      }}
                     >
                       {validCurrentTrack === index && isPlaying ? (
                         <Pause className="h-4 w-4" />
