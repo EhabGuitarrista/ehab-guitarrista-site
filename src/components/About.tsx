@@ -58,19 +58,19 @@ const About = () => {
             )}
 
             {content.about.secondParagraph && (
-              <p className="text-lg leading-relaxed text-foreground font-medium hidden md:block">
+              <p className="text-lg leading-relaxed text-foreground font-medium">
                 {content.about.secondParagraph}
               </p>
             )}
 
             {content.about.thirdParagraph && (
-              <p className="text-lg leading-relaxed text-foreground font-medium hidden md:block">
+              <p className="text-lg leading-relaxed text-foreground font-medium">
                 {content.about.thirdParagraph}
               </p>
             )}
 
             {content.about.fourthParagraph && (
-              <p className="text-lg leading-relaxed text-foreground font-medium hidden md:block">
+              <p className="text-lg leading-relaxed text-foreground font-medium">
                 {content.about.fourthParagraph}
               </p>
             )}
